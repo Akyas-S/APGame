@@ -1,3 +1,5 @@
+package main;
+
 public class GameController {
     //Controls the game scenes
 
@@ -8,6 +10,7 @@ public class GameController {
 
         gamePanel = new GamePanel();
         window = new Window(gamePanel);
+        gamePanel.setFocusable(true);
         gamePanel.requestFocus();
     }
 
