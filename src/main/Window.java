@@ -2,7 +2,7 @@ package main;
 
 import javax.swing.*;
 
-public class Window {
+    public class Window {
 
     JFrame jframe;
 
