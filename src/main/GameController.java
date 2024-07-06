@@ -6,7 +6,7 @@ public class GameController implements Runnable {
     private Window window;
     private GamePanel gamePanel;
     private Thread gameThread;
-    private final int FPS_SET = 60;
+    private final int FPS_SET = 120;
     int frames =0;
     long lastCheck = System.currentTimeMillis();
     public GameController(){
