@@ -169,7 +169,7 @@ public class GamePanel extends JPanel {
 
         g.drawImage(animations[0][aniIndex], (int) PlayerX, (int) PlayerY, null);
         for (int i = 0; i < EnemyX.length; i++) {
-            g.drawImage(enemy, (int) EnemyX[i], (int) EnemyY[i], null);
+            g.drawImage(enemy, (int) EnemyX[i], (int) EnemyY[i], 128,90 ,null);
         }
     }
 }
