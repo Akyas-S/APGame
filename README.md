@@ -1,1 +1,2 @@
-Zabeer is a gay fuker haha
+Blessed Be
+Fuck Akyas
