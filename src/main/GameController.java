@@ -1,5 +1,9 @@
 package main;
 
+import entity.Player;
+
+import java.awt.*;
+
 public class GameController implements Runnable {
     //Controls the game scenes
 
@@ -9,14 +13,24 @@ public class GameController implements Runnable {
     private final int FPS_SET = 60;
     int frames =0;
     long lastCheck = System.currentTimeMillis();
+
+    private Player player;
+
     public GameController(){
 
-        gamePanel = new GamePanel();
+        initClasses();
+        gamePanel = new GamePanel(this);
         window = new Window(gamePanel);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
         startGameLoop();
     }
+
+    private void initClasses() {
+        player = new Player(200,200);
+    }
+
+
 
     private void startGameLoop(){
         gameThread = new Thread(this);
@@ -49,5 +63,13 @@ public class GameController implements Runnable {
             //-----------
 
         }
+    }
+
+    public void render(Graphics g){
+        player.render(g);
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 }
