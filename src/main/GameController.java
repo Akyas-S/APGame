@@ -1,8 +1,13 @@
 package main;
 
+
 import gamestates.Gamestate;
 import gamestates.Playing;
 import gamestates.Menu;
+=======
+import entity.Player;
+import levels.Level1;
+
 
 import java.awt.*;
 
@@ -16,8 +21,12 @@ public class GameController implements Runnable {
     int frames =0;
     long lastCheck = System.currentTimeMillis();
 
+
     private Playing playing;
     private Menu menu;
+    private Player player;
+    private Level1 Level1;
+
 
     public GameController(){
 
@@ -31,8 +40,13 @@ public class GameController implements Runnable {
 
     private void initClasses() {
 
+
         menu = new Menu(this);
         playing = new Playing(this);
+
+        player = new Player(200,200);
+        Level1 = new Level1();
+
     }
 
 
@@ -71,6 +85,7 @@ public class GameController implements Runnable {
     }
 
     public void render(Graphics g){
+
         switch (Gamestate.state){
             case MENU:
                 menu.render(g);
@@ -85,6 +100,10 @@ public class GameController implements Runnable {
 
     public Menu getMenu(){
         return menu;
+
+        Level1.render(g);
+        player.render(g);
+
     }
 
     public Playing getPlaying(){
