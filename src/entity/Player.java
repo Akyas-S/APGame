@@ -1,5 +1,7 @@
 package entity;
 
+import utils.LoadImages;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,7 +12,7 @@ import static utils.Constants.Directions.*;
 import static utils.Constants.Directions.DOWN;
 import static utils.Constants.PlayerConstants.*;
 
-public class Player extends Entity{
+public class  Player extends Entity{
 
     private BufferedImage[][] animations;
     private int aniTick;
@@ -20,7 +22,7 @@ public class Player extends Entity{
     private boolean moving = false;
     private boolean up, left, down, right;
     float speed =3.5f;
-    int inversesprite =1;
+
 
     public Player(float x, float y) {
         super(x, y);
@@ -68,7 +70,6 @@ public class Player extends Entity{
         if (right) {
             x += speed;
             moving =true;
-            inversesprite = -1;
         }
 
     }
@@ -86,9 +87,8 @@ public class Player extends Entity{
     // Selects the animation from the sprite sheet.
     private void loadAnimations() {
 
-        InputStream is = getClass().getResourceAsStream("/cat2/catsprite temp.png");
-        try {
-            BufferedImage img = ImageIO.read(is);
+            // Gets the player sprite sheet.
+            BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
 
             // sets the maximum number of frames (X which is 10) and the total number of animations (Y which is 3)
             animations = new BufferedImage[3][10];
@@ -99,9 +99,7 @@ public class Player extends Entity{
                 }
             }
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
 
     }
 
