@@ -4,7 +4,6 @@ package main;
 import gamestates.Gamestate;
 import gamestates.Playing;
 import gamestates.Menu;
-=======
 import entity.Player;
 import levels.Level1;
 
@@ -101,8 +100,6 @@ public class GameController implements Runnable {
     public Menu getMenu(){
         return menu;
 
-        Level1.render(g);
-        player.render(g);
 
     }
 
