@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class LoadImages {
 
-    public static final String PLAYER_SPRITE = "cat2/catsprite temp.png";
+    public static final String PLAYER_SPRITE = "cat2/catsprite.png";
     public static final String LEVEL_BG = "levels/beach level.png";
 
 

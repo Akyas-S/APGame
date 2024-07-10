@@ -17,11 +17,11 @@ public class  Player extends Entity{
     private BufferedImage[][] animations;
     private int aniTick;
     private int aniIndex;
-    private int aniSpeed = 8;
+    private int aniSpeed = 10;
     private int playerAction = IDLE;
     private boolean moving = false;
     private boolean up, left, down, right;
-    float speed =3.5f;
+    float speed =4.5f;
 
 
     public Player(float x, float y) {
@@ -95,7 +95,7 @@ public class  Player extends Entity{
 
             for (int j = 0; j < animations.length; j++ ){
                 for(int i = 0; i< animations[j].length; i++){
-                    animations[j][i] = img.getSubimage(i*128,j*80,128,80);
+                    animations[j][i] = img.getSubimage(i*160,j*100,160,100);
                 }
             }
 

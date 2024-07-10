@@ -23,7 +23,7 @@ public class Constants {
         public static int GetSpriteAmt(int player_action){
             switch (player_action){
                 case IDLE:
-                    return 10;
+                    return 8;
 
                 case RUNNING:
                     return 10;
