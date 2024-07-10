@@ -3,7 +3,7 @@ package main;
 
 import gamestates.Gamestate;
 import gamestates.Playing;
-import gamestates.Menu;
+import gamestates.MainMenu;
 import entity.Player;
 import levels.Level1;
 
@@ -22,7 +22,7 @@ public class GameController implements Runnable {
 
 
     private Playing playing;
-    private Menu menu;
+    private MainMenu mainMenu;
     private Player player;
     private Level1 Level1;
 
@@ -40,7 +40,7 @@ public class GameController implements Runnable {
     private void initClasses() {
 
 
-        menu = new Menu(this);
+        mainMenu = new MainMenu(this);
         playing = new Playing(this);
 
         player = new Player(200,200);
@@ -87,7 +87,7 @@ public class GameController implements Runnable {
 
         switch (Gamestate.state){
             case MENU:
-                menu.render(g);
+                mainMenu.render(g);
                 break;
             case PLAYING:
                 playing.render(g);
@@ -97,8 +97,8 @@ public class GameController implements Runnable {
         }
     }
 
-    public Menu getMenu(){
-        return menu;
+    public MainMenu getMenu(){
+        return mainMenu;
 
 
     }

@@ -7,9 +7,14 @@ import java.io.InputStream;
 
 public class LoadImages {
 
-    public static final String PLAYER_SPRITE = "cat2/catsprite temp.png";
+    public static final String PLAYER_SPRITE = "cat2/catsprite.png";
     public static final String LEVEL_BG = "levels/beach level.png";
-
+    public static final String Startbtnimg = "Menubuttons/start.png";
+    public static final String Storebtnimg = "Menubuttons/store.png";
+    public static final String Settingsbtnimg = "Menubuttons/settings.png";
+    public static final String Exitbtnimg = "Menubuttons/exit.png";
+    public static final String Menuimg = "Menubuttons/menu.png";
+    public static final String Settingsimg = "Settingsbuttons/Settings.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
