@@ -90,6 +90,8 @@ public class GameController implements Runnable {
                 menu.render(g);
                 break;
             case PLAYING:
+
+                playing.update();
                 playing.render(g);
                 break;
             default:

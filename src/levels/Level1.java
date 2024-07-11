@@ -7,9 +7,10 @@ import java.awt.image.BufferedImage;
 
 public class Level1 {
 
-    private BufferedImage img = LoadImages.GetSprite(LoadImages.LEVEL_BG);
-    public void render(Graphics g){
 
-        g.drawImage(img, 0,0,null);
+    public static void render(Graphics g){
+        BufferedImage img = LoadImages.GetSprite(LoadImages.LEVEL_BG);
+
+        g.drawImage(img, 0,0,1920,1080,null);
     }
 }
