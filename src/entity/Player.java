@@ -22,10 +22,11 @@ public class  Player extends Entity{
     private boolean moving = false;
     private boolean up, left, down, right;
     float speed =4.5f;
+    public int player_health = 100;
 
 
     public Player(float x, float y) {
-        super(x, y);
+        super(x, y,100,100);
         loadAnimations();
     }
 
@@ -34,10 +35,20 @@ public class  Player extends Entity{
         updateAnimationTick();
         setAnimation();
         updatePos();
+        updateHitbox();
 
 
         // Draws the sprite of the character
         g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
+        drawHitbox(g);
+        playerDead(g);
+    }
+    public void playerDead(Graphics g){
+        if(player_health == 0){
+            g.setFont(new Font("Ink Free", Font.BOLD,75));
+            g.drawString("Dead",500,500);
+
+        }
     }
 
 

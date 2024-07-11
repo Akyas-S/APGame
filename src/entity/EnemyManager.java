@@ -2,6 +2,7 @@ package entity;
 
 import gamestates.Playing;
 import utils.LoadImages;
+import entity.Pirate;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +12,7 @@ import java.util.Random;
 /**
  * Manages the enemies (pirates) in the game.
  */
-public class EnemyManager {
+public class EnemyManager{
 
     // Reference to the Playing game state
     private Playing playing;
@@ -37,6 +38,8 @@ public class EnemyManager {
     // 2 seconds in milliseconds
     private final long spawnInterval = 2000;
 
+
+
     /**
      * Constructor for EnemyManager.
      * playing Reference to the Playing game state
@@ -59,7 +62,7 @@ public class EnemyManager {
      */
     public void update(){
         for (Pirate p : pirates) {
-            p.update(); // Update each pirate's state
+            p.update();// Update each pirate's state
         }
         movePirates(); // Update pirate positions
 
@@ -78,7 +81,8 @@ public class EnemyManager {
      * g Graphics object for drawing
      */
     public void draw(Graphics g){
-        drawPirates(g); // Draw all pirates
+        drawPirates(g);// Draw all pirates
+
     }
 
     /**
@@ -110,7 +114,10 @@ public class EnemyManager {
      */
     private void drawPirates(Graphics g) {
         for (Pirate p : pirates) {
+            p.update();
             g.drawImage(pirateArray[p.getEnemyState()][p.getAniIndex()], (int) p.getX(), (int) p.getY(), 160, 100, null);
+            p.drawHitbox(g);
+            p.updateHitbox();
         }
     }
 
@@ -141,7 +148,7 @@ public class EnemyManager {
     }
 
     /**
-     * Check for collisions between a pirate and other pirates or the player.
+     * Check for collisions between a pirate and other pirates.
      * x New x-coordinate of the pirate
      * y New y-coordinate of the pirate
      * pirate Pirate object to check for collisions
@@ -154,21 +161,22 @@ public class EnemyManager {
                 return true;
             }
         }
-
         // Check collision with the player
         if (distance(x, y, player.getX(), player.getY()) < 35) {
             return true;
         }
 
+
         return false;
     }
+
     /**
      * Calculate the distance between two points using Pythogaras.
      * x1 x-coordinate of the first point
      * y1 y-coordinate of the first point
      * x2 x-coordinate of the second point
      * y2 y-coordinate of the second point
-     * Euclidean distance between the two points
+     * Find distance between the two points
      */
     private float distance(float x1, float y1, float x2, float y2) {
         return (float) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));

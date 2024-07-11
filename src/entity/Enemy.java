@@ -1,17 +1,19 @@
 package entity;
 
 
+import java.awt.*;
+
 import static utils.Constants.EnemyConstants.*;
 
-public abstract class Enemy extends Entity {
+public class Enemy extends Entity {
     private int aniIndex, enemyState, enemyType;
     private int aniTick;
     private int aniSpeed = 25;
 
     public Enemy(float x, float y, int enemyType) {
-        super(x, y);
+        super(x, y,100,100);
         this.enemyType = enemyType;
-        initHitbox(x, y,width,height);
+
 
     }
 
