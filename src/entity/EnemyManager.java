@@ -156,14 +156,14 @@ public class EnemyManager {
         }
 
         // Check collision with the player
-        if (distance(x, y, player.getX(), player.getY()) < 32) {
+        if (distance(x, y, player.getX(), player.getY()) < 35) {
             return true;
         }
 
         return false;
     }
     /**
-     * Calculate the Euclidean distance between two points.
+     * Calculate the distance between two points using Pythogaras.
      * x1 x-coordinate of the first point
      * y1 y-coordinate of the first point
      * x2 x-coordinate of the second point

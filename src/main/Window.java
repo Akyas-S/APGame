@@ -1,8 +1,9 @@
 package main;
 
 import javax.swing.*;
+import java.io.File;
 
-    public class Window {
+public class Window {
 
     JFrame jframe;
 
@@ -15,5 +16,6 @@ import javax.swing.*;
         jframe.pack();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
+
     }
 }
