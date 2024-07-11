@@ -43,7 +43,10 @@ public class Playing extends State implements Statemethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        int temp = e.getButton();
+        if (temp == MouseEvent.BUTTON1) {
+            player.setUp(false);
+        }
     }
 
     @Override
@@ -54,13 +57,13 @@ public class Playing extends State implements Statemethods {
     @Override
     public void keyPressed(KeyEvent e) {
         int temp = e.getKeyCode();
-        if (temp == KeyEvent.VK_W){
+        if (temp == KeyEvent.VK_W || temp == KeyEvent.VK_UP){
             player.setUp(true);}
-        if (temp == KeyEvent.VK_A){
+        if (temp == KeyEvent.VK_A || temp == KeyEvent.VK_LEFT){
             player.setLeft(true);}
-        if (temp == KeyEvent.VK_D){
+        if (temp == KeyEvent.VK_D || temp == KeyEvent.VK_RIGHT){
             player.setRight(true);}
-        if (temp == KeyEvent.VK_S){
+        if (temp == KeyEvent.VK_S || temp == KeyEvent.VK_DOWN){
             player.setDown(true);}
 
     }
@@ -68,13 +71,13 @@ public class Playing extends State implements Statemethods {
     @Override
     public void keyReleased(KeyEvent e) {
         int temp = e.getKeyCode();
-        if (temp == KeyEvent.VK_W){
+        if (temp == KeyEvent.VK_W || temp == KeyEvent.VK_UP){
             player.setUp(false);}
-        if (temp == KeyEvent.VK_A){
+        if (temp == KeyEvent.VK_A || temp == KeyEvent.VK_LEFT){
             player.setLeft(false);}
-        if (temp == KeyEvent.VK_D){
+        if (temp == KeyEvent.VK_D || temp == KeyEvent.VK_RIGHT){
             player.setRight(false);}
-        if (temp == KeyEvent.VK_S){
+        if (temp == KeyEvent.VK_S || temp == KeyEvent.VK_DOWN){
             player.setDown(false);}
     }
 }

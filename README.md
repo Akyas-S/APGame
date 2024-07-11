@@ -1,3 +1,1 @@
-Blessed Be
-
-Fuck Akyas
+Changes
