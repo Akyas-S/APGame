@@ -25,7 +25,7 @@ public class  Player extends Entity{
 
 
     public Player(float x, float y) {
-        super(x, y,160,100);
+        super(x, y);
         loadAnimations();
     }
 
