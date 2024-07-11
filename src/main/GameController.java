@@ -4,6 +4,7 @@ package main;
 import gamestates.Gamestate;
 import gamestates.Playing;
 import gamestates.MainMenu;
+import gamestates.Settings;
 import entity.Player;
 import levels.Level1;
 
@@ -25,6 +26,7 @@ public class GameController implements Runnable {
     private MainMenu mainMenu;
     private Player player;
     private Level1 Level1;
+    private Settings settings;
 
 
     public GameController(){
@@ -42,7 +44,7 @@ public class GameController implements Runnable {
 
         mainMenu = new MainMenu(this);
         playing = new Playing(this);
-
+        settings = new Settings(this);
         player = new Player(200,200);
         Level1 = new Level1();
 
@@ -92,6 +94,9 @@ public class GameController implements Runnable {
             case PLAYING:
                 playing.render(g);
                 break;
+            case SETTINGS:
+                settings.render(g);
+                break;
             default:
                 break;
         }
@@ -99,13 +104,12 @@ public class GameController implements Runnable {
 
     public MainMenu getMenu(){
         return mainMenu;
-
-
+    }
+    public Settings getSettings(){
+        return settings;
     }
 
     public Playing getPlaying(){
         return playing;
     }
-
-
 }

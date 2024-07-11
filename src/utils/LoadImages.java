@@ -14,7 +14,11 @@ public class LoadImages {
     public static final String Settingsbtnimg = "Menubuttons/settings.png";
     public static final String Exitbtnimg = "Menubuttons/exit.png";
     public static final String Menuimg = "Menubuttons/menu.png";
-    public static final String Settingsimg = "Settingsbuttons/Settings.png";
+    public static final String Settingsimg = "Settingsbuttons/Settingsbg.png";
+    public static final String Audiobtnimg = "Settingsbuttons/audiobtn.png";
+    public static final String Closebtnimg = "Settingsbuttons/closebtn.png";
+    public static final String Controlsbtnimg = "Settingsbuttons/controlsbtn.png";
+    public static final String Videobtnimg = "Settingsbuttons/videobtn.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
