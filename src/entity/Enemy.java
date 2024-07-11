@@ -5,7 +5,8 @@ import static utils.Constants.EnemyConstants.*;
 
 public abstract class Enemy extends Entity {
     private int aniIndex, enemyState, enemyType;
-    private int aniTick, aniSpeed = 25;
+    private int aniTick;
+    private int aniSpeed = 10;
 
     public Enemy(float x, float y, int enemyType) {
         super(x, y);

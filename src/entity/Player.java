@@ -95,7 +95,7 @@ public class  Player extends Entity{
 
             for (int j = 0; j < animations.length; j++ ){
                 for(int i = 0; i< animations[j].length; i++){
-                    animations[j][i] = img.getSubimage(i*128,j*80,128,80);
+                    animations[j][i] = img.getSubimage(i*160,j*100,160,100);
                 }
             }
 

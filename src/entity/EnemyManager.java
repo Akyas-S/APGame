@@ -95,7 +95,7 @@ public class EnemyManager {
      */
     private void drawPirates(Graphics g) {
         for (Pirate p : pirates) {
-            g.drawImage(pirateArray[p.getEnemyState()][p.getAniIndex()], (int) p.getX(), (int) p.getY(), 128, 80, null);
+            g.drawImage(pirateArray[p.getEnemyState()][p.getAniIndex()], (int) p.getX(), (int) p.getY(), 160, 100, null);
         }
     }
 
