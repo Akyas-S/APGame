@@ -34,10 +34,12 @@ public class  Player extends Entity{
         updateAnimationTick();
         setAnimation();
         updatePos();
+        updateHitbox();
 
 
         // Draws the sprite of the character
         g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
+        drawHitbox(g);
     }
 
 
