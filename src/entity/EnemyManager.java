@@ -31,6 +31,12 @@ public class EnemyManager {
     // Reference to the player object
     private Player player;
 
+    // timestamp of the last spawn
+    private long lastSpawnTime = 0;
+
+    // 2 seconds in milliseconds
+    private final long spawnInterval = 2000;
+
     /**
      * Constructor for EnemyManager.
      * playing Reference to the Playing game state
@@ -44,6 +50,7 @@ public class EnemyManager {
         for (Point p : generatePositions()) {
             addPirate((int) p.getX(), (int) p.getY()); // Add pirates to the game
         }
+        lastSpawnTime = System.currentTimeMillis();
     }
 
     /**
@@ -55,8 +62,16 @@ public class EnemyManager {
             p.update(); // Update each pirate's state
         }
         movePirates(); // Update pirate positions
-    }
 
+        // Check if it's time to spawn a new pirate
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < 10) {
+            lastSpawnTime = currentTime;
+            int x = rand.nextInt(1000);
+            int y = rand.nextInt(800);
+            addPirate(x, y); // Add a new pirate at a random position with random direction
+        }
+    }
     /**
      * Draw method for the enemy manager.
      * Draws all pirates on the screen.
@@ -82,8 +97,8 @@ public class EnemyManager {
     private ArrayList<Point> generatePositions(){
 
         for (int i = 0; i < 5; i++) { // Loop to generate 5 random coordinates
-            int x = rand.nextInt(500);
-            int y = rand.nextInt(500);
+            int x = rand.nextInt(1000);
+            int y = rand.nextInt(800);
             positions.add(new Point(x, y)); // Add the random coordinates to the list
         }
         return positions;
@@ -116,8 +131,8 @@ public class EnemyManager {
             }
 
             // Check for collisions with other pirates and the player
-            float newX = p.getX() + dx * 5f;
-            float newY = p.getY() + dy * 5f;
+            float newX = p.getX() + dx * 4f;
+            float newY = p.getY() + dy * 4f;
             if (!checkCollision(newX, newY, p)) {
                 p.setX(newX);
                 p.setY(newY);
