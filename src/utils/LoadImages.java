@@ -9,16 +9,19 @@ public class LoadImages {
 
     public static final String PLAYER_SPRITE = "cat2/catsprite.png";
     public static final String LEVEL_BG = "levels/beach level.png";
-    public static final String Startbtnimg = "Menubuttons/start.png";
-    public static final String Storebtnimg = "Menubuttons/store.png";
-    public static final String Settingsbtnimg = "Menubuttons/settings.png";
-    public static final String Exitbtnimg = "Menubuttons/exit.png";
-    public static final String Menuimg = "Menubuttons/menu.png";
-    public static final String Settingsimg = "Settingsbuttons/Settingsbg.png";
-    public static final String Audiobtnimg = "Settingsbuttons/audiobtn.png";
-    public static final String Closebtnimg = "Settingsbuttons/closebtn.png";
-    public static final String Controlsbtnimg = "Settingsbuttons/controlsbtn.png";
-    public static final String Videobtnimg = "Settingsbuttons/videobtn.png";
+    public static final String Startbtnimg = "MenuUI/start.png";
+    public static final String Storebtnimg = "MenuUI/store.png";
+    public static final String Settingsbtnimg = "MenuUI/settings.png";
+    public static final String Exitbtnimg = "MenuUI/exit.png";
+    public static final String Menuimg = "MenuUI/menu.png";
+    public static final String Settingsimg = "SettingsUI/Settingsbg.png";
+    public static final String Audiobtnimg = "SettingsUI/audiobtn.png";
+    public static final String Closebtnimg = "SettingsUI/closebtn.png";
+    public static final String Controlsbtnimg = "SettingsUI/controlsbtn.png";
+    public static final String Videobtnimg = "SettingsUI/videobtn.png";
+    public static final String Audioimg = "AudioUI/Audiobg.png";
+    public static final String Checkbtnimg = "AudioUI/check.png";
+    public static final String Crossbtnimg = "AudioUI/cross.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
