@@ -4,6 +4,7 @@ package entity;
 import java.awt.*;
 
 import static utils.Constants.EnemyConstants.*;
+import static utils.Constants.PlayerConstants.GetSpriteAmt;
 
 public class Enemy extends Entity {
     private int aniIndex, enemyState, enemyType;
@@ -11,7 +12,7 @@ public class Enemy extends Entity {
     private int aniSpeed = 25;
 
     public Enemy(float x, float y, int enemyType) {
-        super(x, y,100,100);
+        super(x, y,60,90);
         this.enemyType = enemyType;
 
 
@@ -22,7 +23,7 @@ public class Enemy extends Entity {
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= GetEnemySpriteAmt(enemyType,enemyState) ) {
+            if (aniIndex >= GetSpriteAmt(enemyState) ) {
                 aniIndex = 0;
             }
         }

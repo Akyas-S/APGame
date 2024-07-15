@@ -19,14 +19,14 @@ public class  Player extends Entity{
     private int aniIndex;
     private int aniSpeed = 10;
     private int playerAction = IDLE;
-    private boolean moving = false;
-    private boolean up, left, down, right;
+    private boolean moving, attacking = false;
+    private boolean up, left, down, right, attack;
     float speed =4.5f;
     public int player_health = 100;
 
 
     public Player(float x, float y) {
-        super(x, y,100,100);
+        super(x, y,60,85);
         loadAnimations();
     }
 
@@ -144,6 +144,10 @@ public class  Player extends Entity{
 
     public void setDown(boolean down) {
         this.down = down;
+    }
+
+    public void setAttack(boolean attack){
+        this.attack = attack;
     }
 
     // In the Player class

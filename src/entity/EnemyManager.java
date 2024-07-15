@@ -83,6 +83,7 @@ public class EnemyManager{
     public void draw(Graphics g){
         drawPirates(g);// Draw all pirates
 
+
     }
 
     /**
