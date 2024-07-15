@@ -61,7 +61,7 @@ public class Settings extends State implements Statemethods {
         } else if (Closebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
         } else if (Controlbtnbounds.contains(clickPoint)) {
-            System.out.println("Control");
+            Gamestate.state = Gamestate.CONTROLS;
         } else if (Videobtnbounds.contains(clickPoint)) {
             System.out.println("Video");
         }

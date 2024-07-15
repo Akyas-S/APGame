@@ -22,6 +22,7 @@ public class LoadImages {
     public static final String Audioimg = "AudioUI/Audiobg.png";
     public static final String Checkbtnimg = "AudioUI/check.png";
     public static final String Crossbtnimg = "AudioUI/cross.png";
+    public static final String Controlsimg = "ControlsUI/Controlsbg.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
