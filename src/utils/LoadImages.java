@@ -28,6 +28,7 @@ public class LoadImages {
     public static final String Resumebtnimg = "PauseUI/resumebtn.png";
     public static final String Settpsimg = "PauseUI/settps.png";
     public static final String Quitbtnimg = "PauseUI/quitbtn.png";
+    public static final String Pausebtnicon = "levels/pausebtn.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
