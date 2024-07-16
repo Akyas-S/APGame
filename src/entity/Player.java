@@ -150,7 +150,6 @@ public class  Player extends Entity{
         this.attack = attack;
     }
 
-    // In the Player class
     public float getX() {
         return x;
     }

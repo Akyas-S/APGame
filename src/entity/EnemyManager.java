@@ -70,8 +70,8 @@ public class EnemyManager{
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < 10) {
             lastSpawnTime = currentTime;
-            int x = rand.nextInt(1000);
-            int y = rand.nextInt(800);
+            int x = rand.nextInt(800);
+            int y = rand.nextInt(700);
             addPirate(x, y); // Add a new pirate at a random position with random direction
         }
     }

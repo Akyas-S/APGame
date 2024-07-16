@@ -1,3 +1,4 @@
+
 package levels;
 
 import utils.LoadImages;
@@ -17,7 +18,7 @@ public class Level1 {
 
     public static void render(Graphics g) {
         if (background!= null) {
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0, 1024,768,null);
         } else {
             // Draw a default background or an error message
             g.setColor(Color.RED);
