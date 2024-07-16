@@ -1,6 +1,10 @@
 
+
 package levels;
 
+import entity.EnemyManager;
+import entity.Player;
+import gamestates.Playing;
 import utils.LoadImages;
 
 import java.awt.*;
@@ -8,21 +12,18 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Level1 {
-    private static BufferedImage background;
+    private EnemyManager enemyManager;
+    private Player player;
+    private Playing playing;
 
-    static {
-        background = LoadImages.GetSprite(LoadImages.LEVEL_BG);
+    public Level1(Playing playing, Player player) {
+        this.playing = playing;
+        this.player = player;
+        this.enemyManager = new EnemyManager(playing, player, 5);
     }
 
-
-
-    public static void render(Graphics g) {
-        if (background!= null) {
-            g.drawImage(background, 0, 0, 1024,768,null);
-        } else {
-            // Draw a default background or an error message
-            g.setColor(Color.RED);
-            g.drawString("Error loading background image", 10, 20);
-        }
+    public void render(Graphics g){
+        enemyManager.draw(g);
+        enemyManager.update();
     }
 }

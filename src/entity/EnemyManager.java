@@ -1,3 +1,4 @@
+
 package entity;
 
 import gamestates.Playing;
@@ -16,6 +17,7 @@ public class EnemyManager{
 
     // Reference to the Playing game state
     private Playing playing;
+    private int numEnemies;
 
     // Array of pirate images
     private BufferedImage[][] pirateArray;
@@ -38,16 +40,15 @@ public class EnemyManager{
     // 2 seconds in milliseconds
     private final long spawnInterval = 2000;
 
-
-
     /**
      * Constructor for EnemyManager.
      * playing Reference to the Playing game state
      * player Reference to the player object
      */
-    public EnemyManager(Playing playing, Player player){
+    public EnemyManager(Playing playing, Player player,int numEnemies){
         this.playing = playing;
         this.player = player;
+        this.numEnemies = numEnemies;
         loadEnemyImgs(); // Load pirate images
         movePirates(); // Initialize pirate positions
         for (Point p : generatePositions()) {
@@ -101,7 +102,7 @@ public class EnemyManager{
      */
     private ArrayList<Point> generatePositions(){
 
-        for (int i = 0; i < 5; i++) { // Loop to generate 5 random coordinates
+        for (int i = 0; i < numEnemies; i++) { // Loop to generate 5 random coordinates
             int x = rand.nextInt(1000);
             int y = rand.nextInt(800);
             positions.add(new Point(x, y)); // Add the random coordinates to the list
