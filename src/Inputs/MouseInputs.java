@@ -1,7 +1,6 @@
 package Inputs;
 
 import gamestates.Gamestate;
-import gamestates.Playing;
 import main.GamePanel;
 
 import java.awt.event.MouseEvent;
@@ -33,6 +32,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 break;
             case CONTROLS:
                 gamePanel.getGame().getControls().mouseClicked(e);
+                break;
+            case PAUSE:
+                gamePanel.getGame().getPause().mouseClicked(e);
                 break;
             default:
                 break;

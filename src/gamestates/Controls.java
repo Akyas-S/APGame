@@ -48,8 +48,7 @@ public class Controls extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(
-        controlsbg, 0, 0, null);
+        g.drawImage(controlsbg, 0, 0, null);
         g.drawImage(Closecontrolicon, 190,90,null);
         g.drawImage(upkeyicon, 780,400,null);
         g.drawImage(downkeyicon, 780,580,null);
