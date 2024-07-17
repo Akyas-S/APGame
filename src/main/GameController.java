@@ -5,7 +5,11 @@ package main;
 
 import gamestates.Gamestate;
 import gamestates.Playing;
-import gamestates.Menu;
+import gamestates.MainMenu;
+import gamestates.Settings;
+import gamestates.Audio;
+import gamestates.Controls;
+import gamestates.Pause;
 import entity.Player;
 import levels.Level1;
 
@@ -24,9 +28,13 @@ public class GameController implements Runnable {
 
 
     private Playing playing;
-    private Menu menu;
+    private MainMenu mainMenu;
     private Player player;
     private Level1 Level1;
+    private Settings settings;
+    private Audio audio;
+    private Controls controls;
+    private Pause pause;
 
 
     public GameController(){
@@ -42,9 +50,12 @@ public class GameController implements Runnable {
     private void initClasses() {
 
 
-        menu = new Menu(this);
+        mainMenu = new MainMenu(this);
         playing = new Playing(this);
-
+        settings = new Settings(this);
+        audio = new Audio(this);
+        controls = new Controls(this);
+        pause=new Pause(this);
         player = new Player(200,200);
         Level1 = new Level1(playing,player);
 
@@ -89,26 +100,37 @@ public class GameController implements Runnable {
 
         switch (Gamestate.state){
             case MENU:
-                menu.render(g);
+                mainMenu.render(g);
                 break;
             case PLAYING:
 
                 playing.render(g);
+                break;
+            case SETTINGS:
+                settings.render(g);
+                break;
+            case AUDIO:
+                audio.render(g);
+                break;
+            case CONTROLS:
+                controls.render(g);
+                break;
+            case PAUSE:
+                pause.render(g);
                 break;
             default:
                 break;
         }
     }
 
-    public Menu getMenu(){
-        return menu;
-
-
+    public MainMenu getMenu(){
+        return mainMenu;
     }
-
-    public Playing getPlaying(){
-        return playing;
+    public Settings getSettings(){
+        return settings;
     }
-
-
+    public Audio getAudio(){return audio;}
+    public Controls getControls(){return controls;}
+    public Playing getPlaying(){return playing;}
+    public Pause getPause(){return pause;}
 }
