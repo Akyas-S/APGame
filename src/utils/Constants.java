@@ -26,14 +26,16 @@ public class Constants {
                     return 8;
 
                 case RUNNING:
-                    return 10;
+                    return 9;
 
                 case ATTACK:
-                    return 10;
+                    return 5;
             }
             return player_action;
         }
     }
+
+
     public static class EnemyConstants{
         public static final int PIRATE = 0;
 
@@ -42,6 +44,8 @@ public class Constants {
         public static final int ATTACK = 2;
         public static final int DEAD = 4;
         public static final int HIT = 3;
+
+
         public static int GetEnemySpriteAmt(int enemyType,int enemyState){
             switch (enemyType) {
                 case PIRATE:
