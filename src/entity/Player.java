@@ -79,6 +79,7 @@ public class  Player extends Entity{
             aniIndex++;
             if(aniIndex >= GetSpriteAmt(playerAction)){
                 aniIndex =0;
+                attacking = false;
             }
         }
     }
@@ -105,12 +106,24 @@ public class  Player extends Entity{
     }
 
     private void setAnimation() {
+
+        int startAni = playerAction;
+
         if(moving){
-            playerAction = RUNNING;
-        }
+            playerAction = RUNNING;}
         else{
-            playerAction = IDLE;
+            playerAction = IDLE;}
+        if (attacking){
+            playerAction = ATTACK;
         }
+        if (startAni != playerAction){
+            resetAniTick();
+        }
+    }
+
+    private void resetAniTick() {
+        aniTick =0;
+        aniIndex =0;
     }
 
 
@@ -165,8 +178,8 @@ public class  Player extends Entity{
         this.down = down;
     }
 
-    public void setAttack(boolean attack){
-        this.attack = attack;
+    public void setAttacking(boolean attacking){
+        this.attacking = attacking;
     }
 
     public float getX() {
