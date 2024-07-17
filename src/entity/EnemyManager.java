@@ -18,7 +18,7 @@ public class EnemyManager{
     // Reference to the Playing game state
     private Playing playing;
     private int numEnemies;
-
+    private int EnemyAttack = 10;
     // Array of pirate images
     private BufferedImage[][] pirateArray;
 
@@ -128,23 +128,25 @@ public class EnemyManager{
      */
     private void movePirates() {
         for (Pirate p : pirates) {
-            // Calculate the direction vector from the pirate to the player
-            float dx = player.getX() - p.getX();
-            float dy = player.getY() - p.getY();
+            if (!player.dead) {
+                // Calculate the direction vector from the pirate to the player
+                float dx = player.getX() - p.getX();
+                float dy = player.getY() - p.getY();
 
-            // Normalize the direction vector
-            float length = (float) Math.sqrt(dx * dx + dy * dy);
-            if (length > 0) {
-                dx /= length;
-                dy /= length;
-            }
+                // Normalize the direction vector
+                float length = (float) Math.sqrt(dx * dx + dy * dy);
+                if (length > 0) {
+                    dx /= length;
+                    dy /= length;
+                }
 
-            // Check for collisions with other pirates and the player
-            float newX = p.getX() + dx * 4f;
-            float newY = p.getY() + dy * 4f;
-            if (!checkCollision(newX, newY, p)) {
-                p.setX(newX);
-                p.setY(newY);
+                // Check for collisions with other pirates and the player
+                float newX = p.getX() + dx * 4f;
+                float newY = p.getY() + dy * 4f;
+                if (!checkCollision(newX, newY, p)) {
+                    p.setX(newX);
+                    p.setY(newY);
+                }
             }
         }
     }
@@ -159,15 +161,16 @@ public class EnemyManager{
     private boolean checkCollision(float x, float y, Pirate pirate) {
         // Check collision with other pirates
         for (Pirate otherPirate : pirates) {
-            if (otherPirate != pirate && distance(x, y, otherPirate.getX(), otherPirate.getY()) < 35 ) {
+            if (otherPirate != pirate && distance(x, y, otherPirate.getHitbox().x, otherPirate.getHitbox().y) < 35 ) {
                 return true;
             }
         }
+
         // Check collision with the player
-        if (distance(x, y, player.getX(), player.getY()) < 35) {
+        if (!player.dead && distance(x, y, player.getX(), player.getY()) < 35) {
+            player.takeDamage(EnemyAttack);
             return true;
         }
-
 
         return false;
     }

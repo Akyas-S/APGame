@@ -34,7 +34,7 @@ public class LevelManager {
 
     public static void renderBackground(Graphics g) {
         if (background!= null) {
-            g.drawImage(background, 0, 0, 1024,768,null);
+            g.drawImage(background, 0, 0,null);
         } else {
             // Draw a default background or an error message
             g.setColor(Color.RED);
