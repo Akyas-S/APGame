@@ -9,6 +9,7 @@ public class LoadImages {
 
     public static final String PLAYER_SPRITE = "cat2/catsprite.png";
     public static final String LEVEL_BG = "levels/beach level.png";
+    public static final String PIRATE_SPRITE = "cat2/crabby_sprite.png";
 
 
     // static method because it will called often

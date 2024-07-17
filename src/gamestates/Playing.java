@@ -1,24 +1,34 @@
+
+
 package gamestates;
 
+import entity.EnemyManager;
 import entity.Player;
+import levels.LevelManager;
 import main.GameController;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 public class Playing extends State implements Statemethods {
     private Player player;
+    private EnemyManager enemyManager;
+    private LevelManager levelManager;
+    private Random random = new Random();
 
     public Playing(GameController game) {
         super(game);
         initClasses();
+
     }
 
     private void initClasses() {
 
         player = new Player(200,200);
+        enemyManager = new EnemyManager(this,player,5);
+        levelManager = new LevelManager(game,this,player);
     }
 
     public Player getPlayer(){
@@ -27,7 +37,9 @@ public class Playing extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
+        levelManager.renderBackground(g);
         player.render(g);
+        levelManager.drawLevels(g);
 
     }
 
@@ -77,4 +89,5 @@ public class Playing extends State implements Statemethods {
         if (temp == KeyEvent.VK_S){
             player.setDown(false);}
     }
+
 }

@@ -1,3 +1,5 @@
+
+
 package main;
 
 
@@ -44,7 +46,7 @@ public class GameController implements Runnable {
         playing = new Playing(this);
 
         player = new Player(200,200);
-        Level1 = new Level1();
+        Level1 = new Level1(playing,player);
 
     }
 
@@ -90,6 +92,7 @@ public class GameController implements Runnable {
                 menu.render(g);
                 break;
             case PLAYING:
+
                 playing.render(g);
                 break;
             default:
