@@ -1,5 +1,7 @@
 package entity;
 
+import gamestates.Playing;
+import main.GameController;
 import utils.LoadImages;
 
 import javax.imageio.ImageIO;
@@ -15,6 +17,8 @@ import static utils.Constants.PlayerConstants.*;
 public class  Player extends Entity{
 
     private BufferedImage[][] animations;
+    private EnemyManager enemyManager;
+    private Playing playing;
     private int aniTick;
     private int aniIndex;
     private int aniSpeed = 10;
@@ -22,12 +26,15 @@ public class  Player extends Entity{
     private boolean moving, attacking = false;
     private boolean up, left, down, right, attack;
     float speed =4.5f;
-    public int player_health = 100;
+    private int playerHealth = 100;
+    public boolean dead = false;
 
 
     public Player(float x, float y) {
         super(x, y,60,85);
         loadAnimations();
+        enemyManager = new EnemyManager(playing,this,5);
+
     }
 
 
@@ -37,16 +44,28 @@ public class  Player extends Entity{
         updatePos();
         updateHitbox();
 
+        if(!dead){
+            // Draws the sprite of the character
+            g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
+            drawHitbox(g);
+            playerDead(g);
+            g.setFont(new Font("Ink Free", Font.BOLD,100));
+            g.drawString(String.valueOf(playerHealth),200,100);
+        }
 
-        // Draws the sprite of the character
-        g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
-        drawHitbox(g);
-        playerDead(g);
     }
+
+    public void takeDamage(int damage) {
+        playerHealth -= damage;
+        if (playerHealth == 0){
+            dead = true;
+        }
+    }
+
     public void playerDead(Graphics g){
-        if(player_health == 0){
-            g.setFont(new Font("Ink Free", Font.BOLD,75));
-            g.drawString("Dead",500,500);
+        if(dead){
+            g.setFont(new Font("Ink Free", Font.BOLD,250));
+            g.drawString("Dead",660,540);
 
         }
     }
