@@ -159,7 +159,7 @@ public class EnemyManager{
     private boolean checkCollision(float x, float y, Pirate pirate) {
         // Check collision with other pirates
         for (Pirate otherPirate : pirates) {
-            if (otherPirate != pirate && distance(x, y, otherPirate.getX(), otherPirate.getY()) < 35 ) {
+            if (otherPirate != pirate && distance(x, y, otherPirate.getHitbox().x, otherPirate.getHitbox().y) < 35 ) {
                 return true;
             }
         }

@@ -11,6 +11,7 @@ public class Constants {
 
 
 
+
     // sets amount of animation frames for a certain animation in the sprite sheet
     public static class PlayerConstants{
 
