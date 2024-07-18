@@ -5,7 +5,6 @@ import main.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import static utils.Constants.Directions.*;
 
 
 public class  KeyboardInputs implements KeyListener {
@@ -43,6 +42,9 @@ public class  KeyboardInputs implements KeyListener {
             case PAUSE:
                 gamePanel.getGame().getPause().keyPressed(e);
                 break;
+            case STORE:
+                gamePanel.getGame().getStore().keyPressed(e);
+                break;
             default:
                 break;
         }
@@ -67,6 +69,10 @@ public class  KeyboardInputs implements KeyListener {
                 break;
             case PAUSE:
                 gamePanel.getGame().getPause().keyReleased(e);
+                break;
+            case STORE:
+                gamePanel.getGame().getStore().keyReleased(e);
+                break;
             default:
                 break;
         }

@@ -8,6 +8,7 @@ import gamestates.Settings;
 import gamestates.Audio;
 import gamestates.Controls;
 import gamestates.Pause;
+import gamestates.Store;
 import entity.Player;
 import levels.Level1;
 
@@ -34,6 +35,7 @@ public class GameController implements Runnable {
     private Controls controls;
     private Pause pause;
     private AudioPlayer audioPlayer;
+    private Store store;
 
 
     public GameController(){
@@ -54,6 +56,7 @@ public class GameController implements Runnable {
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
         pause=new Pause(this);
+        store = new Store(this);
         player = new Player(200,200);
         Level1 = new Level1();
 
@@ -115,6 +118,9 @@ public class GameController implements Runnable {
             case PAUSE:
                 pause.render(g);
                 break;
+            case STORE:
+                store.render(g);
+                break;
             default:
                 break;
         }
@@ -131,4 +137,5 @@ public class GameController implements Runnable {
     public Playing getPlaying(){return playing;}
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
+    public Store getStore(){return store;}
 }
