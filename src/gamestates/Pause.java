@@ -30,9 +30,9 @@ public class Pause extends State implements Statemethods {
         quit = LoadImages.GetSprite(LoadImages.Quitbtnimg);
 
 
-        resumebtnbounds = new Rectangle(155, 200, resume.getWidth(), resume.getHeight());
-        settingspsbtnbounds = new Rectangle(155, 280, settingsps.getWidth(),settingsps.getHeight());
-        quitbtnbounds = new Rectangle(155, 360, quit.getWidth(),quit.getHeight());
+        resumebtnbounds = new Rectangle(585, 370, resume.getWidth(), resume.getHeight());
+        settingspsbtnbounds = new Rectangle(585, 520, settingsps.getWidth(),settingsps.getHeight());
+        quitbtnbounds = new Rectangle(585, 670, quit.getWidth(),quit.getHeight());
 
     }
 
@@ -45,14 +45,22 @@ public class Pause extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(pausebg, 0, 0, null);
-        g.drawImage(resume, 155, 200, null);
-        g.drawImage(settingsps, 155, 280, null);
-        g.drawImage(quit, 155, 360, null);
+        g.drawImage(resume, 585, 370, null);
+        g.drawImage(settingsps, 585, 520, null);
+        g.drawImage(quit, 585, 670, null);
 
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent pse) {
+        Point clickPoint = pse.getPoint();
+        if (resumebtnbounds.contains(clickPoint)) {
+            Gamestate.state = Gamestate.PLAYING;
+        } else if (settingspsbtnbounds.contains(clickPoint)) {
+            Gamestate.state = Gamestate.SETTINGS;
+        } else if (quitbtnbounds.contains(clickPoint)) {
+            Gamestate.state = Gamestate.MENU;
+        }
 
     }
 
