@@ -22,11 +22,7 @@ public class LevelManager {
     private boolean islevel3 = false;
     private SaveLoad saveLoad;
 
-    private static BufferedImage background;
 
-    static {
-        background = LoadImages.GetSprite(LoadImages.LEVEL_BG);
-    }
 
     public LevelManager(GameController game, Playing playing, Player player){
         this.game = game;
@@ -82,13 +78,5 @@ public class LevelManager {
         update(g);
     }
 
-    public static void renderBackground(Graphics g) {
-        if (background!= null) {
-            g.drawImage(background, 0, 0,null);
-        } else {
-            // Draw a default background or an error message
-            g.setColor(Color.RED);
-            g.drawString("Error loading background image", 10, 20);
-        }
-    }
+
 }

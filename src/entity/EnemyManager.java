@@ -210,8 +210,8 @@ public class EnemyManager{
      * Load pirate images from a sprite sheet.
      */
     private void loadEnemyImgs(){
-        pirateArray = new BufferedImage[3][10];
-        BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE); // Assuming PIRATE_SPRITE is correct
+        pirateArray = new BufferedImage[1][10];
+        BufferedImage img = LoadImages.GetSprite(LoadImages.PIRATE_GHOST); // Assuming PIRATE_SPRITE is correct
 
         if (img == null) {
             System.err.println("Error: Could not load pirate sprite image.");
@@ -220,7 +220,7 @@ public class EnemyManager{
 
         for (int j = 0; j < pirateArray.length; j++) {
             for (int i = 0; i < pirateArray[j].length; i++) {
-                pirateArray[j][i] = img.getSubimage(i*160 , j*100, 160, 100);
+                pirateArray[j][i] = img.getSubimage(i*160 , 0, 160, 100);
             }
         }
     }

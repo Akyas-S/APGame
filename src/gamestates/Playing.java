@@ -42,13 +42,15 @@ public class Playing extends State implements Statemethods {
         enemyManager = new EnemyManager(this,player,5);
         levelManager = new LevelManager(game,this,player);
     }
+    private void keyBinds(){
+
+    }
 
     public Player getPlayer(){
         return player;
     }
     @Override
     public void render(Graphics g) {
-        levelManager.renderBackground(g);
         levelManager.render(g);
         player.render(g);
         g.drawImage(pausebtn, 10, 10, null);

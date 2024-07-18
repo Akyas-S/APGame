@@ -14,12 +14,10 @@ public class Settings extends State implements Statemethods {
     private BufferedImage Closeicon;
     private BufferedImage Audioicon;
     private BufferedImage Controlicon;
-    private BufferedImage Videoicon;
 
     private Rectangle Closebtnbounds;
     private Rectangle Audiobtnbounds;
     private Rectangle Controlbtnbounds;
-    private Rectangle Videobtnbounds;
 
     public Settings(GameController game){
         super(game);
@@ -31,12 +29,10 @@ public class Settings extends State implements Statemethods {
         Closeicon = LoadImages.GetSprite(LoadImages.Closebtnimg);
         Audioicon = LoadImages.GetSprite(LoadImages.Audiobtnimg);
         Controlicon = LoadImages.GetSprite(LoadImages.Controlsbtnimg);
-        Videoicon = LoadImages.GetSprite(LoadImages.Videobtnimg);
 
-        Closebtnbounds = new Rectangle(190, 90, Closeicon.getWidth(), Closeicon.getHeight());
-        Audiobtnbounds = new Rectangle(510, 350, Audioicon.getWidth(), Audioicon.getHeight());
-        Controlbtnbounds = new Rectangle(510, 700, Controlicon.getWidth(), Controlicon.getHeight());
-        Videobtnbounds = new Rectangle(510, 525, Videoicon.getWidth(), Videoicon.getHeight());
+        Closebtnbounds = new Rectangle(140, 65, 140, 140);
+        Audiobtnbounds = new Rectangle(250,230,750, 150);
+        Controlbtnbounds = new Rectangle(250,360,750, 150);
 
     }
 
@@ -46,11 +42,10 @@ public class Settings extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(settingsbg, 0,0,null);
-        g.drawImage(Audioicon, 510,350,900, 180, null);
-        g.drawImage(Closeicon, 190,90,null);
-        g.drawImage(Controlicon, 510,700,900, 180, null);
-        g.drawImage(Videoicon, 510,525,900, 180, null);
+        g.drawImage(settingsbg, 0,0,1280,720,null);
+        g.drawImage(Closeicon, 140, 65, 140, 140,null);
+        g.drawImage(Audioicon, 250,230,750, 150, null);
+        g.drawImage(Controlicon, 250,360,750, 150, null);
     }
 
     @Override
@@ -58,12 +53,13 @@ public class Settings extends State implements Statemethods {
         Point clickPoint = s.getPoint();
         if (Audiobtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.AUDIO;
+            game.getAudioPlayer().playButtonSound();
         } else if (Closebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
+            game.getAudioPlayer().playButtonSound();
         } else if (Controlbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.CONTROLS;
-        } else if (Videobtnbounds.contains(clickPoint)) {
-            System.out.println("Video");
+            game.getAudioPlayer().playButtonSound();
         }
     }
 
