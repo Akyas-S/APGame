@@ -128,7 +128,6 @@ public class EnemyManager{
                 checkAttackHitbox(player);
                 if (p.isDead()) {
                     iterator.remove(); // Remove the pirate from the list when it's dead
-                    System.out.println("Pirate removed from the map!");
                     player.playerScore++;
                 }
             }

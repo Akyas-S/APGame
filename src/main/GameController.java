@@ -88,7 +88,7 @@ public class GameController implements Runnable {
 
             if(System.currentTimeMillis() - lastCheck >= 1000){
                 lastCheck = System.currentTimeMillis();
-                System.out.println("Frames: " + frames);
+                //System.out.println("Frames: " + frames);
                 frames = 0;
             }
             //-----------

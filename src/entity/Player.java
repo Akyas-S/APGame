@@ -3,17 +3,11 @@ package entity;
 
 import data.SaveLoad;
 import gamestates.Playing;
-import main.GameController;
 import utils.LoadImages;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static utils.Constants.Directions.*;
-import static utils.Constants.Directions.DOWN;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity{
@@ -33,6 +27,8 @@ public class  Player extends Entity{
     public boolean dead = false;
     public int playerDamage = 50;
     public int playerScore;
+    public int playerCurrentCoins;
+    public int playerTotalCoins = 0;
     public int playerHighScore;
     private SaveLoad saveLoad;
 
@@ -61,7 +57,7 @@ public class  Player extends Entity{
             g.setFont(new Font("Ink Free", Font.BOLD,50));
             g.drawString("Health: "+ String.valueOf(playerHealth),100,100);
             g.drawString("Score: "+ String.valueOf(playerScore),600,100);
-            g.drawString("High Score: "+ String.valueOf(saveLoad.load()),900,100);
+            g.drawString("High Score: "+ String.valueOf(saveLoad.loadHighScore()),900,100);
         }
         playerDead(g);
 
@@ -70,7 +66,7 @@ public class  Player extends Entity{
     public void checkHighScore(int playerScore){
         if (playerScore >= playerHighScore){
             playerHighScore = playerScore;
-            saveLoad.save();
+            saveLoad.saveHighScore();
         }
 
     }
@@ -84,9 +80,11 @@ public class  Player extends Entity{
 
     public void playerDead(Graphics g){
         if(dead){
-            g.setFont(new Font("Ink Free", Font.BOLD,250));
+            g.setFont(new Font("Ink Free", Font.BOLD,50));
             g.drawString("Dead",660,540);
             g.drawString("Score: "+ String.valueOf(playerScore),600,700);
+            g.drawString("Coins Gained: "+ String.valueOf(playerCurrentCoins),1100,100);
+            g.drawString("Total Coins: "+ String.valueOf(saveLoad.loadCoins()),1000,500);
             checkHighScore(playerScore);
 
         }

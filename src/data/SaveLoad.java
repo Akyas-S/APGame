@@ -1,40 +1,61 @@
 package data;
 
 import entity.Player;
-import main.GamePanel;
 
 import java.io.*;
 
 public class SaveLoad {
 
     Player player;
+    dataStorage ds;
 
     public SaveLoad(Player player){
         this.player = player;
-
+        loadCoins();
+        loadHighScore();
     }
-    public void save(){
-        try{
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
-            dataStorage ds = new dataStorage();
-            ds.playerHighScore = player.playerHighScore;
-            os.writeObject(ds);
 
+    public void saveCoins(){
+        try{
+            ds.playerCoins = player.playerTotalCoins;
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            os.writeObject(ds);
         }catch (Exception e){
             System.out.println("Save Error");
         }
     }
 
-    public int load(){
+    public void saveHighScore(){
         try{
+            ds.playerHighScore = player.playerHighScore;
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            os.writeObject(ds);
+        }catch (Exception e){
+            System.out.println("Save Error");
+        }
+    }
 
+    public int loadHighScore(){
+        try{
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
-            dataStorage ds = (dataStorage) ois.readObject();
+            ds = (dataStorage) ois.readObject();
             player.playerHighScore = ds.playerHighScore;
             return ds.playerHighScore;
         }catch (Exception e){
-            System.out.println("Load Error");
-            return 0;
+            System.out.println("Load HighScore Error");
         }
+        return 0;
+    }
+
+    public int loadCoins(){
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+            ds = (dataStorage) ois.readObject();
+            player.playerTotalCoins = ds.playerCoins;
+            return ds.playerCoins;
+        }catch (Exception e){
+            System.out.println("Load Coins Error");
+        }
+        return 0;
     }
 }
