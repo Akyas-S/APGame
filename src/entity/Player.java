@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static utils.Constants.Directions.*;
-import static utils.Constants.Directions.DOWN;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity{
@@ -22,20 +21,40 @@ public class  Player extends Entity{
     private Playing playing;
     private int aniTick;
     private int aniIndex;
-    private int aniSpeed = 10;
+    private int aniSpeed = 5;
     private int playerAction = IDLE;
-    private boolean moving;
+    private boolean moving = false;
     boolean attacking = false;
     private boolean up, left, down, right, attack;
     float speed =4.5f;
-    public int playerHealth = 100;
+
     public boolean dead = false;
     public int playerDamage = 50;
     public int playerScore;
 
+    //HUD
+    public int playerHealth = 100;
+
+    private BufferedImage hudBarImg;
+
+    private int hudBarWidth = (int) (384);
+    private int hudBarHeight = (int) (72);
+    private int hudBarX = (int) (10);
+    private int hudBarY = (int) (10);
+
+    private int healthBarWidth = (int) (150);
+    private int healthBarHeight = (int) (4 );
+    private int healthBarXStart = (int) (34);
+    private int healthBarYStart = (int) (14);
+
+    private int maxHealth = 10;
+    private int currentHealth = maxHealth;
+    private int healthWidth = healthBarWidth;
+
 
     public Player(float x, float y) {
-        super(x, y,60,85);
+        super(x, y,120,85);
+
         loadAnimations();
         enemyManager = new EnemyManager(playing,this,5);
 
@@ -43,10 +62,13 @@ public class  Player extends Entity{
 
 
     public void render(Graphics g){
+        updatePos();
         updateAnimationTick();
         setAnimation();
-        updatePos();
+
         updateHitbox();
+
+        drawUI(g);
 
         if(!dead){
             // Draws the sprite of the character
@@ -58,6 +80,10 @@ public class  Player extends Entity{
         }
         playerDead(g);
 
+    }
+
+    private void drawUI(Graphics g) {
+       g.drawImage(hudBarImg, hudBarX, hudBarY , hudBarWidth , hudBarHeight, null);
     }
 
     public void takeDamage(int damage) {
@@ -96,23 +122,30 @@ public class  Player extends Entity{
 
     private void updatePos() {
         moving = false;
-        if (up) {
-            y -= speed;
-            moving =true;
-        }
-        if (down) {
-            y += speed;
-            moving =true;
-        }
-        if (left) {
+
+        if (!left && !right && !up && !down)
+            return;
+
+        float xSpeed = 0, ySpeed = 0;
+
+        if (left && !right){
             x -= speed;
-            moving =true;
-        }
-        if (right) {
-            x += speed;
-            moving =true;
+            moving = true;
         }
 
+        else if (right && !left) {
+            x += speed;
+            moving = true;
+        }
+
+        if (up && !down){
+            y -= speed;
+            moving = true;
+        }
+        else if (down && !up){
+            y += speed;
+            moving = true;
+        }
     }
 
     private void setAnimation() {
@@ -124,11 +157,13 @@ public class  Player extends Entity{
 
         else{
             playerAction = IDLE;}
+
         if (attacking){
             playerAction = ATTACK;
             updateAttackHitbox();
             enemyManager.checkAttackHitbox(this);
         }
+
         if (startAni != playerAction){
             resetAniTick();
         }
@@ -155,9 +190,12 @@ public class  Player extends Entity{
             }
         }
 
-
+        hudBarImg = LoadImages.GetSprite(LoadImages.PLAYER_HUD);
 
     }
+
+
+
 
     public boolean isUp() {
         return up;

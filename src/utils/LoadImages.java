@@ -8,7 +8,9 @@ import java.io.InputStream;
 public class LoadImages {
 
     public static final String PLAYER_SPRITE = "cat2/catsprite.png";
-    public static final String LEVEL_BG = "levels/beach level.png";
+    public static final String LEVEL1_BG = "levels/beach level.png";
+    public static final String LEVEL2_BG = "levels/map 2.png";
+    public static final String PIRATE_GHOST = "cat2/rat ghost.png";
     public static final String Startbtnimg = "MenuUI/start.png";
     public static final String Storebtnimg = "MenuUI/store.png";
     public static final String Settingsbtnimg = "MenuUI/settings.png";
@@ -29,6 +31,7 @@ public class LoadImages {
     public static final String Settpsimg = "PauseUI/settps.png";
     public static final String Quitbtnimg = "PauseUI/quitbtn.png";
     public static final String Pausebtnicon = "levels/pausebtn.png";
+    public static final String PLAYER_HUD = "HUD/PlayerHUD.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
