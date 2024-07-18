@@ -56,10 +56,13 @@ public class Pause extends State implements Statemethods {
         Point clickPoint = pse.getPoint();
         if (resumebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PLAYING;
+            game.getAudioPlayer().playButtonSound();
         } else if (settingspsbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playButtonSound();
         } else if (quitbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
+            game.getAudioPlayer().playButtonSound();
         }
 
     }

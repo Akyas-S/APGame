@@ -76,12 +76,16 @@ public class Audio extends State implements Statemethods {
         Point clickPoint = aud.getPoint();
         if (Closeaudbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playButtonSound();
+
         } else if (Musicbtnbounds.contains(clickPoint)) {
             isMusicEnabled = !isMusicEnabled; // toggle SFX button state
-            System.out.println("Music button clicked");
+            game.getAudioPlayer().playButtonSound();
+            game.getAudioPlayer().toggleMusicMute();
+
         } else if (SFXbtnbounds.contains(clickPoint)) {
             isSFXEnabled = !isSFXEnabled; // toggle SFX button state
-            System.out.println("SFX clicked");
+            game.getAudioPlayer().toggleSFXMute();
         }
     }
 

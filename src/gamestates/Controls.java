@@ -62,6 +62,7 @@ public class Controls extends State implements Statemethods {
         Point clickPoint = con.getPoint();
         if (Closecontrolbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playButtonSound();
         }
     }
 

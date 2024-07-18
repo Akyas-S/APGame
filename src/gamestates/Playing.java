@@ -49,6 +49,7 @@ public class Playing extends State implements Statemethods {
         Point clickPoint = e.getPoint();
         if (pausebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PAUSE;
+            game.getAudioPlayer().playButtonSound();
         }
 
     }

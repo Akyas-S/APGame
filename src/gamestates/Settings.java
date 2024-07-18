@@ -58,11 +58,15 @@ public class Settings extends State implements Statemethods {
         Point clickPoint = s.getPoint();
         if (Audiobtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.AUDIO;
+            game.getAudioPlayer().playButtonSound();
         } else if (Closebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
+            game.getAudioPlayer().playButtonSound();
         } else if (Controlbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.CONTROLS;
+            game.getAudioPlayer().playButtonSound();
         } else if (Videobtnbounds.contains(clickPoint)) {
+            game.getAudioPlayer().playButtonSound();
             System.out.println("Video");
         }
     }

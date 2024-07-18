@@ -2,6 +2,7 @@ package gamestates;
 
 import main.GameController;
 import utils.LoadImages;
+import Audio.AudioPlayer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -20,7 +21,6 @@ public class MainMenu extends State implements Statemethods {
     private Rectangle storeButtonBounds;
     private Rectangle settingsButtonBounds;
     private Rectangle exitButtonBounds;
-
 
 
     public MainMenu(GameController game){
@@ -61,11 +61,15 @@ public class MainMenu extends State implements Statemethods {
         Point clickPoint = e.getPoint();
         if (startButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PLAYING;
+            game.getAudioPlayer().playMenuButtonSound();
         } else if (storeButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.STORE;
+            game.getAudioPlayer().playMenuButtonSound();
         } else if (settingsButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playMenuButtonSound();
         } else if (exitButtonBounds.contains(clickPoint)) {
+            game.getAudioPlayer().playMenuButtonSound();
             System.exit(0);
         }
     }
