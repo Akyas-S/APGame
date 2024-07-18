@@ -2,6 +2,7 @@ package gamestates;
 
 import main.GameController;
 import utils.LoadImages;
+import Audio.AudioPlayer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,7 +23,6 @@ public class MainMenu extends State implements Statemethods {
     private Rectangle exitButtonBounds;
 
 
-
     public MainMenu(GameController game){
         super(game);
         loadBackground();
@@ -35,10 +35,10 @@ public class MainMenu extends State implements Statemethods {
         Settingsicon = LoadImages.GetSprite(LoadImages.Settingsbtnimg);
         Exiticon = LoadImages.GetSprite(LoadImages.Exitbtnimg);
 
-        startButtonBounds = new Rectangle(760, 295, Starticon.getWidth(), Starticon.getHeight());
-        storeButtonBounds = new Rectangle(760, 460, Storeicon.getWidth(), Storeicon.getHeight());
-        settingsButtonBounds = new Rectangle(760, 625, Settingsicon.getWidth(), Settingsicon.getHeight());
-        exitButtonBounds = new Rectangle(760, 790, Exiticon.getWidth(), Exiticon.getHeight());
+        startButtonBounds = new Rectangle(500, 200, 294, 91);
+        storeButtonBounds = new Rectangle(500, 310, 294, 91);
+        settingsButtonBounds = new Rectangle(500, 420, 294, 91);
+        exitButtonBounds = new Rectangle(500, 530, 294, 91);
     }
 
     private void loadBackground() {
@@ -48,11 +48,11 @@ public class MainMenu extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(background, 0,0,null);
-        g.drawImage(Starticon, 760,295,null);
-        g.drawImage(Storeicon, 760,460,null);
-        g.drawImage(Settingsicon, 760,625,null);
-        g.drawImage(Exiticon, 760,790,null);
+        g.drawImage(background, 0,0,1280,720,null);
+        g.drawImage(Starticon, 500,200,294, 91,null);
+        g.drawImage(Storeicon, 500,310,294, 91, null);
+        g.drawImage(Settingsicon, 500,420,294, 91,null);
+        g.drawImage(Exiticon, 500,530,294, 91,null);
 
     }
 
@@ -61,11 +61,15 @@ public class MainMenu extends State implements Statemethods {
         Point clickPoint = e.getPoint();
         if (startButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PLAYING;
+            game.getAudioPlayer().playMenuButtonSound();
         } else if (storeButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.STORE;
+            game.getAudioPlayer().playMenuButtonSound();
         } else if (settingsButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playMenuButtonSound();
         } else if (exitButtonBounds.contains(clickPoint)) {
+            game.getAudioPlayer().playMenuButtonSound();
             System.exit(0);
         }
     }
@@ -87,9 +91,7 @@ public class MainMenu extends State implements Statemethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Gamestate.state = Gamestate.PLAYING;
-        }
+
     }
 
     @Override

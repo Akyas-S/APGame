@@ -42,9 +42,9 @@ public class Audio extends State implements Statemethods {
         NoMusicicon = LoadImages.GetSprite(LoadImages.Crossbtnimg);
 
 
-        Closeaudbtnbounds = new Rectangle(190, 90, Closeaudicon.getWidth(), Closeaudicon.getHeight());
-        Musicbtnbounds = new Rectangle(1260, 360, Musicicon.getWidth(), Musicicon.getHeight());
-        SFXbtnbounds = new Rectangle(1260, 555, SFXicon.getWidth(), SFXicon.getHeight());
+        Closeaudbtnbounds = new Rectangle(140, 65, 140, 140);
+        Musicbtnbounds = new Rectangle(830,240,110, 110);
+        SFXbtnbounds = new Rectangle(830,370,110, 110);
     }
 
 
@@ -54,19 +54,19 @@ public class Audio extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(audiobg, 0, 0, null);
-        g.drawImage(Closeaudicon, 190,90,null);
+        g.drawImage(audiobg, 0, 0,1280,720, null);
+        g.drawImage(Closeaudicon, 140, 65, 140, 140, null);
         // render SFX button based on its state
 
         if (isMusicEnabled) {
-            g.drawImage(Musicicon, 1260,360,null);
+            g.drawImage(Musicicon, 830,240,110, 110,null);
         } else {
-            g.drawImage(NoMusicicon, 1260,365,null);
+            g.drawImage(NoMusicicon, 830,240,110, 110,null);
         }
         if (isSFXEnabled) {
-            g.drawImage(SFXicon, 1260,555,null);
+            g.drawImage(SFXicon, 830,370,110, 110,null);
         } else {
-            g.drawImage(NoSFXicon, 1260,560,null);
+            g.drawImage(NoSFXicon, 830,370,110, 110,null);
         }
 
     }
@@ -76,12 +76,16 @@ public class Audio extends State implements Statemethods {
         Point clickPoint = aud.getPoint();
         if (Closeaudbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playButtonSound();
+
         } else if (Musicbtnbounds.contains(clickPoint)) {
             isMusicEnabled = !isMusicEnabled; // toggle SFX button state
-            System.out.println("Music button clicked");
+            game.getAudioPlayer().playButtonSound();
+            game.getAudioPlayer().toggleMusicMute();
+
         } else if (SFXbtnbounds.contains(clickPoint)) {
             isSFXEnabled = !isSFXEnabled; // toggle SFX button state
-            System.out.println("SFX clicked");
+            game.getAudioPlayer().toggleSFXMute();
         }
     }
 

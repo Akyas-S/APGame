@@ -35,11 +35,11 @@ public class Controls extends State implements Statemethods {
         leftkeyicon = LoadImages.GetSprite(LoadImages.Keybtnimg);
         rightkeyicon = LoadImages.GetSprite(LoadImages.Keybtnimg);
 
-        Closecontrolbounds = new Rectangle(190, 90, Closecontrolicon.getWidth(), Closecontrolicon.getHeight());
-        upkeyiconbounds = new Rectangle(780, 400, upkeyicon.getWidth(), upkeyicon.getHeight());
-        downkeyiconbounds = new Rectangle(780, 580, downkeyicon.getWidth(), downkeyicon.getHeight());
-        leftkeyiconbounds = new Rectangle(1400, 400, leftkeyicon.getWidth(), leftkeyicon.getHeight());
-        rightkeyiconbounds = new Rectangle(1400, 580, rightkeyicon.getWidth(), rightkeyicon.getHeight());
+        Closecontrolbounds = new Rectangle(110, 50, 140, 140);
+        upkeyiconbounds = new Rectangle(510, 260, 90, 90);
+        downkeyiconbounds = new Rectangle(510, 380, 90,90);
+        leftkeyiconbounds = new Rectangle(950, 260, 90,90);
+        rightkeyiconbounds = new Rectangle(950, 380, 90,90);
     }
 
     private void loadControlsBackground() {
@@ -48,12 +48,12 @@ public class Controls extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(controlsbg, 0, 0, null);
-        g.drawImage(Closecontrolicon, 190,90,null);
-        g.drawImage(upkeyicon, 780,400,null);
-        g.drawImage(downkeyicon, 780,580,null);
-        g.drawImage(leftkeyicon, 1400,400,null);
-        g.drawImage(rightkeyicon, 1400,580,null);
+        g.drawImage(controlsbg, 0, 0,1280,720, null);
+        g.drawImage(Closecontrolicon, 110, 50, 140, 140,null);
+        g.drawImage(upkeyicon, 510, 260, 90, 90,null);
+        g.drawImage(downkeyicon, 510, 380, 90,90,null);
+        g.drawImage(leftkeyicon, 950, 260, 90,90,null);
+        g.drawImage(rightkeyicon, 950, 380, 90,90,null);
 
     }
 
@@ -62,6 +62,7 @@ public class Controls extends State implements Statemethods {
         Point clickPoint = con.getPoint();
         if (Closecontrolbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.SETTINGS;
+            game.getAudioPlayer().playButtonSound();
         }
     }
 
