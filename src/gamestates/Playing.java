@@ -37,8 +37,9 @@ public class Playing extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         levelManager.renderBackground(g);
+        levelManager.render(g);
         player.render(g);
-        levelManager.drawLevels(g);
+
 
     }
 

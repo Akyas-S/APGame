@@ -15,11 +15,9 @@ public abstract class  Entity {
         this.width = width;
         this.height = height;
         initHitbox();
-
     }
 
     protected void drawHitbox(Graphics g) {
-        // For debugging hitbox
         g.setColor(Color.pink);
         g. drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
     }
@@ -32,8 +30,10 @@ public abstract class  Entity {
         hitbox.x = (int) x;
         hitbox.y = (int) y;
     }
+
     public Rectangle2D.Float getHitbox() {
         return hitbox;
 
     }
+
 }

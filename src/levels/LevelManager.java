@@ -12,8 +12,11 @@ import java.awt.image.BufferedImage;
 public class LevelManager {
     private GameController game;
     private Playing playing;
-    private Player player;
-    private static Level1 level1;
+    private static Player player;
+    private Level1 level1;
+    private Level2 level2;
+    private boolean isLevel1;
+    private boolean isLevel2 = false;
 
     private static BufferedImage background;
 
@@ -26,10 +29,28 @@ public class LevelManager {
         this.playing = playing;
         this.player = player;
         this.level1 = new Level1(playing, player);
+        this.level2 = new Level2(playing, player);
+        this.isLevel1 = true;
     }
 
-    public static void drawLevels(Graphics g){
-        level1.render(g);
+    public void update(Graphics g) {
+        if (isLevel1) {
+            level1.render(g);
+            if (player.playerScore >= 50) {
+                isLevel1 = false;
+                isLevel2 = true;
+            }
+        }
+        if(isLevel2){
+            level2.render(g);
+            if (player.playerScore >= 100){
+               isLevel2 = false;
+            }
+        }
+    }
+
+    public void render(Graphics g){
+        update(g);
     }
 
     public static void renderBackground(Graphics g) {

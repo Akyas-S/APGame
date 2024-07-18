@@ -1,4 +1,5 @@
 
+
 package entity;
 
 import gamestates.Playing;
@@ -8,6 +9,7 @@ import entity.Pirate;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -18,7 +20,7 @@ public class EnemyManager{
     // Reference to the Playing game state
     private Playing playing;
     private int numEnemies;
-    private int EnemyAttack = 10;
+    private int EnemyAttack = 1;
     // Array of pirate images
     private BufferedImage[][] pirateArray;
 
@@ -69,11 +71,13 @@ public class EnemyManager{
 
         // Check if it's time to spawn a new pirate
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < 10) {
+        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < numEnemies ) {
             lastSpawnTime = currentTime;
-            int x = rand.nextInt(800);
-            int y = rand.nextInt(700);
-            addPirate(x, y); // Add a new pirate at a random position with random direction
+            for (int i = 0; i < numEnemies; i++) {
+                int x = rand.nextInt(800);
+                int y = rand.nextInt(700);
+                addPirate(x, y); // Add a new pirate at a random position with random direction
+            }
         }
     }
     /**
@@ -83,8 +87,6 @@ public class EnemyManager{
      */
     public void draw(Graphics g){
         drawPirates(g);// Draw all pirates
-
-
     }
 
     /**
@@ -115,11 +117,22 @@ public class EnemyManager{
      * g Graphics object for drawing
      */
     private void drawPirates(Graphics g) {
-        for (Pirate p : pirates) {
+        Iterator<Pirate> iterator = pirates.iterator();
+        while (iterator.hasNext()) {
+            Pirate p = iterator.next();
             p.update();
             g.drawImage(pirateArray[p.getEnemyState()][p.getAniIndex()], (int) p.getX(), (int) p.getY(), 160, 100, null);
             p.drawHitbox(g);
             p.updateHitbox();
+            if(player.attacking){
+                checkAttackHitbox(player);
+                if (p.isDead()) {
+                    iterator.remove(); // Remove the pirate from the list when it's dead
+                    System.out.println("Pirate removed from the map!");
+                    player.playerScore++;
+                }
+            }
+
         }
     }
 
@@ -171,10 +184,17 @@ public class EnemyManager{
             player.takeDamage(EnemyAttack);
             return true;
         }
-
         return false;
     }
 
+    public void checkAttackHitbox(Player player) {
+        for (Pirate p : pirates) {
+            if (p.getHitbox().intersects(player.getHitbox())) {
+                p.takeDamage(player.playerDamage);
+
+            }
+        }
+    }
     /**
      * Calculate the distance between two points using Pythogaras.
      * x1 x-coordinate of the first point
