@@ -17,6 +17,7 @@ public class LevelCompleted extends State implements Statemethods {
 
     private Rectangle menuButtonBounds;
     private Rectangle replayButtonBounds;
+    private Rectangle nextButtonBounds;
 
     public LevelCompleted(GameController game) {
         super(game);
@@ -30,9 +31,11 @@ public class LevelCompleted extends State implements Statemethods {
     private void loadButtons() {
         Menuicon = LoadImages.GetSprite(LoadImages.MENU_BUTTON);
         Replayicon = LoadImages.GetSprite(LoadImages.REPLAY_BUTTON);
+        Nexticon = LoadImages.GetSprite(LoadImages.NEXT_LVL);
 
         menuButtonBounds = new Rectangle(500, 200, 294, 91);
-        replayButtonBounds = new Rectangle(500, 310, 294, 91);
+        replayButtonBounds = new Rectangle(700, 200, 294, 91);
+        nextButtonBounds = new Rectangle(600, 310, 294, 91);
 
     }
 
@@ -40,7 +43,9 @@ public class LevelCompleted extends State implements Statemethods {
     public void render(Graphics g) {
         g.drawImage(background, 0,0,1280,720,null);
         g.drawImage(Menuicon, 500,200,294, 91,null);
-        g.drawImage(Replayicon, 500,310,294, 91, null);
+        g.drawImage(Replayicon, 700,200,294, 91, null);
+        g.drawImage(Nexticon, 600, 310, 294, 91, null);
+
 
     }
 
@@ -50,18 +55,10 @@ public class LevelCompleted extends State implements Statemethods {
         if (menuButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
             game.getAudioPlayer().playMenuButtonSound();
-        } else if (storeButtonBounds.contains(clickPoint)) {
-            Gamestate.state = Gamestate.STORE;
-            game.getAudioPlayer().playMenuButtonSound();
-        } else if (settingsButtonBounds.contains(clickPoint)) {
-            Gamestate.state = Gamestate.SETTINGS;
-            game.getAudioPlayer().playMenuButtonSound();
-        } else if (exitButtonBounds.contains(clickPoint)) {
-            game.getAudioPlayer().playMenuButtonSound();
-            System.exit(0);
+        } // else if (replayButtonBounds.contains(clickPoint)) {
+          //Gamestate.state = Gamestate.;
+          //game.getAudioPlayer().playMenuButtonSound();
         }
-
-    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -86,6 +83,9 @@ public class LevelCompleted extends State implements Statemethods {
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
-}
+    } else if (nextButtonBounds.contains(clickPoint) {
+            Gamestate.state = Gamestate.PLAYING;
+            game.getAudioPlayer().playMenuButtonSound();
+        }
+
 
