@@ -31,12 +31,10 @@ public class Settings extends State implements Statemethods {
         Closeicon = LoadImages.GetSprite(LoadImages.Closebtnimg);
         Audioicon = LoadImages.GetSprite(LoadImages.Audiobtnimg);
         Controlicon = LoadImages.GetSprite(LoadImages.Controlsbtnimg);
-        Videoicon = LoadImages.GetSprite(LoadImages.Videobtnimg);
 
         Closebtnbounds = new Rectangle(190, 90, Closeicon.getWidth(), Closeicon.getHeight());
-        Audiobtnbounds = new Rectangle(510, 350, Audioicon.getWidth(), Audioicon.getHeight());
-        Controlbtnbounds = new Rectangle(510, 700, Controlicon.getWidth(), Controlicon.getHeight());
-        Videobtnbounds = new Rectangle(510, 525, Videoicon.getWidth(), Videoicon.getHeight());
+        Audiobtnbounds = new Rectangle(510, 400, Audioicon.getWidth(), Audioicon.getHeight());
+        Controlbtnbounds = new Rectangle(510, 600, Controlicon.getWidth(), Controlicon.getHeight());
 
     }
 
@@ -47,10 +45,9 @@ public class Settings extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(settingsbg, 0,0,null);
-        g.drawImage(Audioicon, 510,350,900, 180, null);
+        g.drawImage(Audioicon, 510,400,900, 180, null);
         g.drawImage(Closeicon, 190,90,null);
-        g.drawImage(Controlicon, 510,700,900, 180, null);
-        g.drawImage(Videoicon, 510,525,900, 180, null);
+        g.drawImage(Controlicon, 510,600,900, 180, null);
     }
 
     @Override
@@ -65,9 +62,6 @@ public class Settings extends State implements Statemethods {
         } else if (Controlbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.CONTROLS;
             game.getAudioPlayer().playButtonSound();
-        } else if (Videobtnbounds.contains(clickPoint)) {
-            game.getAudioPlayer().playButtonSound();
-            System.out.println("Video");
         }
     }
 

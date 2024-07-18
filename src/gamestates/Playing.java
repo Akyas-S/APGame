@@ -32,6 +32,9 @@ public class Playing extends State implements Statemethods {
 
         player = new Player(200,200);
     }
+    private void keyBinds(){
+
+    }
 
     public Player getPlayer(){
         return player;
@@ -49,7 +52,6 @@ public class Playing extends State implements Statemethods {
         Point clickPoint = e.getPoint();
         if (pausebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PAUSE;
-            game.getAudioPlayer().playButtonSound();
         }
 
     }

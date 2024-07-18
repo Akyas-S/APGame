@@ -44,7 +44,7 @@ public class Pause extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(pausebg, 0, 0, null);
+        g.drawImage(pausebg, 0, 0,1280,720, null);
         g.drawImage(resume, 585, 370, null);
         g.drawImage(settingsps, 585, 520, null);
         g.drawImage(quit, 585, 670, null);
