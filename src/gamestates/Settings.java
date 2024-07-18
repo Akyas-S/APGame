@@ -14,12 +14,10 @@ public class Settings extends State implements Statemethods {
     private BufferedImage Closeicon;
     private BufferedImage Audioicon;
     private BufferedImage Controlicon;
-    private BufferedImage Videoicon;
 
     private Rectangle Closebtnbounds;
     private Rectangle Audiobtnbounds;
     private Rectangle Controlbtnbounds;
-    private Rectangle Videobtnbounds;
 
     public Settings(GameController game){
         super(game);
@@ -32,9 +30,9 @@ public class Settings extends State implements Statemethods {
         Audioicon = LoadImages.GetSprite(LoadImages.Audiobtnimg);
         Controlicon = LoadImages.GetSprite(LoadImages.Controlsbtnimg);
 
-        Closebtnbounds = new Rectangle(190, 90, Closeicon.getWidth(), Closeicon.getHeight());
-        Audiobtnbounds = new Rectangle(510, 400, Audioicon.getWidth(), Audioicon.getHeight());
-        Controlbtnbounds = new Rectangle(510, 600, Controlicon.getWidth(), Controlicon.getHeight());
+        Closebtnbounds = new Rectangle(140, 65, 140, 140);
+        Audiobtnbounds = new Rectangle(250,230,750, 150);
+        Controlbtnbounds = new Rectangle(250,360,750, 150);
 
     }
 
@@ -44,10 +42,10 @@ public class Settings extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(settingsbg, 0,0,null);
-        g.drawImage(Audioicon, 510,400,900, 180, null);
-        g.drawImage(Closeicon, 190,90,null);
-        g.drawImage(Controlicon, 510,600,900, 180, null);
+        g.drawImage(settingsbg, 0,0,1280,720,null);
+        g.drawImage(Closeicon, 140, 65, 140, 140,null);
+        g.drawImage(Audioicon, 250,230,750, 150, null);
+        g.drawImage(Controlicon, 250,360,750, 150, null);
     }
 
     @Override

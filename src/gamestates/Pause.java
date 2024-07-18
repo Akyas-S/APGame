@@ -30,9 +30,9 @@ public class Pause extends State implements Statemethods {
         quit = LoadImages.GetSprite(LoadImages.Quitbtnimg);
 
 
-        resumebtnbounds = new Rectangle(585, 370, resume.getWidth(), resume.getHeight());
-        settingspsbtnbounds = new Rectangle(585, 520, settingsps.getWidth(),settingsps.getHeight());
-        quitbtnbounds = new Rectangle(585, 670, quit.getWidth(),quit.getHeight());
+        resumebtnbounds = new Rectangle(345, 260, 600, 150);
+        settingspsbtnbounds = new Rectangle(345, 370, 600, 150);
+        quitbtnbounds = new Rectangle(345, 470, 600, 150);
 
     }
 
@@ -45,9 +45,9 @@ public class Pause extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(pausebg, 0, 0,1280,720, null);
-        g.drawImage(resume, 585, 370, null);
-        g.drawImage(settingsps, 585, 520, null);
-        g.drawImage(quit, 585, 670, null);
+        g.drawImage(resume, 345, 260, 600, 150,null);
+        g.drawImage(settingsps, 345, 370,600, 150, null);
+        g.drawImage(quit, 345, 470, 600, 150,null);
 
     }
 
