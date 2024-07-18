@@ -61,7 +61,7 @@ public class Controls extends State implements Statemethods {
     public void mouseClicked(MouseEvent con) {
         Point clickPoint = con.getPoint();
         if (Closecontrolbounds.contains(clickPoint)) {
-            Gamestate.state = Gamestate.MENU;
+            Gamestate.state = Gamestate.SETTINGS;
         }
     }
 

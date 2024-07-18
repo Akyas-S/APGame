@@ -75,11 +75,10 @@ public class Audio extends State implements Statemethods {
     public void mouseClicked(MouseEvent aud) {
         Point clickPoint = aud.getPoint();
         if (Closeaudbtnbounds.contains(clickPoint)) {
-            Gamestate.state = Gamestate.MENU;
+            Gamestate.state = Gamestate.SETTINGS;
         } else if (Musicbtnbounds.contains(clickPoint)) {
             isMusicEnabled = !isMusicEnabled; // toggle SFX button state
             System.out.println("Music button clicked");
-
         } else if (SFXbtnbounds.contains(clickPoint)) {
             isSFXEnabled = !isSFXEnabled; // toggle SFX button state
             System.out.println("SFX clicked");

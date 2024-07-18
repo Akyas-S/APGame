@@ -1,6 +1,7 @@
 
 package entity;
 
+import data.SaveLoad;
 import gamestates.Playing;
 import main.GameController;
 import utils.LoadImages;
@@ -32,12 +33,17 @@ public class  Player extends Entity{
     public boolean dead = false;
     public int playerDamage = 50;
     public int playerScore;
+    public int playerHighScore;
+    private SaveLoad saveLoad;
 
 
     public Player(float x, float y) {
         super(x, y,60,85);
         loadAnimations();
         enemyManager = new EnemyManager(playing,this,5);
+        SaveLoad saveLoad = new SaveLoad(this);
+        this.saveLoad = saveLoad;
+
 
     }
 
@@ -52,11 +58,20 @@ public class  Player extends Entity{
             // Draws the sprite of the character
             g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
             drawHitbox(g);
-            g.setFont(new Font("Ink Free", Font.BOLD,75));
+            g.setFont(new Font("Ink Free", Font.BOLD,50));
             g.drawString("Health: "+ String.valueOf(playerHealth),100,100);
             g.drawString("Score: "+ String.valueOf(playerScore),600,100);
+            g.drawString("High Score: "+ String.valueOf(saveLoad.load()),900,100);
         }
         playerDead(g);
+
+    }
+
+    public void checkHighScore(int playerScore){
+        if (playerScore >= playerHighScore){
+            playerHighScore = playerScore;
+            saveLoad.save();
+        }
 
     }
 
@@ -72,7 +87,7 @@ public class  Player extends Entity{
             g.setFont(new Font("Ink Free", Font.BOLD,250));
             g.drawString("Dead",660,540);
             g.drawString("Score: "+ String.valueOf(playerScore),600,700);
-
+            checkHighScore(playerScore);
 
         }
     }

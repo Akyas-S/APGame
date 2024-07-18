@@ -2,7 +2,7 @@
 
 package main;
 
-
+import Audio.AudioPlayer;
 import gamestates.Gamestate;
 import gamestates.Playing;
 import gamestates.MainMenu;
@@ -35,6 +35,7 @@ public class GameController implements Runnable {
     private Audio audio;
     private Controls controls;
     private Pause pause;
+    private AudioPlayer audioPlayer;
 
 
     public GameController(){
@@ -48,15 +49,14 @@ public class GameController implements Runnable {
     }
 
     private void initClasses() {
-
-
         mainMenu = new MainMenu(this);
         playing = new Playing(this);
         settings = new Settings(this);
         audio = new Audio(this);
+        audioPlayer = new AudioPlayer();
         controls = new Controls(this);
-        pause=new Pause(this);
         player = new Player(200,200);
+        pause=new Pause(this, player);
         Level1 = new Level1(playing,player);
 
     }
@@ -133,4 +133,5 @@ public class GameController implements Runnable {
     public Controls getControls(){return controls;}
     public Playing getPlaying(){return playing;}
     public Pause getPause(){return pause;}
+    public AudioPlayer getAudioPlayer(){return audioPlayer;}
 }

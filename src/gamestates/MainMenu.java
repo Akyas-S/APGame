@@ -59,7 +59,6 @@ public class MainMenu extends State implements Statemethods {
     @Override
     public void mouseClicked(MouseEvent e) {
         Point clickPoint = e.getPoint();
-
         if (startButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PLAYING;
         } else if (storeButtonBounds.contains(clickPoint)) {

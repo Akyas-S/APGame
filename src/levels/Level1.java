@@ -28,7 +28,7 @@ public class Level1 {
     public void render(Graphics g){
         enemyManager.draw(g);
         enemyManager.update();
-        g.setFont(new Font("Ink Free", Font.BOLD,250));
-        g.drawString("Level 1",500,200);
+        g.setFont(new Font("Ink Free", Font.BOLD,150));
+        g.drawString("Level 1",1000,200);
     }
 }
