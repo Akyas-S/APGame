@@ -1,3 +1,5 @@
+
+
 package main;
 
 import Audio.AudioPlayer;
@@ -55,7 +57,7 @@ public class GameController implements Runnable {
         controls = new Controls(this);
         pause=new Pause(this);
         player = new Player(200,200);
-        Level1 = new Level1();
+        Level1 = new Level1(playing,player);
 
     }
 
@@ -101,6 +103,7 @@ public class GameController implements Runnable {
                 mainMenu.render(g);
                 break;
             case PLAYING:
+
                 playing.render(g);
                 break;
             case SETTINGS:

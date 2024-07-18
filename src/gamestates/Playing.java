@@ -1,17 +1,24 @@
+
+
 package gamestates;
 
+import entity.EnemyManager;
 import entity.Player;
+import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 import java.awt.image.BufferedImage;
 
 public class Playing extends State implements Statemethods {
     private Player player;
+    private EnemyManager enemyManager;
+    private LevelManager levelManager;
+    private Random random = new Random();
     private BufferedImage pausebtn;
 
     private Rectangle pausebtnbounds;
@@ -19,6 +26,7 @@ public class Playing extends State implements Statemethods {
     public Playing(GameController game) {
         super(game);
         initClasses();
+
         initPauseButton();
     }
 
@@ -31,22 +39,29 @@ public class Playing extends State implements Statemethods {
     private void initClasses() {
 
         player = new Player(200,200);
+        enemyManager = new EnemyManager(this,player,5);
+        levelManager = new LevelManager(game,this,player);
     }
 
     public Player getPlayer(){
         return player;
     }
-
     @Override
     public void render(Graphics g) {
+        levelManager.renderBackground(g);
+        levelManager.render(g);
         player.render(g);
         g.drawImage(pausebtn, 10, 10, null);
+
+
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Point clickPoint = e.getPoint();
+        if(e.getButton()== MouseEvent.BUTTON1){
+            player.setAttacking(true);
+        }        Point clickPoint = e.getPoint();
         if (pausebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PAUSE;
         }
@@ -97,4 +112,5 @@ public class Playing extends State implements Statemethods {
         if (temp == KeyEvent.VK_S){
             player.setDown(false);}
     }
+
 }
