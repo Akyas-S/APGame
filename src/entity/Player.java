@@ -3,21 +3,17 @@ package entity;
 
 import data.SaveLoad;
 import gamestates.Playing;
-import main.GameController;
 import utils.LoadImages;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static utils.Constants.Directions.*;
-import static utils.Constants.Directions.DOWN;
 import static utils.Constants.PlayerConstants.*;
 
-public class  Player extends Entity{
+public class Player extends Entity {
 
+    // Animation variables
     private BufferedImage[][] animations;
     private EnemyManager enemyManager;
     private Playing playing;
@@ -27,119 +23,163 @@ public class  Player extends Entity{
     private int playerAction = IDLE;
     private boolean moving = false;
     boolean attacking = false;
-    private boolean up, left, down, right, attack;
-    float speed =4.5f;
 
+    // Movement variables
+    private boolean up, left, down, right, attack;
+    private float speed = 4.5f;
+
+    // Save and load variables
+    private SaveLoad saveLoad;
+
+    // Player stats
     public boolean dead = false;
     public int playerDamage = 50;
     public int playerScore;
-    public int playerCurrentCoins;
-    public int playerTotalCoins = 0;
     public int playerHighScore;
-    private SaveLoad saveLoad;
+    public int playerCurrentCoins;
+    public int playerTotalCoins;
 
-    //HUD
-    public int playerHealth = 100;
-
+    // HUD variables
     private BufferedImage hudBarImg;
-
-    private int hudBarWidth = (int) (384);
-    private int hudBarHeight = (int) (72);
-    private int hudBarX = (int) (10);
-    private int hudBarY = (int) (10);
-
-    private int healthBarWidth = (int) (150);
-    private int healthBarHeight = (int) (4 );
-    private int healthBarXStart = (int) (34);
-    private int healthBarYStart = (int) (14);
-
-    private int maxHealth = 10;
+    private int hudBarWidth = 385;
+    private int hudBarHeight = 73;
+    private int hudBarX = 10;
+    private int hudBarY = 10;
+    private int healthBarWidth = 290;
+    private int healthBarHeight = 10;
+    private int healthBarXStart = 95;
+    private int healthBarYStart = 19;
+    private int maxHealth = 100;
     private int currentHealth = maxHealth;
     private int healthWidth = healthBarWidth;
 
+    // Character flip variables
+    private int flipX = 0;
+    private int flipW = 1;
+    private int drawOffsetX = 6;
+    private int drawOffsetY = 11;
+    private int playergap = 0;
 
+    // Attack variables
+    private Rectangle2D.Float attackBox;
+
+    // Constructor
     public Player(float x, float y) {
-        super(x, y,120,85);
-
+        super(x, y, 60, 77);
+        initHitbox();
+        initAttackBox();
         loadAnimations();
-        enemyManager = new EnemyManager(playing,this,5);
-        SaveLoad saveLoad = new SaveLoad(this);
-        this.saveLoad = saveLoad;
-
-
+        saveLoad = new SaveLoad(this);
+        enemyManager = new EnemyManager(playing, this, 5);
     }
 
+    // Initializes the attack box
+    private void initAttackBox() {
+        attackBox = new Rectangle2D.Float(x, y, 80, 120);
+    }
 
-    public void render(Graphics g){
+    // Renders the player
+    public void render(Graphics g) {
+        updateHealthBar();
         updatePos();
         updateAnimationTick();
         setAnimation();
-
+        drawAttackBox(g);
+        updateAttackBox();
         updateHitbox();
 
         drawUI(g);
 
-        if(!dead){
+        if (!dead) {
             // Draws the sprite of the character
-            g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
+            g.drawImage(animations[playerAction][aniIndex],
+                    (int) (hitbox.x - drawOffsetX) + flipX + playergap,
+                    (int) (hitbox.y - drawOffsetY),
+                    160 * flipW,
+                    100,
+                    null);
+
             drawHitbox(g);
-            g.setFont(new Font("Ink Free", Font.BOLD,50));
-            g.drawString("Health: "+ String.valueOf(playerHealth),100,100);
-            g.drawString("Score: "+ String.valueOf(playerScore),600,100);
-            g.drawString("High Score: "+ String.valueOf(saveLoad.loadHighScore()),900,100);
+            g.setFont(new Font("arial", Font.BOLD, 20));
+            g.setColor(Color.WHITE);
+            g.drawString("Score: " + String.valueOf(playerScore), 100, 65);
         }
-        playerDead(g);
-
+        playerDead();
     }
 
+    // Updates the attack box
+    private void updateAttackBox() {
+        if (right)
+            attackBox.x = hitbox.x + hitbox.width + 5;
+        else if (left)
+            attackBox.x = hitbox.x - hitbox.width - 25;
+
+        attackBox.y = hitbox.y + (-20);
+    }
+
+    // Draws the attack box
+    private void drawAttackBox(Graphics g) {
+        g.setColor(Color.red);
+        g.drawRect((int) attackBox.x, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+    }
+
+    // Gets the attack box
+    public Rectangle2D.Float getAttackBox() {
+        return attackBox;
+    }
+
+    // Updates the health bar
+    private void updateHealthBar() {
+        healthWidth = (int) (((float) maxHealth / currentHealth) * healthBarWidth);
+    }
+
+    // Draws the UI
     private void drawUI(Graphics g) {
-       g.drawImage(hudBarImg, hudBarX, hudBarY , hudBarWidth , hudBarHeight, null);
+        g.drawImage(hudBarImg, hudBarX, hudBarY, hudBarWidth, hudBarHeight, null);
+        g.setColor(Color.RED);
+        g.fillRect(healthBarXStart, healthBarYStart, healthWidth, healthBarHeight);
     }
 
-    public void checkHighScore(int playerScore){
-        if (playerScore >= playerHighScore){
-            playerHighScore = playerScore;
-            saveLoad.saveHighScore();
-        }
-
-    }
-
+    // Takes damage
     public void takeDamage(int damage) {
-        playerHealth -= damage;
-        if (playerHealth == 0){
+        maxHealth -= damage;
+        if (maxHealth <= 0) {
             dead = true;
         }
     }
 
-    public void playerDead(Graphics g){
-        if(dead){
-            g.setFont(new Font("Ink Free", Font.BOLD,50));
-            g.drawString("Dead",660,540);
-            System.out.println(("Score: "+ String.valueOf(playerScore)));
-            System.out.println(("Coins Gained: "+ String.valueOf(playerCurrentCoins)));
-            System.out.println("Total Coins: "+ String.valueOf(saveLoad.loadCoins()));
-            checkHighScore(playerScore);
-
+    // Checks high score
+    public void checkHighScore(int playerScore) {
+        if (playerScore >= playerHighScore) {
+            playerHighScore = playerScore;
+            saveLoad.saveHighScore();
         }
     }
-    protected void updateAttackHitbox(){
-        hitbox.width = width + 50;
+    // Player dead
+    public void playerDead() {
+        if (dead) {
+            System.out.println("Score: " + String.valueOf(playerScore));
+            System.out.println("HighScore : " + String.valueOf(saveLoad.loadHighScore()));
+            System.out.println("Coins Gained: " + String.valueOf(playerCurrentCoins));
+            System.out.println("Total Coins: " + String.valueOf(saveLoad.loadCoins()));
+            checkHighScore(playerScore);
+        }
     }
 
-
-    // Cycles through the animation frames in the sprite sheet
+    // Updates the animation tick
     private void updateAnimationTick() {
         aniTick++;
-        if(aniTick >= aniSpeed){
-            aniTick =0;
+        if (aniTick >= aniSpeed) {
+            aniTick = 0;
             aniIndex++;
-            if(aniIndex >= GetSpriteAmt(playerAction)){
-                aniIndex =0;
+            if (aniIndex >= GetSpriteAmt(playerAction)) {
+                aniIndex = 0;
                 attacking = false;
             }
         }
     }
 
+    // Updates the position
     private void updatePos() {
         moving = false;
 
@@ -148,54 +188,60 @@ public class  Player extends Entity{
 
         float xSpeed = 0, ySpeed = 0;
 
-        if (left && !right){
+        if (left && !right) {
             x -= speed;
+            flipX = width;
+            flipW = -1;
+            playergap = 12;
             moving = true;
         }
 
         else if (right && !left) {
             x += speed;
+            flipX = 0;
+            flipW = 1;
+            playergap = 0;
             moving = true;
         }
 
-        if (up && !down){
+        if (up && !down) {
             y -= speed;
             moving = true;
-        }
-        else if (down && !up){
+        } else if (down && !up) {
             y += speed;
             moving = true;
         }
     }
 
+    // Sets the animation
     private void setAnimation() {
 
         int startAni = playerAction;
 
-        if(moving){
-            playerAction = RUNNING;}
+        if (moving) {
+            playerAction = RUNNING;
+        } else {
+            playerAction = IDLE;
+        }
 
-        else{
-            playerAction = IDLE;}
-
-        if (attacking){
+        if (attacking) {
             playerAction = ATTACK;
-            updateAttackHitbox();
+            //updateAttackHitbox();
             enemyManager.checkAttackHitbox(this);
         }
 
-        if (startAni != playerAction){
+        if (startAni != playerAction) {
             resetAniTick();
         }
     }
 
+    // Resets the animation tick
     private void resetAniTick() {
-        aniTick =0;
-        aniIndex =0;
+        aniTick = 0;
+        aniIndex = 0;
     }
 
-
-    // Selects the animation from the sprite sheet.
+    // Loads the animations
     private void loadAnimations() {
 
         // Gets the player sprite sheet.
@@ -204,19 +250,16 @@ public class  Player extends Entity{
         // sets the maximum number of frames (X which is 10) and the total number of animations (Y which is 3)
         animations = new BufferedImage[3][10];
 
-        for (int j = 0; j < animations.length; j++ ){
-            for(int i = 0; i< animations[j].length; i++){
-                animations[j][i] = img.getSubimage(i*160,j*100,160,100);
+        for (int j = 0; j < animations.length; j++) {
+            for (int i = 0; i < animations[j].length; i++) {
+                animations[j][i] = img.getSubimage(i * 160, j * 100, 160, 100);
             }
         }
 
         hudBarImg = LoadImages.GetSprite(LoadImages.PLAYER_HUD);
-
     }
 
-
-
-
+    // Getters and setters
     public boolean isUp() {
         return up;
     }
@@ -249,7 +292,7 @@ public class  Player extends Entity{
         this.down = down;
     }
 
-    public void setAttacking(boolean attacking){
+    public void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }
 
@@ -261,7 +304,6 @@ public class  Player extends Entity{
         return y;
     }
 
-
     public void setX(float x) {
         this.x = x;
     }
@@ -269,6 +311,4 @@ public class  Player extends Entity{
     public void setY(float y) {
         this.y = y;
     }
-
-
 }

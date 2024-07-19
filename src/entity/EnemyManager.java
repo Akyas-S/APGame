@@ -71,11 +71,11 @@ public class EnemyManager{
 
         // Check if it's time to spawn a new pirate
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < numEnemies ) {
+        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < numEnemies + 5 ) {
             lastSpawnTime = currentTime;
             for (int i = 0; i < numEnemies; i++) {
-                int x = rand.nextInt(800);
-                int y = rand.nextInt(700);
+                int x = rand.nextInt(2000);
+                int y = rand.nextInt(1400);
                 addPirate(x, y); // Add a new pirate at a random position with random direction
             }
         }
@@ -105,8 +105,8 @@ public class EnemyManager{
     private ArrayList<Point> generatePositions(){
 
         for (int i = 0; i < numEnemies; i++) { // Loop to generate 5 random coordinates
-            int x = rand.nextInt(1000);
-            int y = rand.nextInt(800);
+            int x = rand.nextInt(2000);
+            int y = rand.nextInt(1400);
             positions.add(new Point(x, y)); // Add the random coordinates to the list
         }
         return positions;
@@ -173,7 +173,7 @@ public class EnemyManager{
     private boolean checkCollision(float x, float y, Pirate pirate) {
         // Check collision with other pirates
         for (Pirate otherPirate : pirates) {
-            if (otherPirate != pirate && distance(x, y, otherPirate.getHitbox().x, otherPirate.getHitbox().y) < 35 ) {
+            if (otherPirate != pirate && distance(x, y, otherPirate.getHitbox().x, otherPirate.getHitbox().y) < 30 ) {
                 return true;
             }
         }
@@ -188,7 +188,7 @@ public class EnemyManager{
 
     public void checkAttackHitbox(Player player) {
         for (Pirate p : pirates) {
-            if (p.getHitbox().intersects(player.getHitbox())) {
+            if (p.getHitbox().intersects(player.getAttackBox())) {
                 p.takeDamage(player.playerDamage);
 
             }

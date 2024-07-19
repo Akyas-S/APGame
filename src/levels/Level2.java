@@ -26,7 +26,7 @@ public class Level2 {
     public Level2(Playing playing, Player player) {
         this.playing = playing;
         this.player = player;
-        this.enemyManager = new EnemyManager(playing, player, 5);
+        this.enemyManager = new EnemyManager(playing, player, 10);
 
     }
 

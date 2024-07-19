@@ -32,6 +32,14 @@ public class LoadImages {
     public static final String Quitbtnimg = "PauseUI/quitbtn.png";
     public static final String Pausebtnicon = "levels/pausebtn.png";
     public static final String PLAYER_HUD = "HUD/PlayerHUD.png";
+    public static final String WON_BG = "LevelCompleted/bg_won.png";
+    public static final String LOST_BG = "LevelCompleted/bg_lost.png";
+    public static final String EXIT_BUTTON = "LevelCompleted/exit.png";
+    public static final String MENU_BUTTON = "LevelCompleted/menu_button.png";
+    public static final String REPLAY_BUTTON = "LevelCompleted/replay_button.png";
+    public static final String NEXT_LVL = "LevelCompleted/nextlvl.png";
+    public static final String NEXT_BG = "LevelCompleted/NextLvLVictoryBG.png";
+
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
