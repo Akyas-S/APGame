@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class LevelCompleted extends State implements Statemethods {
+public class NextLevel2 extends State implements Statemethods {
     private BufferedImage background;
 
     private BufferedImage Menuicon;
@@ -19,13 +19,14 @@ public class LevelCompleted extends State implements Statemethods {
     private Rectangle replayButtonBounds;
     private Rectangle nextButtonBounds;
 
-    public LevelCompleted(GameController game) {
+    public NextLevel2(GameController game) {
         super(game);
         loadBackground();
         loadButtons();
     }
 
-    private void loadBackground() {background = LoadImages.GetSprite(LoadImages.WON_BG);
+    private void loadBackground() {
+        background = LoadImages.GetSprite(LoadImages.NEXT_BG);
     }
 
     private void loadButtons() {
@@ -33,18 +34,22 @@ public class LevelCompleted extends State implements Statemethods {
         Replayicon = LoadImages.GetSprite(LoadImages.REPLAY_BUTTON);
         Nexticon = LoadImages.GetSprite(LoadImages.NEXT_LVL);
 
-        menuButtonBounds = new Rectangle(500, 200, 294, 91);
-        replayButtonBounds = new Rectangle(700, 200, 294, 91);
-        nextButtonBounds = new Rectangle(600, 310, 294, 91);
+        menuButtonBounds = new Rectangle(575, 508, 120, 51);
+        replayButtonBounds= new Rectangle(488, 442, 113, 51);
+        nextButtonBounds = new Rectangle(690, 442, 120, 51);
 
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(background, 0,0,1280,720,null);
-        g.drawImage(Menuicon, 500,200,294, 91,null);
-        g.drawImage(Replayicon, 700,200,294, 91, null);
-        g.drawImage(Nexticon, 600, 310, 294, 91, null);
+        g.drawImage(background, 0, 0, 1280, 720, null);
+//        g.drawImage(Menuicon, 500, 200, 294, 91, null);
+//        g.drawImage(Replayicon, 700, 200, 294, 91, null);
+//        g.drawImage(Nexticon, 600, 310, 294, 91, null);
+        g.setColor(Color.red);
+        g.drawRect(575, 508, 120, 51);
+        g.drawRect(488, 442, 113, 51);
+        g.drawRect(690, 442, 120, 51);
 
 
     }
@@ -54,11 +59,18 @@ public class LevelCompleted extends State implements Statemethods {
         Point clickPoint = e.getPoint();
         if (menuButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
+            //reset all levels
             game.getAudioPlayer().playMenuButtonSound();
-        } // else if (replayButtonBounds.contains(clickPoint)) {
-          //Gamestate.state = Gamestate.;
-          //game.getAudioPlayer().playMenuButtonSound();
+        } else if (replayButtonBounds.contains(clickPoint)) {
+            //reset lvl and play lvl 1
+            game.getAudioPlayer().playMenuButtonSound();
+        } else if (nextButtonBounds.contains(clickPoint)) {
+            //reset enemies
+            //reset player
+            Gamestate.state = Gamestate.PLAYING;
+            game.getAudioPlayer().playMenuButtonSound();
         }
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -83,9 +95,7 @@ public class LevelCompleted extends State implements Statemethods {
     @Override
     public void keyReleased(KeyEvent e) {
 
-    } else if (nextButtonBounds.contains(clickPoint) {
-            Gamestate.state = Gamestate.PLAYING;
-            game.getAudioPlayer().playMenuButtonSound();
-        }
+    }
 
 
+}

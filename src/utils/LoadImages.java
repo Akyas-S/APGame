@@ -38,6 +38,8 @@ public class LoadImages {
     public static final String MENU_BUTTON = "LevelCompleted/menu_button.png";
     public static final String REPLAY_BUTTON = "LevelCompleted/replay_button.png";
     public static final String NEXT_LVL = "LevelCompleted/nextlvl.png";
+    public static final String NEXT_BG = "LevelCompleted/NextLvLVictoryBG.png";
+
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
