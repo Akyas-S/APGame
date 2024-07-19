@@ -1,6 +1,7 @@
 package levels;
 
 import entity.Player;
+import gamestates.Gamestate;
 import gamestates.Playing;
 import main.GameController;
 import utils.LoadImages;
@@ -32,14 +33,15 @@ public class LevelManager {
     public void update(Graphics g) {
         if (isLevel1) {
             level1.render(g);
-            if (player.playerScore >= 50) {
+            if (player.playerScore >= 25) {
+                Gamestate.state = Gamestate.NEXTLEVEL2;
                 isLevel1 = false;
                 isLevel2 = true;
             }
         }
         if(isLevel2){
             level2.render(g);
-            if (player.playerScore >= 100){
+            if (player.playerScore >= 50){
                isLevel2 = false;
             }
         }
