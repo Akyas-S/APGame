@@ -41,8 +41,7 @@ public class MainMenu extends State implements Statemethods {
         exitButtonBounds = new Rectangle(500, 530, 294, 91);
     }
 
-    private void loadBackground() {
-        background = LoadImages.GetSprite(LoadImages.Menuimg);
+    private void loadBackground() {background = LoadImages.GetSprite(LoadImages.Menuimg);
     }
 
 
