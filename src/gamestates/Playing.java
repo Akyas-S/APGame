@@ -21,20 +21,16 @@ public class Playing extends State implements Statemethods {
     private Random random = new Random();
     private BufferedImage pausebtn;
 
-    private Rectangle pausebtnbounds;
+
 
     public Playing(GameController game) {
         super(game);
         initClasses();
 
-        initPauseButton();
+
     }
 
-    private void initPauseButton() {
-        pausebtn = LoadImages.GetSprite(LoadImages.Pausebtnicon);
 
-        pausebtnbounds = new Rectangle(10, 10, pausebtn.getWidth(), pausebtn.getHeight());
-    }
 
     private void initClasses() {
 
@@ -64,9 +60,7 @@ public class Playing extends State implements Statemethods {
         if(e.getButton()== MouseEvent.BUTTON1){
             player.setAttacking(true);
         }        Point clickPoint = e.getPoint();
-        if (pausebtnbounds.contains(clickPoint)) {
-            Gamestate.state = Gamestate.PAUSE;
-        }
+
 
     }
 

@@ -2,16 +2,12 @@
 package entity;
 
 import gamestates.Playing;
-import main.GameController;
 import utils.LoadImages;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static utils.Constants.Directions.*;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity{
@@ -33,78 +29,119 @@ public class  Player extends Entity{
     public int playerScore;
 
     //HUD
-    public int playerHealth = 100;
-
     private BufferedImage hudBarImg;
 
-    private int hudBarWidth = (int) (384);
-    private int hudBarHeight = (int) (72);
+    private int hudBarWidth = (int) (385);
+    private int hudBarHeight = (int) (73);
     private int hudBarX = (int) (10);
     private int hudBarY = (int) (10);
 
-    private int healthBarWidth = (int) (150);
-    private int healthBarHeight = (int) (4 );
-    private int healthBarXStart = (int) (34);
-    private int healthBarYStart = (int) (14);
+    private int healthBarWidth = (int) (290);
+    private int healthBarHeight = (int) (10 );
+    private int healthBarXStart = (int) (95);
+    private int healthBarYStart = (int) (19);
 
-    private int maxHealth = 10;
+    private int maxHealth = 100;
     private int currentHealth = maxHealth;
     private int healthWidth = healthBarWidth;
 
+    //character flip
+    private int flipX = 0;
+    private int flipW = 1;
+    private int drawOffsetX = 6;
+    private int drawOffsetY = 11;
+    private int playergap=0;
+
+    //attack
+    private Rectangle2D.Float attackBox;
 
     public Player(float x, float y) {
-        super(x, y,120,85);
-
+        super(x, y,60,77);
+        initHitbox();
+        initAttackBox();
         loadAnimations();
         enemyManager = new EnemyManager(playing,this,5);
 
     }
 
+    private void initAttackBox() {
+            attackBox = new Rectangle2D.Float(x,    y, 80,120);
+    }
+
 
     public void render(Graphics g){
+        updateHealthBar();
         updatePos();
         updateAnimationTick();
         setAnimation();
-
+        drawAttackBox(g);
+        updateAttackBox();
         updateHitbox();
 
         drawUI(g);
 
         if(!dead){
             // Draws the sprite of the character
-            g.drawImage(animations[playerAction][aniIndex],(int)x,(int)y, null);
-            drawHitbox(g);
-            g.setFont(new Font("Ink Free", Font.BOLD,75));
-            g.drawString("Health: "+ String.valueOf(playerHealth),100,100);
-            g.drawString("Score: "+ String.valueOf(playerScore),600,100);
-        }
-        playerDead(g);
+            g.drawImage(animations[playerAction][aniIndex],
+                    (int)(hitbox.x - drawOffsetX )+ flipX +playergap,
+                    (int)(hitbox.y -drawOffsetY),
+                    160*flipW,
+                    100,
+                    null);
 
+            drawHitbox(g);
+            g.setFont(new Font("arial", Font.BOLD,20));
+            g.setColor(Color.WHITE);
+            g.drawString("Score: "+ String.valueOf(playerScore),100,65);
+        }
+        playerDead();
+
+    }
+
+    private void updateAttackBox() {
+        if (right)
+            attackBox.x = hitbox.x + hitbox.width +5 ;
+        else if (left)
+            attackBox.x = hitbox.x - hitbox.width -25;
+
+        attackBox.y = hitbox.y + (-20);
+    }
+
+    private void drawAttackBox(Graphics g) {
+        g.setColor(Color.red);
+        g.drawRect((int) attackBox.x , (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+
+    }
+
+    public Rectangle2D.Float getAttackBox() {
+        return attackBox;
+    }
+
+    private void updateHealthBar() {
+        healthWidth = (int) (((float) maxHealth / currentHealth) * healthBarWidth);
     }
 
     private void drawUI(Graphics g) {
        g.drawImage(hudBarImg, hudBarX, hudBarY , hudBarWidth , hudBarHeight, null);
+       g.setColor(Color.RED);
+       g.fillRect(healthBarXStart,healthBarYStart,healthWidth,healthBarHeight);
     }
 
     public void takeDamage(int damage) {
-        playerHealth -= damage;
-        if (playerHealth == 0){
+        maxHealth -= damage;
+        if (maxHealth <= 0){
             dead = true;
         }
     }
 
-    public void playerDead(Graphics g){
+    public void playerDead(){
         if(dead){
-            g.setFont(new Font("Ink Free", Font.BOLD,250));
-            g.drawString("Dead",660,540);
-            g.drawString("Score: "+ String.valueOf(playerScore),600,700);
 
 
         }
     }
-    protected void updateAttackHitbox(){
-        hitbox.width = width + 50;
-    }
+
+
 
 
     // Cycles through the animation frames in the sprite sheet
@@ -130,11 +167,17 @@ public class  Player extends Entity{
 
         if (left && !right){
             x -= speed;
+            flipX = width;
+            flipW = -1;
+            playergap =12;
             moving = true;
         }
 
         else if (right && !left) {
             x += speed;
+            flipX = 0;
+            flipW = 1;
+            playergap = 0;
             moving = true;
         }
 
@@ -160,7 +203,7 @@ public class  Player extends Entity{
 
         if (attacking){
             playerAction = ATTACK;
-            updateAttackHitbox();
+//            updateAttackHitbox();
             enemyManager.checkAttackHitbox(this);
         }
 
@@ -233,7 +276,7 @@ public class  Player extends Entity{
         this.attacking = attacking;
     }
 
-    public float getX() {
+    public float getX       () {
         return x;
     }
 
