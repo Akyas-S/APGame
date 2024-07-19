@@ -19,6 +19,7 @@ public class SaveLoad {
     public SaveLoad(Player player){
         // Initialize the player reference
         this.player = player;
+        ds = new dataStorage();
         // Load the player's coins
         loadCoins();
         // Load the player's high score
@@ -46,6 +47,7 @@ public class SaveLoad {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file));
             // Write the dataStorage object to the file
             os.writeObject(ds);
+            System.out.println("Score Saved");
         }catch (Exception e){
             // Print an error message if an exception occurs during saving
             System.out.println("Save Coin Error");
@@ -61,6 +63,7 @@ public class SaveLoad {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
             // Write the dataStorage object to the file
             os.writeObject(ds);
+            System.out.println("HighScore Saved");
         }catch (Exception e){
             // Print an error message if an exception occurs during saving
             System.out.println("Save HighScore Error");

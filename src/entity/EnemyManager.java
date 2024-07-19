@@ -42,6 +42,7 @@ public class EnemyManager{
     // 2 seconds in milliseconds
     private final long spawnInterval = 2000;
 
+
     /**
      * Constructor for EnemyManager.
      * playing Reference to the Playing game state
@@ -224,4 +225,6 @@ public class EnemyManager{
             }
         }
     }
+
+
 }
