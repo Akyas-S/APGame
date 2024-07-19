@@ -1,5 +1,6 @@
 package gamestates;
 
+import entity.Player;
 import main.GameController;
 import utils.LoadImages;
 
@@ -8,20 +9,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+
 public class Pause extends State implements Statemethods {
     private BufferedImage pausebg;
     private BufferedImage resume;
     private BufferedImage settingsps;
     private BufferedImage quit;
+    private Player player;
 
     private Rectangle resumebtnbounds;
     private Rectangle settingspsbtnbounds;
     private Rectangle quitbtnbounds;
 
-    public Pause (GameController game){
+    public Pause (GameController game, Player player){
         super(game);
         loadPauseBackbground();
         loadPauseButtons();
+        this.player = player;
     }
 
     private void loadPauseButtons() {
@@ -64,7 +68,6 @@ public class Pause extends State implements Statemethods {
             Gamestate.state = Gamestate.MENU;
             game.getAudioPlayer().playButtonSound();
         }
-
     }
 
     @Override

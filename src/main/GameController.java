@@ -1,14 +1,9 @@
+
+
 package main;
 
 import Audio.AudioPlayer;
-import gamestates.Gamestate;
-import gamestates.Playing;
-import gamestates.MainMenu;
-import gamestates.Settings;
-import gamestates.Audio;
-import gamestates.Controls;
-import gamestates.Pause;
-import gamestates.Store;
+import gamestates.*;
 import entity.Player;
 import levels.Level1;
 
@@ -35,7 +30,7 @@ public class GameController implements Runnable {
     private Controls controls;
     private Pause pause;
     private AudioPlayer audioPlayer;
-    private Store store;
+    private NextLevel2 nextLevel2;
 
 
     public GameController(){
@@ -55,10 +50,10 @@ public class GameController implements Runnable {
         audio = new Audio(this);
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
-        pause=new Pause(this);
-        store = new Store(this);
         player = new Player(200,200);
-        Level1 = new Level1();
+        pause=new Pause(this, player);
+        Level1 = new Level1(playing,player);
+        nextLevel2 = new NextLevel2(this);
 
     }
 
@@ -89,7 +84,7 @@ public class GameController implements Runnable {
 
             if(System.currentTimeMillis() - lastCheck >= 1000){
                 lastCheck = System.currentTimeMillis();
-                System.out.println("Frames: " + frames);
+                //System.out.println("Frames: " + frames);
                 frames = 0;
             }
             //-----------
@@ -105,7 +100,6 @@ public class GameController implements Runnable {
                 break;
             case PLAYING:
 
-                playing.update();
                 playing.render(g);
                 break;
             case SETTINGS:
@@ -120,8 +114,8 @@ public class GameController implements Runnable {
             case PAUSE:
                 pause.render(g);
                 break;
-            case STORE:
-                store.render(g);
+            case NEXTLEVEL2:
+                nextLevel2.render(g);
                 break;
             default:
                 break;
@@ -139,5 +133,5 @@ public class GameController implements Runnable {
     public Playing getPlaying(){return playing;}
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
-    public Store getStore(){return store;}
+    public NextLevel2 getNextLevel2(){return nextLevel2;}
 }
