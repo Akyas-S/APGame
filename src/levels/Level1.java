@@ -33,8 +33,6 @@ public class Level1 {
         renderBackground(g);
         enemyManager.draw(g);
         enemyManager.update();
-        g.setFont(new Font("Ink Free", Font.BOLD,250));
-        g.drawString("Level 1",500,200);
     }
 
     public static void renderBackground(Graphics g) {

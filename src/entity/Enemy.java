@@ -13,6 +13,7 @@ public class Enemy extends Entity {
 
     public Enemy(float x, float y, int enemyType) {
         super(x, y,60,90);
+        initHitbox();
         this.enemyType = enemyType;
 
 

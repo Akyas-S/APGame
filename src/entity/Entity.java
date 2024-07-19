@@ -14,7 +14,7 @@ public abstract class  Entity {
         this.y = y;
         this.width = width;
         this.height = height;
-        initHitbox();
+
     }
 
     protected void drawHitbox(Graphics g) {
@@ -22,7 +22,7 @@ public abstract class  Entity {
         g. drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
     }
 
-    private void initHitbox() {
+    protected void initHitbox() {
         hitbox = new Rectangle2D.Float( x,  y, width, height);
     }
 
@@ -33,7 +33,6 @@ public abstract class  Entity {
 
     public Rectangle2D.Float getHitbox() {
         return hitbox;
-
     }
 
 }
