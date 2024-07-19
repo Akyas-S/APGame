@@ -74,8 +74,8 @@ public class EnemyManager{
         if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < numEnemies ) {
             lastSpawnTime = currentTime;
             for (int i = 0; i < numEnemies; i++) {
-                int x = rand.nextInt(1200);
-                int y = rand.nextInt(700);
+                int x = rand.nextInt(2000);
+                int y = rand.nextInt(1400);
                 addPirate(x, y); // Add a new pirate at a random position with random direction
             }
         }
@@ -105,8 +105,8 @@ public class EnemyManager{
     private ArrayList<Point> generatePositions(){
 
         for (int i = 0; i < numEnemies; i++) { // Loop to generate 5 random coordinates
-            int x = rand.nextInt(1200);
-            int y = rand.nextInt(700);
+            int x = rand.nextInt(2000);
+            int y = rand.nextInt(1400);
             positions.add(new Point(x, y)); // Add the random coordinates to the list
         }
         return positions;
