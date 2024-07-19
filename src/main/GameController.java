@@ -104,6 +104,8 @@ public class GameController implements Runnable {
                 mainMenu.render(g);
                 break;
             case PLAYING:
+
+                playing.update();
                 playing.render(g);
                 break;
             case SETTINGS:
