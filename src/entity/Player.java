@@ -90,8 +90,9 @@ public class  Player extends Entity{
                     null);
 
             drawHitbox(g);
-            g.setFont(new Font("arial", Font.BOLD,75));
-            g.drawString("Score: "+ String.valueOf(playerScore),600,100);
+            g.setFont(new Font("arial", Font.BOLD,20));
+            g.setColor(Color.WHITE);
+            g.drawString("Score: "+ String.valueOf(playerScore),100,65);
         }
         playerDead();
 
