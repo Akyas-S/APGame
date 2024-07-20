@@ -99,12 +99,12 @@ public class  Player extends Entity {
 
         if(dead){
             Gamestate.state = Gamestate.DEATH;
-            resetAllPlayer();
+
             resetScore();
         }
         if (nextlvl){
             Gamestate.state = Gamestate.NEXTLEVEL2;
-            resetAllPlayer();
+
         }
 
     }

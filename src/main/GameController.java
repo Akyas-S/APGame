@@ -45,8 +45,9 @@ public class GameController implements Runnable {
 
     private void initClasses() {
         player = new Player(200,200);
-        nextLevel2 = new NextLevel2(this);
         death = new Death (this);
+        nextLevel2 = new NextLevel2(this);
+
         mainMenu = new MainMenu(this);
         playing = new Playing(this);
         settings = new Settings(this);
