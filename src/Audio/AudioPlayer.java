@@ -19,6 +19,7 @@ public class AudioPlayer {
     public static int POP = 0;
     public static int FROG = 1;
     public static int LEVELCOMPLETE = 2;
+    public static int SWORDSWISH = 3;
 
 
     private Clip[] music, sfx;
@@ -40,7 +41,7 @@ public class AudioPlayer {
     }
 
     private void loadSFX() {
-        String[] effectNames = { "pop", "frog"};
+        String[] effectNames = { "pop", "frog","levelcomplete","SwordSwish"};
         sfx = new Clip[effectNames.length];
         for (int i = 0; i < sfx.length; i++)
             sfx[i] = getClip(effectNames[i]);
@@ -74,6 +75,9 @@ public class AudioPlayer {
             playMusic(FOREST);
     }
 
+    public void playAttackSFX(){
+        playSFX(SWORDSWISH);
+    }
 
     public void playMenuButtonSound(){
         int menubtnsfx = 1;
