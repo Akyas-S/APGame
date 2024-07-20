@@ -27,15 +27,10 @@ public class Controls extends State implements Statemethods {
     private Rectangle leftkeyiconbounds;
     private Rectangle rightkeyiconbounds;
 
-    public static int up = KeyEvent.VK_W;
-    public static int down = KeyEvent.VK_S;
-    public static int left = KeyEvent.VK_A;
-    public static int right = KeyEvent.VK_D;
-
-    public static int uparrow = KeyEvent.VK_UP;
-    public static int downarrow = KeyEvent.VK_DOWN;
-    public static int leftarrow = KeyEvent.VK_LEFT;
-    public static int rightarrow = KeyEvent.VK_RIGHT;
+    public static int moveup = KeyEvent.VK_W;
+    public static int movedown = KeyEvent.VK_S;
+    public static int moveleft = KeyEvent.VK_A;
+    public static int moveright = KeyEvent.VK_D;
 
 
     private boolean isWASDup = true;
@@ -109,18 +104,22 @@ public class Controls extends State implements Statemethods {
         }
         else if (upkeyiconbounds.contains(clickPoint)) {
             isWASDup = !isWASDup;
+            moveup = KeyEvent.VK_UP;
             game.getAudioPlayer().playButtonSound();
         }
         else if (downkeyiconbounds.contains(clickPoint)) {
             isWASDdown = !isWASDdown;
+            movedown = KeyEvent.VK_DOWN;
             game.getAudioPlayer().playButtonSound();
         }
         else if (leftkeyiconbounds.contains(clickPoint)) {
             isWASDleft = !isWASDleft;
+            moveleft = KeyEvent.VK_LEFT;
             game.getAudioPlayer().playButtonSound();
         }
         else if (rightkeyiconbounds.contains(clickPoint)) {
             isWASDright = !isWASDright;
+            moveright = KeyEvent.VK_RIGHT;
             game.getAudioPlayer().playButtonSound();
         }
     }
