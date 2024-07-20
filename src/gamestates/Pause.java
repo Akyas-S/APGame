@@ -54,16 +54,26 @@ public class Pause extends State implements Statemethods {
     @Override
     public void mouseClicked(MouseEvent pse) {
         Point clickPoint = pse.getPoint();
+
         if (resumebtnbounds.contains(clickPoint)) {
+
             Gamestate.state = Gamestate.PLAYING;
             game.getAudioPlayer().playButtonSound();
-        } else if (settingspsbtnbounds.contains(clickPoint)) {
+
+        }
+        else if (settingspsbtnbounds.contains(clickPoint)) {
+
             Gamestate.state = Gamestate.SETTINGS;
             game.getAudioPlayer().playButtonSound();
-        } else if (quitbtnbounds.contains(clickPoint)) {
+
+        }
+        else if (quitbtnbounds.contains(clickPoint))
+        {
             Gamestate.state = Gamestate.MENU;
-            game.getPlayer().resetAllPlayer();
-            game.getAudioPlayer().playButtonSound();
+            game.getPlaying().resetAll();
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
+
         }
 
     }

@@ -26,10 +26,9 @@ public class  Player extends Entity {
     float speed = 4.5f;
 
     public boolean dead = false;
-    public boolean nextlvl = false;
     public int playerDamage = 50;
     public int playerScore;
-    private int nextLvlThreshold;
+
 
     //HUD
     private BufferedImage hudBarImg;
@@ -99,12 +98,6 @@ public class  Player extends Entity {
 
         if(dead){
             Gamestate.state = Gamestate.DEATH;
-
-            resetScore();
-        }
-        if (nextlvl){
-            Gamestate.state = Gamestate.NEXTLEVEL2;
-
         }
 
     }
@@ -143,6 +136,7 @@ public class  Player extends Entity {
         if (currentHealth <= 0) {
             dead = true;
         }
+
     }
 
 
@@ -245,7 +239,6 @@ public class  Player extends Entity {
         this.x = 200;
         this.y = 200;
         this.dead = false;
-        this.nextlvl = false;
         System.out.println("reset all");
     }
     public void resetScore(){

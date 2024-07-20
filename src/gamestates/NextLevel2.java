@@ -56,10 +56,9 @@ public class NextLevel2 extends State implements Statemethods {
         if (menuButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
 
-            //game resetting test
             game.getPlaying().resetAll();
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.MENU;
 
@@ -67,8 +66,8 @@ public class NextLevel2 extends State implements Statemethods {
             game.getAudioPlayer().playMenuButtonSound();
 
             game.getPlaying().resetAll();
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.PLAYING;
 

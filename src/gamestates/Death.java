@@ -63,8 +63,8 @@ public class Death extends State implements Statemethods {
 
             //game resetting test
             game.getPlaying().resetAll();
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.MENU;
 
@@ -73,8 +73,8 @@ public class Death extends State implements Statemethods {
 //            game.getAudioPlayer().playMenuButtonSound();
 
             game.getPlaying().resetAll();
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.PLAYING;
         }
