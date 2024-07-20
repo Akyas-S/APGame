@@ -24,7 +24,7 @@ public class AudioPlayer {
 
     private Clip[] music, sfx;
     private int currentSongId;
-    private float volume = 1f;
+    private float volume = 0.9f;
     private boolean musicMute, sfxMute;
 
     public AudioPlayer() {
