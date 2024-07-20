@@ -1,11 +1,9 @@
 package gamestates;
 
-import entity.Player;
+
 import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
-import gamestates.Playing;
-import levels.LevelManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -62,7 +60,7 @@ public class Death extends State implements Statemethods {
             game.getAudioPlayer().playMenuButtonSound();
 
             //game resetting test
-            game.getPlayer().menu = true;
+            game.getPlayer().resetAllPlayer();
             game.getPlaying().getLevelManager().isLevel1=true;
             game.getPlaying().getLevelManager().isLevel2=false;
 
@@ -74,7 +72,7 @@ public class Death extends State implements Statemethods {
         } else if (replayButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
 
-            game.getPlayer().dead = true;
+            game.getPlayer().resetAllPlayer();
             game.getPlaying().getLevelManager().isLevel1=true;
             game.getPlaying().getLevelManager().isLevel2=false;
 

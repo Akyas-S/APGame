@@ -64,6 +64,7 @@ public class GameController implements Runnable {
     private void startGameLoop(){
         gameThread = new Thread(this);
         gameThread.start();
+
     }
 
     @Override
@@ -104,7 +105,6 @@ public class GameController implements Runnable {
                 mainMenu.render(g);
                 break;
             case PLAYING:
-
                 playing.render(g);
                 break;
             case SETTINGS:

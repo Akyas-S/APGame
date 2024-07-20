@@ -1,5 +1,6 @@
 package gamestates;
 
+import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
 
@@ -11,16 +12,18 @@ import java.awt.image.BufferedImage;
 public class NextLevel2 extends State implements Statemethods {
     private BufferedImage background;
 
-    private BufferedImage Menuicon;
-    private BufferedImage Replayicon;
-    private BufferedImage Nexticon;
 
     private Rectangle menuButtonBounds;
     private Rectangle replayButtonBounds;
     private Rectangle nextButtonBounds;
 
+    private Playing playing;
+    private LevelManager levelManager;
+
+
     public NextLevel2(GameController game) {
         super(game);
+        playing = new Playing(game);
         loadBackground();
         loadButtons();
     }
@@ -30,9 +33,6 @@ public class NextLevel2 extends State implements Statemethods {
     }
 
     private void loadButtons() {
-        Menuicon = LoadImages.GetSprite(LoadImages.MENU_BUTTON);
-        Replayicon = LoadImages.GetSprite(LoadImages.REPLAY_BUTTON);
-        Nexticon = LoadImages.GetSprite(LoadImages.NEXT_LVL);
 
         menuButtonBounds = new Rectangle(575, 508, 120, 51);
         replayButtonBounds= new Rectangle(488, 442, 113, 51);
@@ -43,14 +43,11 @@ public class NextLevel2 extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, 1280, 720, null);
-//        g.drawImage(Menuicon, 500, 200, 294, 91, null);
-//        g.drawImage(Replayicon, 700, 200, 294, 91, null);
-//        g.drawImage(Nexticon, 600, 310, 294, 91, null);
+
         g.setColor(Color.red);
         g.drawRect(575, 508, 120, 51);
         g.drawRect(488, 442, 113, 51);
         g.drawRect(690, 442, 120, 51);
-
 
     }
 
@@ -58,16 +55,33 @@ public class NextLevel2 extends State implements Statemethods {
     public void mouseClicked(MouseEvent e) {
         Point clickPoint = e.getPoint();
         if (menuButtonBounds.contains(clickPoint)) {
+            game.getAudioPlayer().playMenuButtonSound();
+
+            //game resetting test
+            game.getPlayer().menu = true;
+            game.getPlaying().getLevelManager().isLevel1=true;
+            game.getPlaying().getLevelManager().isLevel2=false;
+
+
+
             Gamestate.state = Gamestate.MENU;
-            //reset all levels
-            game.getAudioPlayer().playMenuButtonSound();
+
         } else if (replayButtonBounds.contains(clickPoint)) {
-            //reset lvl and play lvl 1
+
             game.getAudioPlayer().playMenuButtonSound();
-        } else if (nextButtonBounds.contains(clickPoint)) {
-            //reset enemies
-            //reset player
+
+            game.getPlayer().dead = true;
+            game.getPlaying().getLevelManager().isLevel1=true;
+            game.getPlaying().getLevelManager().isLevel2=false;
+
+
             Gamestate.state = Gamestate.PLAYING;
+
+        }else if (nextButtonBounds.contains(clickPoint)) {
+
+            game.getPlayer().menu = true;
+            Gamestate.state = Gamestate.PLAYING;
+
             game.getAudioPlayer().playMenuButtonSound();
         }
     }
