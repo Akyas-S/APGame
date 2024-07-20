@@ -31,6 +31,7 @@ public class LoadImages {
     public static final String Settpsimg = "PauseUI/settps.png";
     public static final String Quitbtnimg = "PauseUI/quitbtn.png";
     public static final String Pausebtnicon = "levels/pausebtn.png";
+    public static final String Storebg = "StoreUI/Storebg.png";
     public static final String PLAYER_HUD = "HUD/PlayerHUD.png";
     public static final String WON_BG = "IngameLevelMenus/bg_won.png";
     public static final String LOST_BG = "IngameLevelMenus/DeathScreen_withBG.png";
@@ -39,6 +40,7 @@ public class LoadImages {
     public static final String REPLAY_BUTTON = "IngameLevelMenus/replay_button.png";
     public static final String NEXT_LVL = "IngameLevelMenus/nextlvl.png";
     public static final String NEXT_BG = "IngameLevelMenus/bg_won_withBg.png";
+
 
 
     // static method because it will called often

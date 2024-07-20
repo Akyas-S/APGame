@@ -3,6 +3,8 @@
 package main;
 
 import Audio.AudioPlayer;
+
+
 import gamestates.*;
 import entity.Player;
 import levels.Level1;
@@ -29,8 +31,10 @@ public class GameController implements Runnable {
     private Controls controls;
     private Pause pause;
     private AudioPlayer audioPlayer;
+    private Store store;
     private NextLevel2 nextLevel2;
     private Death death;
+
 
 
     public GameController(){
@@ -47,7 +51,6 @@ public class GameController implements Runnable {
         player = new Player(200,200);
         death = new Death (this);
         nextLevel2 = new NextLevel2(this);
-
         mainMenu = new MainMenu(this);
         playing = new Playing(this);
         settings = new Settings(this);
@@ -55,6 +58,9 @@ public class GameController implements Runnable {
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
         pause=new Pause(this);
+        store = new Store(this);
+        Level1 = new Level1();
+
 
 
 
@@ -120,6 +126,9 @@ public class GameController implements Runnable {
             case PAUSE:
                 pause.render(g);
                 break;
+            case STORE:
+                store.render(g);
+                break;
             case NEXTLEVEL2:
                 nextLevel2.render(g);
                 break;
@@ -142,6 +151,8 @@ public class GameController implements Runnable {
     public Playing getPlaying(){return playing;}
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
+    public Store getStore(){return store;}
     public NextLevel2 getNextLevel2(){return nextLevel2;}
     public Death getDeath(){return death;}
+
 }
