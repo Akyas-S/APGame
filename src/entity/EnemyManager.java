@@ -90,6 +90,10 @@ public class EnemyManager{
         drawPirates(g);// Draw all pirates
     }
 
+    public void remove(){
+        removePirates();
+    }
+
     /**
      * Add a new pirate to the game.
      * x Initial x-coordinate of the pirate
@@ -133,9 +137,15 @@ public class EnemyManager{
                 }
             }
         }
+    }
 
-
-
+    private void removePirates(){
+        Iterator<Pirate> iterator = pirates.iterator();
+        while (iterator.hasNext()) {
+            Pirate p = iterator.next();
+            p.update();
+            iterator.remove();
+        }
     }
 
     /**
