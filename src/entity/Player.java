@@ -1,6 +1,7 @@
 
 package entity;
 
+import data.SaveLoad;
 import gamestates.Gamestate;
 import gamestates.Playing;
 import utils.LoadImages;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import static java.awt.SystemColor.menu;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity {
@@ -25,9 +27,16 @@ public class  Player extends Entity {
     private boolean up, left, down, right, attack;
     float speed = 4.5f;
 
+    // Save and load variables
+    private SaveLoad saveLoad;
+
+    // Player stats
     public boolean dead = false;
     public int playerDamage = 50;
     public int playerScore;
+    public int playerHighScore;
+    public int playerCurrentCoins;
+    public int playerTotalCoins;
 
 
     //HUD
@@ -63,6 +72,9 @@ public class  Player extends Entity {
         initAttackBox();
         loadAnimations();
         enemyManager = new EnemyManager(playing, this, 5);
+        // Create SaveLoad object to handle saving and loading game data
+        SaveLoad saveLoad = new SaveLoad(this);
+        this.saveLoad = saveLoad;
 
     }
 
@@ -71,6 +83,7 @@ public class  Player extends Entity {
     }
 
 
+    // Renders the player
     public void render(Graphics g) {
         updateHealthBar();
         updatePos();
@@ -82,24 +95,21 @@ public class  Player extends Entity {
 
         drawUI(g);
 
-        // Draws the sprite of the character
-        g.drawImage(animations[playerAction][aniIndex],
-                (int) (hitbox.x - drawOffsetX) + flipX + playergap,
-                (int) (hitbox.y - drawOffsetY),
-                160 * flipW,
-                100,
-                null);
+        if (!dead) {
+            // Draws the sprite of the character
+            g.drawImage(animations[playerAction][aniIndex],
+                    (int) (hitbox.x - drawOffsetX) + flipX + playergap,
+                    (int) (hitbox.y - drawOffsetY),
+                    160 * flipW,
+                    100,
+                    null);
 
-        drawHitbox(g);
-
-        g.setFont(new Font("arial", Font.BOLD,20));
-        g.setColor(Color.WHITE);
-        g.drawString("Score: "+ String.valueOf(playerScore),100,65);
-
-        if(dead){
-            Gamestate.state = Gamestate.DEATH;
+            drawHitbox(g);
+            g.setFont(new Font("arial", Font.BOLD, 20));
+            g.setColor(Color.WHITE);
+            g.drawString("Score: " + String.valueOf(playerScore), 100, 65);
         }
-
+        playerDead();
     }
 
     private void updateAttackBox() {
@@ -136,7 +146,23 @@ public class  Player extends Entity {
         if (currentHealth <= 0) {
             dead = true;
         }
-
+    }
+    // Checks high score
+    public void checkHighScore(int playerScore) {
+        if (playerScore >= playerHighScore) {
+            playerHighScore = playerScore;
+            saveLoad.saveHighScore();
+        }
+    }
+    // Player dead
+    public void playerDead() {
+        if (dead) {
+            System.out.println("Score: " + String.valueOf(playerScore));
+            System.out.println("HighScore : " + String.valueOf(saveLoad.loadHighScore()));
+            System.out.println("Coins Gained: " + String.valueOf(playerCurrentCoins));
+            System.out.println("Total Coins: " + String.valueOf(saveLoad.loadCoins()));
+            checkHighScore(playerScore);
+        }
     }
 
 
@@ -232,10 +258,12 @@ public class  Player extends Entity {
 
     public void resetAllPlayer() {
         resetDirections();
+
         this.attacking = false;
         this.moving = false;
         this.playerAction = IDLE;
         this.currentHealth = 100;
+        this.playerScore = 0;
         this.x = 200;
         this.y = 200;
         this.dead = false;

@@ -72,7 +72,7 @@ public class EnemyManager{
 
         // Check if it's time to spawn a new pirate
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < numEnemies ) {
+        if (currentTime - lastSpawnTime >= spawnInterval && pirates.size() < numEnemies + 5 ) {
             lastSpawnTime = currentTime;
             for (int i = 0; i < numEnemies; i++) {
                 int x = rand.nextInt(2000);
@@ -129,7 +129,6 @@ public class EnemyManager{
                 checkAttackHitbox(player);
                 if (p.isDead()) {
                     iterator.remove(); // Remove the pirate from the list when it's dead
-                    System.out.println("Pirate removed from the map!");
                     player.playerScore++;
                 }
             }
