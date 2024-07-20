@@ -40,6 +40,14 @@ public class LoadImages {
     public static final String REPLAY_BUTTON = "IngameLevelMenus/replay_button.png";
     public static final String NEXT_LVL = "IngameLevelMenus/nextlvl.png";
     public static final String NEXT_BG = "IngameLevelMenus/bg_won_withBg.png";
+    public static final String KEY_A = "ControlsUI/keya.png";
+    public static final String KEY_D = "ControlsUI/keyd.png";
+    public static final String KEY_S = "ControlsUI/keys.png";
+    public static final String KEY_W = "ControlsUI/keyw.png";
+    public static final String KEYDOWNARROW = "ControlsUI/keydownarrow.png";
+    public static final String KEYUPARROW = "ControlsUI/keyuparrow.png";
+    public static final String KEYLEFTARROW = "ControlsUI/keyleftarrow.png";
+    public static final String KEYRIGHTARROW = "ControlsUI/keyrightarrow.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
