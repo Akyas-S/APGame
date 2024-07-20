@@ -263,7 +263,6 @@ public class  Player extends Entity {
         this.moving = false;
         this.playerAction = IDLE;
         this.currentHealth = 100;
-        this.playerScore = 0;
         this.x = 200;
         this.y = 200;
         this.dead = false;
