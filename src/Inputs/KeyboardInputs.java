@@ -51,7 +51,9 @@ public class  KeyboardInputs implements KeyListener {
                 break;
             case DEATH:
                 gamePanel.getGame().getDeath().keyPressed(e);
-
+                break;
+            case VICTORY:
+                gamePanel.getGame().getVictory().keyPressed(e);
                 break;
             default:
                 break;
@@ -87,7 +89,9 @@ public class  KeyboardInputs implements KeyListener {
                 break;
             case DEATH:
                 gamePanel.getGame().getDeath().keyReleased(e);
-
+                break;
+            case VICTORY:
+                gamePanel.getGame().getVictory().keyReleased(e);
                 break;
             default:
                 break;

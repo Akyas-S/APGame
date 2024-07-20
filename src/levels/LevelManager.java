@@ -65,7 +65,7 @@ public class LevelManager {
             // If player score reaches 50, move to Level 3
             if (player.playerScore >= 20) {
                 isLevel2 = false;
-                Gamestate.state = Gamestate.NEXTLEVEL2;
+                Gamestate.state = Gamestate.VICTORY;
                 // Calculate and save coins earned in Level 2
                 calcuateCoins(player.playerScore);
                 saveLoad.saveCoins();
