@@ -41,6 +41,8 @@ public class Death extends State implements Statemethods {
         replayButtonBounds= new Rectangle(488, 442, 113, 51);
         menuButtonBounds = new Rectangle(690, 442, 120, 51);
 
+
+
     }
 
     @Override
