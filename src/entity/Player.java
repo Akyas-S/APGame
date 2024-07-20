@@ -123,7 +123,7 @@ public class  Player extends Entity {
     }
 
     private void updateHealthBar() {
-        healthWidth = (int) (((float) maxHealth / currentHealth) * healthBarWidth);
+        healthWidth = (int) (((float) currentHealth / maxHealth) * healthBarWidth);
     }
 
     private void drawUI(Graphics g) {
@@ -133,8 +133,8 @@ public class  Player extends Entity {
     }
 
     public void takeDamage(int damage) {
-        maxHealth -= damage;
-        if (maxHealth <= 0) {
+        currentHealth -= damage;
+        if (currentHealth <= 0) {
             dead = true;
         }
     }
@@ -232,14 +232,12 @@ public class  Player extends Entity {
 
     public void resetAllPlayer() {
         resetDirections();
-//        this.enemyManager.resetAllPirates();
+
         this.attacking = false;
         this.moving = false;
         this.playerAction = IDLE;
-        this.currentHealth = this.maxHealth;
+        this.currentHealth = 100;
         this.playerScore = 0;
-//        this.hitbox.x = 200;
-//        this.hitbox.y = 200;public int playerScore;
         this.x = 200;
         this.y = 200;
         this.dead = false;

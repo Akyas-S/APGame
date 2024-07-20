@@ -41,7 +41,7 @@ public class EnemyManager{
 
     // 2 seconds in milliseconds
     private final long spawnInterval = 2000;
-    
+
 
     /**
      * Constructor for EnemyManager.
