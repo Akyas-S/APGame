@@ -13,13 +13,18 @@ import java.awt.image.BufferedImage;
 public class Pause extends State implements Statemethods {
     private BufferedImage pausebg;
     private BufferedImage resume;
-    private BufferedImage settingsps;
+    private BufferedImage music;
+    private BufferedImage nomusic;
+    private BufferedImage sfx;
+    private BufferedImage nosfx;
     private BufferedImage quit;
     private Player player;
 
     private Rectangle resumebtnbounds;
     private Rectangle settingspsbtnbounds;
     private Rectangle quitbtnbounds;
+    private Rectangle pausemusicbtnbounds;
+    private Rectangle pausesfxbtnbounds;
 
     public Pause (GameController game, Player player){
         super(game);
@@ -29,13 +34,17 @@ public class Pause extends State implements Statemethods {
     }
 
     private void loadPauseButtons() {
+        music = LoadImages.GetSprite(LoadImages.PAUSEMUSICBTN);
+        sfx = LoadImages.GetSprite(LoadImages.PAUSESFXBTN);
+        nomusic = LoadImages.GetSprite(LoadImages.PAUSENOMUSICBTN);
+        nosfx = LoadImages.GetSprite(LoadImages.PAUSENOSFXBTN);
         resume = LoadImages.GetSprite(LoadImages.Resumebtnimg);
-        //settingsps = LoadImages.GetSprite(LoadImages.Settpsimg);
         quit = LoadImages.GetSprite(LoadImages.Quitbtnimg);
 
 
+        pausemusicbtnbounds = new Rectangle(300,260,100,100);
+        pausesfxbtnbounds = new Rectangle(500,260,100,100);
         resumebtnbounds = new Rectangle(345, 370, 600, 150);
-        //settingspsbtnbounds = new Rectangle(345, 370, 600, 150);
         quitbtnbounds = new Rectangle(345, 470, 600, 150);
 
     }
@@ -50,8 +59,9 @@ public class Pause extends State implements Statemethods {
     public void render(Graphics g) {
         g.drawImage(pausebg, 0, 0,1280,720, null);
         g.drawImage(resume, 345, 370, 600, 150,null);
-        //g.drawImage(settingsps, 345, 370,600, 150, null);
         g.drawImage(quit, 345, 470, 600, 150,null);
+        g.drawImage(music,300,260,100,100,null);
+        g.drawImage(sfx,500,260,100,100,null);
 
     }
 
@@ -60,24 +70,13 @@ public class Pause extends State implements Statemethods {
         Point clickPoint = pse.getPoint();
 
         if (resumebtnbounds.contains(clickPoint)) {
-
             Gamestate.state = Gamestate.PLAYING;
             game.getAudioPlayer().playButtonSound();
-
-        }
-//        else if (settingspsbtnbounds.contains(clickPoint)) {
-//
-//            Gamestate.state = Gamestate.SETTINGS;
-//            game.getAudioPlayer().playButtonSound();
-//
-//        }
-        else if (quitbtnbounds.contains(clickPoint))
-        {
+        } else if (quitbtnbounds.contains(clickPoint)){
             Gamestate.state = Gamestate.MENU;
             game.getPlaying().resetAll();
             game.getPlaying().resetLevel();
             game.getPlaying().resetScore();
-
         }
     }
 
