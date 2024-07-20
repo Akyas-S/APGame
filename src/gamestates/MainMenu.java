@@ -1,5 +1,7 @@
 package gamestates;
 
+
+import entity.Player;
 import main.GameController;
 import utils.LoadImages;
 import Audio.AudioPlayer;
@@ -27,6 +29,7 @@ public class MainMenu extends State implements Statemethods {
         super(game);
         loadBackground();
         loadButtons();
+
     }
 
     private void loadButtons() {
@@ -41,8 +44,7 @@ public class MainMenu extends State implements Statemethods {
         exitButtonBounds = new Rectangle(500, 530, 294, 91);
     }
 
-    private void loadBackground() {
-        background = LoadImages.GetSprite(LoadImages.Menuimg);
+    private void loadBackground() {background = LoadImages.GetSprite(LoadImages.Menuimg);
     }
 
 
@@ -60,7 +62,12 @@ public class MainMenu extends State implements Statemethods {
     public void mouseClicked(MouseEvent e) {
         Point clickPoint = e.getPoint();
         if (startButtonBounds.contains(clickPoint)) {
+
             Gamestate.state = Gamestate.PLAYING;
+            game.getPlaying().resetAll();
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
+
             game.getAudioPlayer().playMenuButtonSound();
         } else if (storeButtonBounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.STORE;
