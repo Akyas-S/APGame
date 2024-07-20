@@ -245,7 +245,7 @@ public class  Player extends Entity {
         this.playerScore = 0;
     }
 
-    private void resetDirections() {
+    public void resetDirections() {
         this.left = false;
         this.right = false;
         this.up = false;

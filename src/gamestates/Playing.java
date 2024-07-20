@@ -47,6 +47,9 @@ public class Playing extends State implements Statemethods {
     public void resetLevel(){
         levelManager.resetLevel();
     }
+    public void resetDirections() {
+        player.resetDirections();
+    }
 
     public Player getPlayer(){
         return player;
@@ -114,4 +117,6 @@ public class Playing extends State implements Statemethods {
     }
 
     public LevelManager getLevelManager(){return levelManager;}
+
+
 }
