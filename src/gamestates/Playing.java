@@ -6,6 +6,7 @@ import entity.EnemyManager;
 import entity.Player;
 import levels.LevelManager;
 import main.GameController;
+import Audio.AudioPlayer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -19,6 +20,7 @@ public class Playing extends State implements Statemethods {
     private LevelManager levelManager;
     private Random random = new Random();
     private BufferedImage pausebtn;
+    private AudioPlayer audio;
 
 
 
@@ -68,6 +70,7 @@ public class Playing extends State implements Statemethods {
     public void mouseClicked(MouseEvent e) {
         if(e.getButton()== MouseEvent.BUTTON1){
             player.setAttacking(true);
+            game.getAudioPlayer().playAttackSFX();
         }        Point clickPoint = e.getPoint();
     }
 

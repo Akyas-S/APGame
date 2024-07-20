@@ -41,8 +41,6 @@ public class LoadImages {
     public static final String NEXT_LVL = "IngameLevelMenus/nextlvl.png";
     public static final String NEXT_BG = "IngameLevelMenus/bg_won_withBg.png";
 
-
-
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
         BufferedImage img = null;
