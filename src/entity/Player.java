@@ -26,6 +26,7 @@ public class  Player extends Entity {
     float speed = 4.5f;
 
     public boolean dead = false;
+    public boolean menu = false;
     public int playerDamage = 50;
     public int playerScore;
 
@@ -98,6 +99,7 @@ public class  Player extends Entity {
             Gamestate.state = Gamestate.DEATH;
             resetAllPlayer();
         }
+        if(menu){resetAllPlayer();}
 
     }
 
@@ -235,11 +237,13 @@ public class  Player extends Entity {
         this.moving = false;
         this.playerAction = IDLE;
         this.currentHealth = this.maxHealth;
+        this.playerScore = 0;
 //        this.hitbox.x = 200;
-//        this.hitbox.y = 200;
+//        this.hitbox.y = 200;public int playerScore;
         this.x = 200;
         this.y = 200;
         this.dead = false;
+        this.menu = false;
         System.out.println("reset all");
 
     }

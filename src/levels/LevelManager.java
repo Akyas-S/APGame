@@ -16,8 +16,9 @@ public class LevelManager {
     private  Player player;
     private Level1 level1;
     private Level2 level2;
-    private boolean isLevel1;
-    private boolean isLevel2 = false;
+    public boolean isLevel1;
+    public boolean isLevel2 = false;
+    public boolean clearEnemies = false;
 
 
 
@@ -29,7 +30,7 @@ public class LevelManager {
         this.level2 = new Level2(playing, player);
         this.isLevel1 = true;
     }
-    public void resetLevel(int level) {
+    public void resetLevel() {
             isLevel1 = true;
             isLevel2 = false;
     }
@@ -48,6 +49,7 @@ public class LevelManager {
                isLevel2 = false;
             }
         }
+
     }
 
     public void render(Graphics g){

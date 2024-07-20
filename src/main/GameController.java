@@ -44,6 +44,7 @@ public class GameController implements Runnable {
     }
 
     private void initClasses() {
+        player = new Player(200,200);
         mainMenu = new MainMenu(this);
         playing = new Playing(this);
         settings = new Settings(this);
@@ -51,7 +52,7 @@ public class GameController implements Runnable {
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
         pause=new Pause(this);
-        player = new Player(200,200);
+
 //        Level1 = new Level1(playing,player);
         nextLevel2 = new NextLevel2(this);
         death = new Death (this);
@@ -91,6 +92,9 @@ public class GameController implements Runnable {
             //-----------
 
         }
+    }
+    public Player getPlayer() {
+        return player;
     }
 
     public void render(Graphics g){

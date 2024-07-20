@@ -60,11 +60,23 @@ public class Death extends State implements Statemethods {
         Point clickPoint = e.getPoint();
         if (menuButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
+
+            //game resetting test
+            game.getPlayer().menu = true;
+            game.getPlaying().getLevelManager().isLevel1=true;
+            game.getPlaying().getLevelManager().isLevel2=false;
+
+
+
             Gamestate.state = Gamestate.MENU;
 
 
         } else if (replayButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
+
+            game.getPlayer().dead = true;
+
+
             Gamestate.state = Gamestate.PLAYING;
         }
     }

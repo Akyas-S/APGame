@@ -1,5 +1,6 @@
 package gamestates;
 
+import com.jogamp.common.os.Platform;
 import entity.Player;
 import main.GameController;
 import utils.LoadImages;

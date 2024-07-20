@@ -6,7 +6,6 @@ import entity.EnemyManager;
 import entity.Player;
 import levels.LevelManager;
 import main.GameController;
-import utils.LoadImages;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -39,11 +38,7 @@ public class Playing extends State implements Statemethods {
 
     }
     public void resetAll(){
-        if (player != null) {
             player.resetAllPlayer();
-
-        }
-
     }
 
 
@@ -112,4 +107,5 @@ public class Playing extends State implements Statemethods {
             player.setDown(false);}
     }
 
+    public LevelManager getLevelManager(){return levelManager;}
 }
