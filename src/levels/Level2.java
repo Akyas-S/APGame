@@ -26,7 +26,7 @@ public class Level2 {
     public Level2(Playing playing, Player player) {
         this.playing = playing;
         this.player = player;
-        this.enemyManager = new EnemyManager(playing, player, 10);
+        this.enemyManager = new EnemyManager(playing, player, 5);
 
     }
 
@@ -35,8 +35,6 @@ public class Level2 {
         renderBackground(g);
         enemyManager.draw(g);
         enemyManager.update();
-        g.setFont(new Font("Ink Free", Font.BOLD,150));
-        g.drawString("Level 2",1000,200);
     }
 
     public static void renderBackground(Graphics g) {

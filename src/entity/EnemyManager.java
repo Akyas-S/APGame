@@ -134,8 +134,6 @@ public class EnemyManager{
             }
         }
 
-
-
     }
 
     /**
