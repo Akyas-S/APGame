@@ -6,6 +6,8 @@ import entity.EnemyManager;
 import entity.Player;
 import levels.LevelManager;
 import main.GameController;
+import Audio.AudioPlayer;
+import gamestates.Controls;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -19,6 +21,7 @@ public class Playing extends State implements Statemethods {
     private LevelManager levelManager;
     private Random random = new Random();
     private BufferedImage pausebtn;
+    private AudioPlayer audio;
 
 
 
@@ -68,6 +71,7 @@ public class Playing extends State implements Statemethods {
     public void mouseClicked(MouseEvent e) {
         if(e.getButton()== MouseEvent.BUTTON1){
             player.setAttacking(true);
+            game.getAudioPlayer().playAttackSFX();
         }        Point clickPoint = e.getPoint();
     }
 
@@ -89,13 +93,13 @@ public class Playing extends State implements Statemethods {
     @Override
     public void keyPressed(KeyEvent e) {
         int temp = e.getKeyCode();
-        if (temp == KeyEvent.VK_W){
+        if (temp == Controls.moveup){
             player.setUp(true);}
-        if (temp == KeyEvent.VK_A){
+        if (temp == Controls.moveleft){
             player.setLeft(true);}
-        if (temp == KeyEvent.VK_D){
+        if (temp == Controls.moveright){
             player.setRight(true);}
-        if (temp == KeyEvent.VK_S){
+        if (temp == Controls.movedown){
             player.setDown(true);}
         if (temp == KeyEvent.VK_ESCAPE){
             Gamestate.state = Gamestate.PAUSE;
@@ -106,13 +110,13 @@ public class Playing extends State implements Statemethods {
     @Override
     public void keyReleased(KeyEvent e) {
         int temp = e.getKeyCode();
-        if (temp == KeyEvent.VK_W){
+        if (temp == Controls.moveup){
             player.setUp(false);}
-        if (temp == KeyEvent.VK_A){
+        if (temp == Controls.moveleft){
             player.setLeft(false);}
-        if (temp == KeyEvent.VK_D){
+        if (temp == Controls.moveright){
             player.setRight(false);}
-        if (temp == KeyEvent.VK_S){
+        if (temp == Controls.movedown){
             player.setDown(false);}
     }
 
