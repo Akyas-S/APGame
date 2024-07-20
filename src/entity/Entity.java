@@ -51,10 +51,10 @@ public abstract class Entity {
      * Draw the entity's hitbox on the screen
      * @param g Graphics object to draw with
      */
-    protected void drawHitbox(Graphics g) {
-        g.setColor(Color.pink);
-        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
-    }
+//    protected void drawHitbox(Graphics g) {
+//        g.setColor(Color.pink);
+//        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
+//    }
 
     /**
      * Initialize the entity's hitbox
