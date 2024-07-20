@@ -39,8 +39,14 @@ public class Playing extends State implements Statemethods {
     }
     public void resetAll(){
             player.resetAllPlayer();
-    }
 
+    }
+    public void resetScore(){
+        player.resetScore();
+    }
+    public void resetLevel(){
+        levelManager.resetLevel();
+    }
 
     public Player getPlayer(){
         return player;

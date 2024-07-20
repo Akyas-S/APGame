@@ -1,6 +1,7 @@
 package gamestates;
 
 
+import entity.Player;
 import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
@@ -18,13 +19,14 @@ public class Death extends State implements Statemethods {
 
 
     private Playing playing;
+    private  Player player;
 
     LevelManager levelManager;
 
 
     public Death(GameController game) {
         super(game);
-        playing = new Playing(game);
+        this.playing = new Playing(game);
         loadBackground();
         loadButtons();
 
@@ -57,25 +59,22 @@ public class Death extends State implements Statemethods {
     public void mouseClicked(MouseEvent e) {
         Point clickPoint = e.getPoint();
         if (menuButtonBounds.contains(clickPoint)) {
-            game.getAudioPlayer().playMenuButtonSound();
+//            game.getAudioPlayer().playMenuButtonSound();
 
             //game resetting test
-            game.getPlayer().resetAllPlayer();
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
-
-
+            game.getPlaying().resetAll();
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.MENU;
 
 
         } else if (replayButtonBounds.contains(clickPoint)) {
-            game.getAudioPlayer().playMenuButtonSound();
+//            game.getAudioPlayer().playMenuButtonSound();
 
-            game.getPlayer().resetAllPlayer();
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
-
+            game.getPlaying().resetAll();
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.PLAYING;
         }

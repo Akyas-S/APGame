@@ -1,5 +1,6 @@
 package gamestates;
 
+import entity.Player;
 import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
@@ -12,18 +13,16 @@ import java.awt.image.BufferedImage;
 public class NextLevel2 extends State implements Statemethods {
     private BufferedImage background;
 
-
     private Rectangle menuButtonBounds;
     private Rectangle replayButtonBounds;
     private Rectangle nextButtonBounds;
 
-    private Playing playing;
-    private LevelManager levelManager;
+     private Playing playing;
+     LevelManager levelManager;
 
 
     public NextLevel2(GameController game) {
         super(game);
-        playing = new Playing(game);
         loadBackground();
         loadButtons();
     }
@@ -57,29 +56,24 @@ public class NextLevel2 extends State implements Statemethods {
         if (menuButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
 
-            //game resetting test
-            game.getPlayer().menu = true;
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
-
-
+            game.getPlaying().resetAll();
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.MENU;
 
         } else if (replayButtonBounds.contains(clickPoint)) {
-
             game.getAudioPlayer().playMenuButtonSound();
 
-            game.getPlayer().dead = true;
-            game.getPlaying().getLevelManager().isLevel1=true;
-            game.getPlaying().getLevelManager().isLevel2=false;
-
+            game.getPlaying().resetAll();
+            game.getPlaying().resetLevel();
+            game.getPlaying().resetScore();
 
             Gamestate.state = Gamestate.PLAYING;
 
         }else if (nextButtonBounds.contains(clickPoint)) {
 
-            game.getPlayer().menu = true;
+            game.getPlaying().resetAll();
             Gamestate.state = Gamestate.PLAYING;
 
             game.getAudioPlayer().playMenuButtonSound();

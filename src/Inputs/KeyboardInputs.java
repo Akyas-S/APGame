@@ -42,11 +42,16 @@ public class  KeyboardInputs implements KeyListener {
             case PAUSE:
                 gamePanel.getGame().getPause().keyPressed(e);
                 break;
+
             case STORE:
                 gamePanel.getGame().getStore().keyPressed(e);
+
+            case NEXTLEVEL2:
+                gamePanel.getGame().getNextLevel2().keyPressed(e);
                 break;
             case DEATH:
                 gamePanel.getGame().getDeath().keyPressed(e);
+
                 break;
             default:
                 break;
@@ -72,12 +77,17 @@ public class  KeyboardInputs implements KeyListener {
                 break;
             case PAUSE:
                 gamePanel.getGame().getPause().keyReleased(e);
+
                 break;
             case STORE:
                 gamePanel.getGame().getStore().keyReleased(e);
+
+            case NEXTLEVEL2:
+                gamePanel.getGame().getNextLevel2().keyReleased(e);
                 break;
             case DEATH:
                 gamePanel.getGame().getDeath().keyReleased(e);
+
                 break;
             default:
                 break;
