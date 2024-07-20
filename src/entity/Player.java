@@ -185,29 +185,35 @@ public class  Player extends Entity {
         if (!left && !right && !up && !down)
             return;
 
-        float xSpeed = 0, ySpeed = 0;
-
+        //x axis
+        if(x>0){
         if (left && !right) {
             x -= speed;
             flipX = width;
             flipW = -1;
             playergap = 12;
             moving = true;
-        } else if (right && !left) {
+        }}
+        if(x<1280 - hitbox.width){
+        if (right && !left) {
             x += speed;
             flipX = 0;
             flipW = 1;
             playergap = 0;
             moving = true;
-        }
+        }}
 
-        if (up && !down) {
-            y -= speed;
-            moving = true;
-        } else if (down && !up) {
-            y += speed;
-            moving = true;
-        }
+        //y axis
+        if(y>0){
+            if (up && !down) {
+                y -= speed;
+                moving = true;
+        }}
+        if(y<720 - hitbox.height){
+            if (down && !up) {
+                y += speed;
+                moving = true;
+        }}
     }
 
     private void setAnimation() {
