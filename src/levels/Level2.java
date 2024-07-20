@@ -47,5 +47,6 @@ public class Level2 {
             g.setColor(Color.RED);
             g.drawString("Error loading background image", 10, 20);
         }
+
     }
 }

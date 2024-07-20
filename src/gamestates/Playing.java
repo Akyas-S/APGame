@@ -26,14 +26,11 @@ public class Playing extends State implements Statemethods {
     public Playing(GameController game) {
         super(game);
         initClasses();
-
-
     }
 
 
 
     private void initClasses() {
-
         player = new Player(200,200);
         enemyManager = new EnemyManager(this,player,5);
         levelManager = new LevelManager(game,this,player);
@@ -41,17 +38,25 @@ public class Playing extends State implements Statemethods {
     private void keyBinds(){
 
     }
+    public void resetAll(){
+        if (player != null) {
+            player.resetAllPlayer();
+
+        }
+
+    }
+
 
     public Player getPlayer(){
         return player;
     }
+
+
     @Override
     public void render(Graphics g) {
         levelManager.render(g);
         player.render(g);
         g.drawImage(pausebtn, 10, 10, null);
-
-
 
     }
 
@@ -60,8 +65,6 @@ public class Playing extends State implements Statemethods {
         if(e.getButton()== MouseEvent.BUTTON1){
             player.setAttacking(true);
         }        Point clickPoint = e.getPoint();
-
-
     }
 
     @Override

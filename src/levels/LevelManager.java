@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 public class LevelManager {
     private GameController game;
     private Playing playing;
-    private static Player player;
+    private  Player player;
     private Level1 level1;
     private Level2 level2;
     private boolean isLevel1;
@@ -29,7 +29,10 @@ public class LevelManager {
         this.level2 = new Level2(playing, player);
         this.isLevel1 = true;
     }
-
+    public void resetLevel(int level) {
+            isLevel1 = true;
+            isLevel2 = false;
+    }
     public void update(Graphics g) {
         if (isLevel1) {
             level1.render(g);
@@ -50,6 +53,7 @@ public class LevelManager {
     public void render(Graphics g){
         update(g);
     }
+
 
 
 }

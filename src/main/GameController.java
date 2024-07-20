@@ -24,13 +24,13 @@ public class GameController implements Runnable {
     private Playing playing;
     private MainMenu mainMenu;
     private Player player;
-    private Level1 Level1;
     private Settings settings;
     private Audio audio;
     private Controls controls;
     private Pause pause;
     private AudioPlayer audioPlayer;
     private NextLevel2 nextLevel2;
+    private Death death;
 
 
     public GameController(){
@@ -52,8 +52,9 @@ public class GameController implements Runnable {
         controls = new Controls(this);
         pause=new Pause(this);
         player = new Player(200,200);
-        Level1 = new Level1(playing,player);
+//        Level1 = new Level1(playing,player);
         nextLevel2 = new NextLevel2(this);
+        death = new Death (this);
 
     }
 
@@ -117,6 +118,9 @@ public class GameController implements Runnable {
             case NEXTLEVEL2:
                 nextLevel2.render(g);
                 break;
+            case DEATH:
+                death.render(g);
+                break;
             default:
                 break;
         }
@@ -134,4 +138,5 @@ public class GameController implements Runnable {
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
     public NextLevel2 getNextLevel2(){return nextLevel2;}
+    public Death getDeath(){return death;}
 }
