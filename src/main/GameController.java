@@ -60,12 +60,6 @@ public class GameController implements Runnable {
         pause=new Pause(this,player);
         store = new Store(this);
 
-
-
-//        Level1 = new Level1(playing,player);
-        nextLevel2 = new NextLevel2(this);
-        death = new Death (this);
-
     }
 
 
@@ -157,4 +151,7 @@ public class GameController implements Runnable {
     public NextLevel2 getNextLevel2(){return nextLevel2;}
     public Death getDeath(){return death;}
 
+    public void windowFocusLost() {
+        playing.resetDirections();
+    }
 }
