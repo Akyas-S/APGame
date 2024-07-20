@@ -26,7 +26,7 @@ public class Level1 {
     public Level1(Playing playing, Player player) {
         this.playing = playing;
         this.player = player;
-        this.enemyManager = new EnemyManager(playing, player, 5);
+        this.enemyManager = new EnemyManager(playing, player, 0);
     }
 
     public void render(Graphics g){
