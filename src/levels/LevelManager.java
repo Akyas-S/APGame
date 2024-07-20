@@ -49,7 +49,7 @@ public class LevelManager {
     public void update(Graphics g) {
         if (isLevel1) {
             level1.render(g);
-            if (player.playerScore >= 25) {
+            if (player.playerScore >= 10) {
                 Gamestate.state = Gamestate.NEXTLEVEL2;
                 isLevel1 = false;
                 isLevel2 = true;
@@ -63,8 +63,9 @@ public class LevelManager {
         if (isLevel2) {
             level2.render(g);
             // If player score reaches 50, move to Level 3
-            if (player.playerScore >= 50) {
+            if (player.playerScore >= 20) {
                 isLevel2 = false;
+                Gamestate.state = Gamestate.NEXTLEVEL2;
                 // Calculate and save coins earned in Level 2
                 calcuateCoins(player.playerScore);
                 saveLoad.saveCoins();

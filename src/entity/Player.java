@@ -108,8 +108,9 @@ public class  Player extends Entity {
             g.setFont(new Font("arial", Font.BOLD, 20));
             g.setColor(Color.WHITE);
             g.drawString("Score: " + String.valueOf(playerScore), 100, 65);
+        } else {
+            Gamestate.state = Gamestate.DEATH;
         }
-        playerDead();
     }
 
     private void updateAttackBox() {
