@@ -26,7 +26,10 @@ public class Pause extends State implements Statemethods {
     private Rectangle pausemusicbtnbounds;
     private Rectangle pausesfxbtnbounds;
 
-    public Pause (GameController game, Player player){
+    private boolean ispsMusicenabled = true;
+    private boolean ispsSFXenabled = true;
+
+    public Pause(GameController game, Player player) {
         super(game);
         loadPauseBackbground();
         loadPauseButtons();
@@ -42,8 +45,8 @@ public class Pause extends State implements Statemethods {
         quit = LoadImages.GetSprite(LoadImages.Quitbtnimg);
 
 
-        pausemusicbtnbounds = new Rectangle(300,260,100,100);
-        pausesfxbtnbounds = new Rectangle(500,260,100,100);
+        pausemusicbtnbounds = new Rectangle(700, 280, 100, 100);
+        pausesfxbtnbounds = new Rectangle(480, 280, 100, 100);
         resumebtnbounds = new Rectangle(345, 370, 600, 150);
         quitbtnbounds = new Rectangle(345, 470, 600, 150);
 
@@ -57,51 +60,68 @@ public class Pause extends State implements Statemethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(pausebg, 0, 0,1280,720, null);
-        g.drawImage(resume, 345, 370, 600, 150,null);
-        g.drawImage(quit, 345, 470, 600, 150,null);
-        g.drawImage(music,300,260,100,100,null);
-        g.drawImage(sfx,500,260,100,100,null);
+        g.drawImage(pausebg, 0, 0, 1280, 720, null);
+        g.drawImage(resume, 345, 370, 600, 150, null);
+        g.drawImage(quit, 345, 470, 600, 150, null);
+        if (ispsMusicenabled) {
+            g.drawImage(music, 700, 280, 100, 100, null);
+        } else {
+            g.drawImage(nomusic, 700, 280, 100, 100, null);
+        }
+        if (ispsSFXenabled) {
+            g.drawImage(sfx, 480, 280, 100, 100, null);
+        } else {
+            g.drawImage(nosfx, 480, 280, 100, 100, null);
+        }
 
     }
+
 
     @Override
     public void mouseClicked(MouseEvent pse) {
         Point clickPoint = pse.getPoint();
-
         if (resumebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.PLAYING;
             game.getAudioPlayer().playButtonSound();
-        } else if (quitbtnbounds.contains(clickPoint)){
+        } else if (quitbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
             game.getPlaying().resetAll();
             game.getPlaying().resetLevel();
             game.getPlaying().resetScore();
+        } else if (pausemusicbtnbounds.contains(clickPoint)) {
+            ispsMusicenabled = !ispsMusicenabled; // toggle music button state
+            game.getAudioPlayer().playButtonSound();
+            game.getAudioPlayer().toggleMusicMute();
+        } else if (pausesfxbtnbounds.contains(clickPoint)) {
+            ispsSFXenabled = !ispsSFXenabled; // toggle SFX button state
+            game.getAudioPlayer().toggleSFXMute();
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
 
+        @Override
+        public void mousePressed (MouseEvent e){
+
+        }
+
+        @Override
+        public void mouseReleased (MouseEvent e){
+
+        }
+
+        @Override
+        public void mouseMoved (MouseEvent e){
+
+        }
+
+        @Override
+        public void keyPressed (KeyEvent e){
+
+        }
+
+        @Override
+        public void keyReleased (KeyEvent e){
+
+        }
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-}
