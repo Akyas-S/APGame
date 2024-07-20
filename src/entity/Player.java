@@ -9,8 +9,9 @@ import utils.LoadImages;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.lang.invoke.SwitchPoint;
+import java.util.ArrayList;
 
-import static java.awt.SystemColor.menu;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity {
@@ -37,6 +38,8 @@ public class  Player extends Entity {
     public int playerHighScore;
     public int playerCurrentCoins;
     public int playerTotalCoins;
+    public int equippedSkin;
+
 
 
     //HUD
@@ -247,8 +250,28 @@ public class  Player extends Entity {
     // Selects the animation from the sprite sheet.
     private void loadAnimations() {
 
+        SaveLoad saveLoad = new SaveLoad(this);
+        this.saveLoad = saveLoad;
+        saveLoad.saveEquippedSkin();
+        saveLoad.loadEquippedSkin();
+
+
+        BufferedImage img;
+
         // Gets the player sprite sheet.
-        BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
+        switch(equippedSkin) {
+            case 1:
+                img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE_1);
+                break;
+            case 2:
+                img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE_2);
+                break;
+            default:
+                img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE_1);
+                break;
+        }
+
+
 
         // sets the maximum number of frames (X which is 10) and the total number of animations (Y which is 3)
         animations = new BufferedImage[3][10];

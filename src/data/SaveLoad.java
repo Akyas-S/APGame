@@ -24,6 +24,8 @@ public class SaveLoad {
         loadCoins();
         // Load the player's high score
         loadHighScore();
+        //
+        loadEquippedSkin();
         // Create a new File object with the name "save.dat"
         this.file = new File("save.dat");
         // Check if the file exists
@@ -64,10 +66,46 @@ public class SaveLoad {
             // Write the dataStorage object to the file
             os.writeObject(ds);
             System.out.println("HighScore Saved");
-        }catch (Exception e){
+        }
+        catch (Exception e){
             // Print an error message if an exception occurs during saving
             System.out.println("Save HighScore Error");
         }
+    }
+
+    public void saveEquippedSkin(){
+        try{
+            // Update the dataStorage object with the player's current equipped skin
+            int equippedSkin = 2;
+            // Create an ObjectOutputStream to write the dataStorage object to the file
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            // Write the dataStorage object to the file
+            os.writeObject(ds);
+            System.out.println("Current Skin Saved");
+        }catch (Exception e){
+            // Print an error message if an exception occurs during saving
+            System.out.println("Save Skin Error");
+        }
+    }
+
+    public int loadEquippedSkin(){
+        try{
+            // Create an ObjectInputStream to read the dataStorage object from the file
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+            // Read the dataStorage object from the file
+            ds = (dataStorage) ois.readObject();
+            // Update the player's previous equipped skin with the loaded value
+            player.equippedSkin = ds.equippedSkin;
+            // Print the loaded high score
+            System.out.println(player.equippedSkin);
+            // Return the loaded high score
+            return ds.equippedSkin;
+        }catch (Exception e){
+            // Print an error message if an exception occurs during loading
+            System.out.println("Load Equipped Skin Error");
+        }
+        // Return 0 if an error occurs during loading
+        return 0;
     }
 
     // Method to load the player's high score

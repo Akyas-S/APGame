@@ -1,4 +1,5 @@
 package data;
+import java.util.ArrayList;
 
 // Importing the Serializable interface
 import java.io.Serializable;
@@ -10,4 +11,8 @@ public class dataStorage implements Serializable {
     int playerHighScore;
     // Integer to store the player's coins
     int playerCoins;
+
+    int equippedSkin;
+
+    ArrayList<Integer> unlockedSkin = new ArrayList<Integer>();
 }

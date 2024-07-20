@@ -1,5 +1,8 @@
+
 package gamestates;
 
+import data.SaveLoad;
+import entity.Player;
 import main.GameController;
 import utils.LoadImages;
 
@@ -9,6 +12,10 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Store extends State implements Statemethods {
+
+    public static boolean equipedSkin1;
+    private Player player;
+    private SaveLoad saveLoad;
     private BufferedImage store;
     private BufferedImage closestorebtn;
 
@@ -18,10 +25,20 @@ public class Store extends State implements Statemethods {
     private Rectangle buySkin2;
     private Rectangle equipSkin2;
 
-    public Store(GameController game) {
+    private boolean boughtSkin1;
+    private boolean boughtSkin2;
+    private boolean equipedSkin2;
+    private int Skin1Cost = 50;
+    private int Skin2Cost = 50;
+
+    public Store(GameController game,Player player) {
         super(game);
         loadStoreBackground();
         loadStoreButtons();
+        this.player = player;
+        SaveLoad saveLoad = new SaveLoad(player);
+        this.saveLoad = saveLoad;
+
     }
 
     private void loadStoreButtons() {
@@ -58,6 +75,26 @@ public class Store extends State implements Statemethods {
 
     }
 
+    public void boughSkin(){
+        if(boughtSkin1 && player.playerTotalCoins > Skin1Cost){
+            player.playerTotalCoins = player.playerTotalCoins - Skin1Cost;
+            saveLoad.saveCoins();
+            System.out.println("Skin 1 Bought!");
+            System.out.println(String.valueOf(saveLoad.loadCoins()));
+        } else if (player.playerTotalCoins < Skin1Cost) {
+            System.out.println("Don't have enough coins");
+        }
+        if (boughtSkin2 && player.playerTotalCoins > Skin2Cost){
+            player.playerTotalCoins = player.playerTotalCoins - Skin2Cost;
+            saveLoad.saveCoins();
+            System.out.println("Skin 2 Bought!");
+        } else if (player.playerTotalCoins < Skin1Cost) {
+            System.out.println("Don't have enough coins");
+        }
+
+    }
+
+
     @Override
     public void mouseClicked(MouseEvent aud) {
         Point clickPoint = aud.getPoint();
@@ -68,15 +105,24 @@ public class Store extends State implements Statemethods {
 
         if (buySkin1.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
+            boughtSkin1 = true;
+            boughSkin();
+            System.out.println(String.valueOf(saveLoad.loadCoins()));
         }
         if (buySkin2.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
+            boughtSkin2 = true;
+            boughSkin();
+            System.out.println(String.valueOf(saveLoad.loadCoins()));
         }
         if (equipSkin1.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
+            equipedSkin1 = true;
+            System.out.println("Equip 1 pressed");
         }
         if (equipSkin2.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
+            equipedSkin2 = true;
         }
     }
 
