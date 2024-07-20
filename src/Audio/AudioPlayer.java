@@ -2,7 +2,6 @@ package Audio;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -26,7 +25,6 @@ public class AudioPlayer {
     private int currentSongId;
     private float volume = 1f;
     private boolean musicMute, sfxMute;
-    private Random rand = new Random();
 
     public AudioPlayer() {
         loadMusic();
@@ -65,11 +63,6 @@ public class AudioPlayer {
         return null;
     }
 
-    public void setVolume(float volume) {
-        this.volume = volume;
-        updateSongVolume();
-        updateEffectsVolume();
-    }
 
     public void stopSong() {
         if (music[currentSongId].isActive())
