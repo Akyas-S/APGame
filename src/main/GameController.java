@@ -58,7 +58,7 @@ public class GameController implements Runnable {
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
         pause=new Pause(this,player);
-        store = new Store(this);
+        store = new Store(this, player);
 
     }
 
