@@ -76,7 +76,6 @@ public class Death extends State implements Statemethods {
             game.getPlaying().getLevelManager().isLevel1=true;
             game.getPlaying().getLevelManager().isLevel2=false;
 
-
             Gamestate.state = Gamestate.PLAYING;
         }
     }

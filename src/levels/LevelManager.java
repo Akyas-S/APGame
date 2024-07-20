@@ -38,7 +38,7 @@ public class LevelManager {
         if (isLevel1) {
             level1.render(g);
             if (player.playerScore >= 25) {
-                Gamestate.state = Gamestate.NEXTLEVEL2;
+
                 isLevel1 = false;
                 isLevel2 = true;
             }

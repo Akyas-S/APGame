@@ -26,9 +26,10 @@ public class  Player extends Entity {
     float speed = 4.5f;
 
     public boolean dead = false;
-    public boolean menu = false;
+    public boolean nextlvl = false;
     public int playerDamage = 50;
     public int playerScore;
+    private int nextLvlThreshold;
 
     //HUD
     private BufferedImage hudBarImg;
@@ -91,15 +92,20 @@ public class  Player extends Entity {
                 null);
 
         drawHitbox(g);
-//            g.setFont(new Font("arial", Font.BOLD,20));
-//            g.setColor(Color.WHITE);
-//            g.drawString("Score: "+ String.valueOf(playerScore),100,65);
+
+        g.setFont(new Font("arial", Font.BOLD,20));
+        g.setColor(Color.WHITE);
+        g.drawString("Score: "+ String.valueOf(playerScore),100,65);
 
         if(dead){
             Gamestate.state = Gamestate.DEATH;
             resetAllPlayer();
+            resetScore();
         }
-        if(menu){resetAllPlayer();}
+        if (nextlvl){
+            Gamestate.state = Gamestate.NEXTLEVEL2;
+            resetAllPlayer();
+        }
 
     }
 
@@ -232,18 +238,18 @@ public class  Player extends Entity {
 
     public void resetAllPlayer() {
         resetDirections();
-
         this.attacking = false;
         this.moving = false;
         this.playerAction = IDLE;
         this.currentHealth = 100;
-        this.playerScore = 0;
         this.x = 200;
         this.y = 200;
         this.dead = false;
-        this.menu = false;
+        this.nextlvl = false;
         System.out.println("reset all");
-
+    }
+    public void resetScore(){
+        this.playerScore = 0;
     }
 
     private void resetDirections() {
