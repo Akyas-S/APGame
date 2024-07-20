@@ -1,5 +1,7 @@
 package gamestates;
 
+
+import entity.Player;
 import main.GameController;
 import utils.LoadImages;
 import Audio.AudioPlayer;
@@ -27,6 +29,7 @@ public class MainMenu extends State implements Statemethods {
         super(game);
         loadBackground();
         loadButtons();
+
     }
 
     private void loadButtons() {

@@ -1,14 +1,9 @@
+
+
 package main;
 
 import Audio.AudioPlayer;
-import gamestates.Gamestate;
-import gamestates.Playing;
-import gamestates.MainMenu;
-import gamestates.Settings;
-import gamestates.Audio;
-import gamestates.Controls;
-import gamestates.Pause;
-import gamestates.Store;
+import gamestates.*;
 import entity.Player;
 import levels.Level1;
 
@@ -29,13 +24,13 @@ public class GameController implements Runnable {
     private Playing playing;
     private MainMenu mainMenu;
     private Player player;
-    private Level1 Level1;
     private Settings settings;
     private Audio audio;
     private Controls controls;
     private Pause pause;
     private AudioPlayer audioPlayer;
-    private Store store;
+    private NextLevel2 nextLevel2;
+    private Death death;
 
 
     public GameController(){
@@ -49,6 +44,7 @@ public class GameController implements Runnable {
     }
 
     private void initClasses() {
+        player = new Player(200,200);
         mainMenu = new MainMenu(this);
         playing = new Playing(this);
         settings = new Settings(this);
@@ -56,9 +52,10 @@ public class GameController implements Runnable {
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
         pause=new Pause(this);
-        store = new Store(this);
-        player = new Player(200,200);
-        Level1 = new Level1();
+
+//        Level1 = new Level1(playing,player);
+        nextLevel2 = new NextLevel2(this);
+        death = new Death (this);
 
     }
 
@@ -67,6 +64,7 @@ public class GameController implements Runnable {
     private void startGameLoop(){
         gameThread = new Thread(this);
         gameThread.start();
+
     }
 
     @Override
@@ -96,6 +94,9 @@ public class GameController implements Runnable {
 
         }
     }
+    public Player getPlayer() {
+        return player;
+    }
 
     public void render(Graphics g){
 
@@ -118,8 +119,11 @@ public class GameController implements Runnable {
             case PAUSE:
                 pause.render(g);
                 break;
-            case STORE:
-                store.render(g);
+            case NEXTLEVEL2:
+                nextLevel2.render(g);
+                break;
+            case DEATH:
+                death.render(g);
                 break;
             default:
                 break;
@@ -137,5 +141,6 @@ public class GameController implements Runnable {
     public Playing getPlaying(){return playing;}
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
-    public Store getStore(){return store;}
+    public NextLevel2 getNextLevel2(){return nextLevel2;}
+    public Death getDeath(){return death;}
 }

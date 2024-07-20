@@ -39,6 +39,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case STORE:
                 gamePanel.getGame().getStore().mouseClicked(e);
                 break;
+            case DEATH:
+                gamePanel.getGame().getDeath().mouseClicked(e);
+                break;
             default:
                 break;
         }

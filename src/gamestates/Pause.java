@@ -66,6 +66,7 @@ public class Pause extends State implements Statemethods {
             game.getAudioPlayer().playButtonSound();
         } else if (quitbtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
+            game.getPlayer().resetAllPlayer();
             game.getAudioPlayer().playButtonSound();
         }
     }

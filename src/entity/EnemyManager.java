@@ -132,8 +132,10 @@ public class EnemyManager{
                     player.playerScore++;
                 }
             }
-
         }
+
+
+
     }
 
     /**

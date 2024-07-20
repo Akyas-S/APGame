@@ -1,5 +1,6 @@
 package gamestates;
 
+
 import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
@@ -9,34 +10,34 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class NextLevel2 extends State implements Statemethods {
+public class Death extends State implements Statemethods {
     private BufferedImage background;
-
 
     private Rectangle menuButtonBounds;
     private Rectangle replayButtonBounds;
-    private Rectangle nextButtonBounds;
+
 
     private Playing playing;
-    private LevelManager levelManager;
+
+    LevelManager levelManager;
 
 
-    public NextLevel2(GameController game) {
+    public Death(GameController game) {
         super(game);
         playing = new Playing(game);
         loadBackground();
         loadButtons();
+
     }
 
     private void loadBackground() {
-        background = LoadImages.GetSprite(LoadImages.NEXT_BG);
+        background = LoadImages.GetSprite(LoadImages.LOST_BG);
     }
 
     private void loadButtons() {
 
-        menuButtonBounds = new Rectangle(575, 508, 120, 51);
         replayButtonBounds= new Rectangle(488, 442, 113, 51);
-        nextButtonBounds = new Rectangle(690, 442, 120, 51);
+        menuButtonBounds = new Rectangle(690, 442, 120, 51);
 
     }
 
@@ -44,10 +45,11 @@ public class NextLevel2 extends State implements Statemethods {
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, 1280, 720, null);
 
+        //Draws clickpoint(hitboxes)
         g.setColor(Color.red);
-        g.drawRect(575, 508, 120, 51);
         g.drawRect(488, 442, 113, 51);
         g.drawRect(690, 442, 120, 51);
+
 
     }
 
@@ -58,7 +60,7 @@ public class NextLevel2 extends State implements Statemethods {
             game.getAudioPlayer().playMenuButtonSound();
 
             //game resetting test
-            game.getPlayer().menu = true;
+            game.getPlayer().resetAllPlayer();
             game.getPlaying().getLevelManager().isLevel1=true;
             game.getPlaying().getLevelManager().isLevel2=false;
 
@@ -66,23 +68,16 @@ public class NextLevel2 extends State implements Statemethods {
 
             Gamestate.state = Gamestate.MENU;
 
-        } else if (replayButtonBounds.contains(clickPoint)) {
 
+        } else if (replayButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
 
-            game.getPlayer().dead = true;
+            game.getPlayer().resetAllPlayer();
             game.getPlaying().getLevelManager().isLevel1=true;
             game.getPlaying().getLevelManager().isLevel2=false;
 
 
             Gamestate.state = Gamestate.PLAYING;
-
-        }else if (nextButtonBounds.contains(clickPoint)) {
-
-            game.getPlayer().menu = true;
-            Gamestate.state = Gamestate.PLAYING;
-
-            game.getAudioPlayer().playMenuButtonSound();
         }
     }
 
