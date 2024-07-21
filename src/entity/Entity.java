@@ -22,12 +22,12 @@ public abstract class Entity {
         this.height = height;
     }
 
-// Code to draw entity hitbox (is commented out in render methods as well)
+// Code to draw entity hitbox (is commented out in render methods)
 
-//    protected void drawHitbox(Graphics g) {
-//        g.setColor(Color.pink);
-//        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
-//    }
+    protected void drawHitbox(Graphics g) {
+        g.setColor(Color.pink);
+        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
+    }
 
     // Initializes the hitbox of the entity
     protected void initHitbox() {
@@ -40,7 +40,7 @@ public abstract class Entity {
         hitbox.y = (int) y;
     }
 
- // Gets method for hitbox so that it can be accessed by other classes
+ // Get method for hitbox so that it can be accessed by other classes
     public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
