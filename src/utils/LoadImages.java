@@ -48,6 +48,10 @@ public class LoadImages {
     public static final String KEYUPARROW = "ControlsUI/keyuparrow.png";
     public static final String KEYLEFTARROW = "ControlsUI/keyleftarrow.png";
     public static final String KEYRIGHTARROW = "ControlsUI/keyrightarrow.png";
+    public static final String PAUSEMUSICBTN = "PauseUI/music.png";
+    public static final String PAUSENOMUSICBTN = "PauseUI/nomusic.png";
+    public static final String PAUSESFXBTN = "PauseUI/sfx.png";
+    public static final String PAUSENOSFXBTN = "PauseUI/nosfx.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
