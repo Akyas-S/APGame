@@ -4,17 +4,19 @@ package entity;
 import data.SaveLoad;
 import gamestates.Gamestate;
 import gamestates.Playing;
+import main.GameController;
 import utils.LoadImages;
+import gamestates.Store;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import static java.awt.SystemColor.menu;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity {
 
+    private Store store;
     private BufferedImage[][] animations;
     private EnemyManager enemyManager;
     private Playing playing;
@@ -75,6 +77,7 @@ public class  Player extends Entity {
         initAttackBox();
         loadAnimations();
         enemyManager = new EnemyManager(playing, this, 5);
+        this.store = store;
         // Create SaveLoad object to handle saving and loading game data
         SaveLoad saveLoad = new SaveLoad(this);
         this.saveLoad = saveLoad;

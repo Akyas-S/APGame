@@ -50,7 +50,7 @@ public class SaveLoad {
             System.out.println("Score Saved");
         }catch (Exception e){
             // Print an error message if an exception occurs during saving
-            System.out.println("Save Coin Error");
+            System.out.println("Save Coin Error " + e.getMessage());
         }
     }
 
@@ -66,7 +66,7 @@ public class SaveLoad {
             System.out.println("HighScore Saved");
         }catch (Exception e){
             // Print an error message if an exception occurs during saving
-            System.out.println("Save HighScore Error");
+            System.out.println("Save HighScore Error "+ e.getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ public class SaveLoad {
             return ds.playerHighScore;
         }catch (Exception e){
             // Print an error message if an exception occurs during loading
-            System.out.println("Load HighScore Error");
+            System.out.println("Load HighScore Error "+ e.getMessage());
         }
         // Return 0 if an error occurs during loading
         return 0;
@@ -103,7 +103,7 @@ public class SaveLoad {
             return ds.playerCoins;
         }catch (Exception e){
             // Print an error message if an exception occurs during loading
-            System.out.println("Load Coins Error");
+            System.out.println("Load Coins Error "+ e.getMessage());
         }
         // Return 0 if an error occurs during loading
         return 0;
