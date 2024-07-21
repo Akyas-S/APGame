@@ -148,7 +148,7 @@ public class GameController implements Runnable {
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
     public Store getStore(){return store;}
-    public NextLevel getNextLevel2(){return nextLevel;}
+    public NextLevel getNextLevel(){return nextLevel;}
     public Death getDeath(){return death;}
     public Victory getVictory(){return victory;}
 

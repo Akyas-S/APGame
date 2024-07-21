@@ -47,7 +47,7 @@ public class  KeyboardInputs implements KeyListener {
                 gamePanel.getGame().getStore().keyPressed(e);
 
             case NEXTLEVEL:
-                gamePanel.getGame().getNextLevel2().keyPressed(e);
+                gamePanel.getGame().getNextLevel().keyPressed(e);
                 break;
             case DEATH:
                 gamePanel.getGame().getDeath().keyPressed(e);
@@ -85,7 +85,7 @@ public class  KeyboardInputs implements KeyListener {
                 gamePanel.getGame().getStore().keyReleased(e);
 
             case NEXTLEVEL:
-                gamePanel.getGame().getNextLevel2().keyReleased(e);
+                gamePanel.getGame().getNextLevel().keyReleased(e);
                 break;
             case DEATH:
                 gamePanel.getGame().getDeath().keyReleased(e);

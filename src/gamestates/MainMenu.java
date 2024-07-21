@@ -55,10 +55,10 @@ public class MainMenu extends State implements Statemethods {
     }
 
     private void showCoins(Graphics g){
-        Font font = new Font("Jokerman", Font.BOLD, 50);
+        Font font = new Font("Arial", Font.BOLD, 40);
         g.setFont(font);
-        g.setColor(Color.YELLOW);
-        g.drawString("Coins: " + String.valueOf(saveLoad.loadCoins()),70,100);
+        g.setColor(Color.ORANGE);
+        g.drawString(String.valueOf(saveLoad.loadCoins()),1124 ,73);
     }
 
     @Override

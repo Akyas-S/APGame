@@ -298,6 +298,11 @@ public class  Player extends Entity {
         this.down = false;
     }
 
+    public int getScore(int score){
+        this.playerScore = score;
+        return score;
+    }
+
 
     public boolean isUp() {
         return up;

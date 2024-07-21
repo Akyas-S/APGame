@@ -2,7 +2,6 @@ package main;
 
 import Inputs.KeyboardInputs;
 import Inputs.MouseInputs;
-import data.SaveLoad;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
-    private BufferedImage img;
+    private KeyboardInputs keyboardInputs;
     private BufferedImage[][] animations;
     private GameController game;
 
@@ -20,6 +19,7 @@ public class GamePanel extends JPanel {
     public GamePanel(GameController game){
 
         mouseInputs = new MouseInputs(this);
+        keyboardInputs = new KeyboardInputs(this);
         addKeyListener(new KeyboardInputs(this));
 
         this.game = game;
