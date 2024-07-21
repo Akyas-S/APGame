@@ -247,7 +247,7 @@ public class  Player extends Entity {
 
     // Selects the animation from the sprite sheet.
     private void loadAnimations() {
-        BufferedImage img = Store.spriteskin;
+        BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
         // Gets the player sprite sheet.
 
 
