@@ -32,7 +32,7 @@ public class Playing extends State implements Statemethods {
 
 
     private void initClasses() {
-        player = new Player(200,200);
+        player = new Player(200,200,game);
         enemyManager = new EnemyManager(this,player,5);
         levelManager = new LevelManager(game,this,player);
     }
