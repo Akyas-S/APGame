@@ -7,7 +7,6 @@ import entity.Player;
 import levels.LevelManager;
 import main.GameController;
 import Audio.AudioPlayer;
-import gamestates.Controls;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
