@@ -5,11 +5,9 @@ import entity.Player;
 import gamestates.Gamestate;
 import gamestates.Playing;
 import main.GameController;
-import utils.LoadImages;
 
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class LevelManager {
     // Reference to the game controller
@@ -56,7 +54,7 @@ public class LevelManager {
         if (isLevel1) {
             level1.render(g);
             if (player.playerScore >= 25) {
-                Gamestate.state = Gamestate.NEXTLEVEL2;
+                Gamestate.state = Gamestate.NEXTLEVEL;
                 isLevel1 = false;
                 isLevel2 = true;
                 // Calculate and save coins earned in Level 1
@@ -70,7 +68,7 @@ public class LevelManager {
             level2.render(g);
             // If player score reaches 50, move to Level 3
             if (player.playerScore >= 50) {
-                Gamestate.state = Gamestate.NEXTLEVEL2;
+                Gamestate.state = Gamestate.NEXTLEVEL;
                 isLevel2 = false;
                 isLevel3 = true;
                 // Calculate and save coins earned in Level 2

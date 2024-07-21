@@ -15,12 +15,11 @@ public class Level3 {
     private EnemyManager enemyManager;
     private Player player;
     private Playing playing;
-    private Timer timer;
 
     private static BufferedImage background;
 
     static {
-        background = LoadImages.GetSprite(LoadImages.LEVEL2_BG);
+        background = LoadImages.GetSprite(LoadImages.LEVEL3_BG);
     }
 
     public Level3(Playing playing, Player player) {

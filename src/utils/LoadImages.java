@@ -10,6 +10,7 @@ public class LoadImages {
     public static final String PLAYER_SPRITE = "cat2/catspriteUPDATED-run.png";
     public static final String LEVEL1_BG = "levels/beach level.png";
     public static final String LEVEL2_BG = "levels/map 2.png";
+    public static final String LEVEL3_BG = "levels/map 3.png";
     public static final String PIRATE_GHOST = "cat2/rat ghost.png";
     public static final String Startbtnimg = "MenuUI/start.png";
     public static final String Storebtnimg = "MenuUI/store.png";
