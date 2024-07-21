@@ -1,6 +1,7 @@
 package gamestates;
 
 
+import data.SaveLoad;
 import entity.Player;
 import main.GameController;
 import utils.LoadImages;
@@ -11,7 +12,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+
 public class MainMenu extends State implements Statemethods {
+
+    private SaveLoad saveLoad;
+    private Player player;
     private BufferedImage background;
 
     private BufferedImage Starticon;
@@ -25,8 +30,11 @@ public class MainMenu extends State implements Statemethods {
     private Rectangle exitButtonBounds;
 
 
-    public MainMenu(GameController game){
+    public MainMenu(GameController game, Player player){
         super(game);
+        this.player = player;
+        SaveLoad saveLoad = new SaveLoad(player);
+        this.saveLoad = saveLoad;
         loadBackground();
         loadButtons();
     }
@@ -46,6 +54,12 @@ public class MainMenu extends State implements Statemethods {
     private void loadBackground() {background = LoadImages.GetSprite(LoadImages.Menuimg);
     }
 
+    private void showCoins(Graphics g){
+        Font font = new Font("Jokerman", Font.BOLD, 50);
+        g.setFont(font);
+        g.setColor(Color.YELLOW);
+        g.drawString("Coins: " + String.valueOf(saveLoad.loadCoins()),70,100);
+    }
 
     @Override
     public void render(Graphics g) {
@@ -54,7 +68,7 @@ public class MainMenu extends State implements Statemethods {
         g.drawImage(Storeicon, 500,310,294, 91, null);
         g.drawImage(Settingsicon, 500,420,294, 91,null);
         g.drawImage(Exiticon, 500,530,294, 91,null);
-
+        showCoins(g);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class GameController implements Runnable {
         player = new Player(200,200);
         death = new Death (this);
         nextLevel2 = new NextLevel2(this);
-        mainMenu = new MainMenu(this);
+        mainMenu = new MainMenu(this,player);
         playing = new Playing(this);
         settings = new Settings(this);
         audio = new Audio(this);
