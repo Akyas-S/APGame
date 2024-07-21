@@ -1,6 +1,5 @@
 package gamestates;
 
-import entity.Player;
 import levels.LevelManager;
 import main.GameController;
 import utils.LoadImages;
@@ -10,7 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class NextLevel2 extends State implements Statemethods {
+public class NextLevel extends State implements Statemethods {
     private BufferedImage background;
 
     private Rectangle menuButtonBounds;
@@ -21,7 +20,7 @@ public class NextLevel2 extends State implements Statemethods {
      LevelManager levelManager;
 
 
-    public NextLevel2(GameController game) {
+    public NextLevel(GameController game) {
         super(game);
         loadBackground();
         loadButtons();

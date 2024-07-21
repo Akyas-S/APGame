@@ -7,7 +7,6 @@ import Audio.AudioPlayer;
 
 import gamestates.*;
 import entity.Player;
-import levels.Level1;
 
 
 import java.awt.*;
@@ -32,7 +31,7 @@ public class GameController implements Runnable {
     private Pause pause;
     private AudioPlayer audioPlayer;
     private Store store;
-    private NextLevel2 nextLevel2;
+    private NextLevel nextLevel;
     private Death death;
     private Victory victory;
 
@@ -51,7 +50,7 @@ public class GameController implements Runnable {
     private void initClasses() {
         player = new Player(200,200);
         death = new Death (this);
-        nextLevel2 = new NextLevel2(this);
+        nextLevel = new NextLevel(this);
         mainMenu = new MainMenu(this,player);
         playing = new Playing(this);
         settings = new Settings(this);
@@ -127,8 +126,8 @@ public class GameController implements Runnable {
             case STORE:
                 store.render(g);
                 break;
-            case NEXTLEVEL2:
-                nextLevel2.render(g);
+            case NEXTLEVEL:
+                nextLevel.render(g);
                 break;
             case DEATH:
                 death.render(g);
@@ -153,7 +152,7 @@ public class GameController implements Runnable {
     public Pause getPause(){return pause;}
     public AudioPlayer getAudioPlayer(){return audioPlayer;}
     public Store getStore(){return store;}
-    public NextLevel2 getNextLevel2(){return nextLevel2;}
+    public NextLevel getNextLevel2(){return nextLevel;}
     public Death getDeath(){return death;}
     public Victory getVictory(){return victory;}
 

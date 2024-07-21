@@ -117,6 +117,7 @@ public class  Player extends Entity {
             g.drawString("Score: " + String.valueOf(playerScore), 100, 65);
         } else {
             Gamestate.state = Gamestate.DEATH;
+            playerDead();
         }
     }
 
