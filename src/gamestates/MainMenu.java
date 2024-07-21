@@ -29,7 +29,6 @@ public class MainMenu extends State implements Statemethods {
         super(game);
         loadBackground();
         loadButtons();
-
     }
 
     private void loadButtons() {

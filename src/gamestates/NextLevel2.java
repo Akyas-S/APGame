@@ -43,10 +43,10 @@ public class NextLevel2 extends State implements Statemethods {
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, 1280, 720, null);
 
-        g.setColor(Color.red);
-        g.drawRect(575, 508, 120, 51);
-        g.drawRect(488, 442, 113, 51);
-        g.drawRect(690, 442, 120, 51);
+//        g.setColor(Color.red);
+//        g.drawRect(575, 508, 120, 51);
+//        g.drawRect(488, 442, 113, 51);
+//        g.drawRect(690, 442, 120, 51);
 
     }
 

@@ -10,9 +10,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
+// AudioPlayer class to handle the audio in the game
 public class AudioPlayer {
 
+    // Constants for the different songs and sound effects
     public static int MENU = 0;
     public static int FOREST = 1;
 
@@ -21,12 +22,13 @@ public class AudioPlayer {
     public static int LEVELCOMPLETE = 2;
     public static int SWORDSWISH = 3;
 
-
+    // Arrays to store the music and sound effects
     private Clip[] music, sfx;
     private int currentSongId;
     private float volume = 0.9f;
     private boolean musicMute, sfxMute;
 
+    // Constructor to load the music and sound effects
     public AudioPlayer() {
         loadMusic();
         loadSFX();
