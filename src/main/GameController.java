@@ -12,16 +12,19 @@ import entity.Player;
 import java.awt.*;
 
 public class GameController implements Runnable {
-    //Controls the game scenes
 
+    // Variables for the game window and game panel
     private Window window;
     private GamePanel gamePanel;
+    // Thread for the game loop
     private Thread gameThread;
+    // Used to set the FPS the game runs at
     private final int FPS_SET = 60;
+    // Variables for FPS counter
     int frames =0;
     long lastCheck = System.currentTimeMillis();
 
-
+    // Variables for Game states
     private Playing playing;
     private MainMenu mainMenu;
     private Player player;
@@ -36,9 +39,8 @@ public class GameController implements Runnable {
     private Victory victory;
 
 
-
+    // Constructor for the GameController class
     public GameController(){
-
         initClasses();
         gamePanel = new GamePanel(this);
         window = new Window(gamePanel);
@@ -46,7 +48,7 @@ public class GameController implements Runnable {
         gamePanel.requestFocus();
         startGameLoop();
     }
-
+    // Initialize all the game states and objects needed to run the game
     private void initClasses() {
         player = new Player(200,200);
         death = new Death (this);
@@ -60,11 +62,10 @@ public class GameController implements Runnable {
         pause=new Pause(this,player);
         store = new Store(this,player);
         victory = new Victory(this);
-
     }
 
 
-
+    // Start the game loop in a new thread
     private void startGameLoop(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -73,35 +74,30 @@ public class GameController implements Runnable {
 
     @Override
     public void run() {
-
         double timePerFrame = 1000000000.0 / FPS_SET;
         long lastFrame = System.nanoTime();
         long now = System.nanoTime();
         while(true){
-
             now = System.nanoTime();
             if (System.nanoTime() - lastFrame >= timePerFrame){
-
                 gamePanel.repaint();
                 lastFrame = now;
                 frames++;
             }
 
             //fps counter
-
             if(System.currentTimeMillis() - lastCheck >= 1000){
                 lastCheck = System.currentTimeMillis();
                 System.out.println("Frames: " + frames);
                 frames = 0;
             }
             //-----------
-
         }
     }
-    public Player getPlayer() {
-        return player;
-    }
 
+
+
+    // Render the game states
     public void render(Graphics g){
 
         switch (Gamestate.state){
@@ -140,12 +136,12 @@ public class GameController implements Runnable {
         }
     }
 
-    public MainMenu getMenu(){
-        return mainMenu;
-    }
-    public Settings getSettings(){
-        return settings;
-    }
+
+    // Getter for the player object
+    public Player getPlayer() {return player;}
+    // Getters for all the game states
+    public MainMenu getMenu(){return mainMenu;}
+    public Settings getSettings(){return settings;}
     public Audio getAudio(){return audio;}
     public Controls getControls(){return controls;}
     public Playing getPlaying(){return playing;}
@@ -156,7 +152,7 @@ public class GameController implements Runnable {
     public Death getDeath(){return death;}
     public Victory getVictory(){return victory;}
 
-    public void windowFocusLost() {
-        playing.resetDirections();
-    }
+    // calls the reset directions method in the playing class that sets all directions to false
+    // when the window loses focus
+    public void windowFocusLost() {playing.resetDirections();}
 }

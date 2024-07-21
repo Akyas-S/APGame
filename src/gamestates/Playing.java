@@ -29,8 +29,6 @@ public class Playing extends State implements Statemethods {
         initClasses();
     }
 
-
-
     private void initClasses() {
         player = new Player(200,200);
         enemyManager = new EnemyManager(this,player,5);
@@ -39,10 +37,8 @@ public class Playing extends State implements Statemethods {
     private void keyBinds(){
 
     }
-    public void resetAll(){
-            player.resetAllPlayer();
-    }
 
+    public void resetAll(){player.resetAllPlayer();}
     public void resetScore(){
         player.resetScore();
     }
@@ -53,9 +49,6 @@ public class Playing extends State implements Statemethods {
         player.resetDirections();
     }
 
-    public Player getPlayer(){
-        return player;
-    }
 
 
     @Override
