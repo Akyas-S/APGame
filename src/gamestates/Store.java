@@ -41,7 +41,6 @@ public class Store extends State implements Statemethods {
     private BufferedImage equipbtn11;
     private BufferedImage equipbtn12;
 
-
     private BufferedImage pinkpaw;
 
     private Rectangle closestorebtnbounds;
@@ -209,11 +208,11 @@ public class Store extends State implements Statemethods {
         }
         else if (equipbtnbounds.contains(clickPoint)) {
             System.out.println("skin 1 equipped");
-            player.setSkin(1);
+            equippedSkin = 1;
         }
         else if (equipbtnbounds2.contains(clickPoint)) {
             System.out.println("skin 2 equipped");
-            player.setSkin(2);
+            equippedSkin = 2;
         }
         else if (equipbtnbounds3.contains(clickPoint)) {
             System.out.println("skin 3 equipped");
