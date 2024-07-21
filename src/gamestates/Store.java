@@ -55,6 +55,13 @@ public class Store extends State implements Statemethods {
         store = LoadImages.GetSprite(LoadImages.Storebg);
     }
 
+    private void showCoins(Graphics g){
+        Font font = new Font("Jokerman", Font.BOLD, 50);
+        g.setFont(font);
+        g.setColor(Color.yellow);
+        g.drawString("Coins: " + String.valueOf(saveLoad.loadCoins()),640,100);
+    }
+
     @Override
     public void render(Graphics g) {
         g.drawImage(store, 0, 0,1280,720, null);
@@ -71,7 +78,7 @@ public class Store extends State implements Statemethods {
         g.drawString("EQUIP", 500, 315);
         g.drawString("BUY", 607, 315);
         g.drawString("EQUIP", 673, 315);
-
+        showCoins(g);
     }
 
     public void boughSkin(){
