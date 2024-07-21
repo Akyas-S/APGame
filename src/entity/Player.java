@@ -4,6 +4,7 @@ package entity;
 import data.SaveLoad;
 import gamestates.Gamestate;
 import gamestates.Playing;
+import gamestates.Store;
 import utils.LoadImages;
 
 import java.awt.*;
@@ -246,9 +247,9 @@ public class  Player extends Entity {
 
     // Selects the animation from the sprite sheet.
     private void loadAnimations() {
-
+        BufferedImage img = Store.spriteskin;
         // Gets the player sprite sheet.
-        BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
+
 
         // sets the maximum number of frames (X which is 10) and the total number of animations (Y which is 3)
         animations = new BufferedImage[3][10];

@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Store extends State implements Statemethods {
+    public static BufferedImage spriteskin;
     private BufferedImage store;
     private BufferedImage closestorebtn;
     private BufferedImage buybtn;
@@ -38,6 +39,7 @@ public class Store extends State implements Statemethods {
     private BufferedImage equipbtn12;
 
     private BufferedImage pinkpaw;
+
 
     private Rectangle closestorebtnbounds;
     private Rectangle buybtnbounds;
@@ -73,9 +75,14 @@ public class Store extends State implements Statemethods {
         loadSpriteicon();
     }
 
+
+
+
     private void loadSpriteicon() {
+        spriteskin=LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
         pinkpaw = LoadImages.GetSprite(LoadImages.PINKPAW);
     }
+
 
     private void loadStoreButtons() {
         closestorebtn = LoadImages.GetSprite(LoadImages.Closebtnimg);
@@ -193,6 +200,7 @@ public class Store extends State implements Statemethods {
         }
         else if (equipbtnbounds.contains(clickPoint)) {
             System.out.println("skin 1 equipped");
+            spriteskin = LoadImages.GetSprite(LoadImages.PINKPAWSKIN);
         }
         else if (equipbtnbounds2.contains(clickPoint)) {
             System.out.println("skin 2 equipped");

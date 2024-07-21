@@ -8,6 +8,7 @@ import java.io.InputStream;
 public class LoadImages {
 
     public static final String PLAYER_SPRITE = "cat2/catspriteUPDATED-run.png";
+    public static final String PINKPAWSKIN = "cat2/catspritesskin test.png";
     public static final String LEVEL1_BG = "levels/beach level.png";
     public static final String LEVEL2_BG = "levels/map 2.png";
     public static final String PIRATE_GHOST = "cat2/rat ghost.png";
@@ -20,17 +21,13 @@ public class LoadImages {
     public static final String Audiobtnimg = "SettingsUI/audiobtn.png";
     public static final String Closebtnimg = "SettingsUI/closebtn.png";
     public static final String Controlsbtnimg = "SettingsUI/controlsbtn.png";
-    public static final String Videobtnimg = "SettingsUI/videobtn.png";
     public static final String Audioimg = "AudioUI/Audiobg.png";
     public static final String Checkbtnimg = "AudioUI/check.png";
     public static final String Crossbtnimg = "AudioUI/cross.png";
     public static final String Controlsimg = "ControlsUI/Controlsbg.png";
-    public static final String Keybtnimg = "ControlsUI/keyicon.png";
     public static final String Pauseimg = "PauseUI/PauseMenu.png";
     public static final String Resumebtnimg = "PauseUI/resumebtn.png";
-    public static final String Settpsimg = "PauseUI/settps.png";
     public static final String Quitbtnimg = "PauseUI/quitbtn.png";
-    public static final String Pausebtnicon = "levels/pausebtn.png";
     public static final String Storebg = "StoreUI/Storebg.png";
     public static final String PLAYER_HUD = "HUD/PlayerHUD.png";
     public static final String WON_BG = "IngameLevelMenus/FinalVictoryScreen.png";
