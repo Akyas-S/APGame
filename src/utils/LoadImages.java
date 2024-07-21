@@ -54,6 +54,7 @@ public class LoadImages {
     public static final String PAUSENOSFXBTN = "PauseUI/nosfx.png";
     public static final String BUYBTN = "StoreUI/buybtn.png";
     public static final String EQUIPBTN = "StoreUI/equipbtn.png";
+    public static final String PINKPAW = "StoreUI/pinkpaw.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {

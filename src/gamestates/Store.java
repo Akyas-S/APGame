@@ -37,6 +37,8 @@ public class Store extends State implements Statemethods {
     private BufferedImage equipbtn11;
     private BufferedImage equipbtn12;
 
+    private BufferedImage pinkpaw;
+
     private Rectangle closestorebtnbounds;
     private Rectangle buybtnbounds;
     private Rectangle buybtnbounds2;
@@ -68,6 +70,11 @@ public class Store extends State implements Statemethods {
         super(game);
         loadStoreBackground();
         loadStoreButtons();
+        loadSpriteicon();
+    }
+
+    private void loadSpriteicon() {
+        pinkpaw = LoadImages.GetSprite(LoadImages.PINKPAW);
     }
 
     private void loadStoreButtons() {
@@ -133,6 +140,9 @@ public class Store extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(store, 0, 0,1280,720, null);
+
+        g.drawImage(pinkpaw, 460, 200, 69,91,null);
+
         g.drawImage(closestorebtn, 20, 20, 140, 140, null);
         g.drawImage(buybtn, 430, 290, 68, 30, null);
         g.drawImage(buybtn2, 600, 290, 68, 30, null);
@@ -168,6 +178,30 @@ public class Store extends State implements Statemethods {
         if (closestorebtnbounds.contains(clickPoint)) {
             Gamestate.state = Gamestate.MENU;
             game.getAudioPlayer().playButtonSound();
+        }
+        else if (buybtnbounds.contains(clickPoint)) {
+            System.out.println("skin 1 bought");
+        }
+        else if (buybtnbounds2.contains(clickPoint)) {
+            System.out.println("skin 2 bought");
+        }
+        else if (buybtnbounds3.contains(clickPoint)) {
+            System.out.println("skin 3 bought");
+        }
+        else if (buybtnbounds4.contains(clickPoint)) {
+            System.out.println("skin 4 bought");
+        }
+        else if (equipbtnbounds.contains(clickPoint)) {
+            System.out.println("skin 1 equipped");
+        }
+        else if (equipbtnbounds2.contains(clickPoint)) {
+            System.out.println("skin 2 equipped");
+        }
+        else if (equipbtnbounds3.contains(clickPoint)) {
+            System.out.println("skin 3 equipped");
+        }
+        else if (equipbtnbounds4.contains(clickPoint)) {
+            System.out.println("skin 4 equipped");
         }
     }
 
