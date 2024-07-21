@@ -23,6 +23,7 @@ public class Level1 {
         background = LoadImages.GetSprite(LoadImages.LEVEL1_BG);
     }
 
+
     public Level1(Playing playing, Player player) {
         this.playing = playing;
         this.player = player;

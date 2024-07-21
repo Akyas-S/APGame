@@ -92,7 +92,7 @@ public class  Player extends Entity {
         updatePos();
         updateAnimationTick();
         setAnimation();
-        drawAttackBox(g);
+//        drawAttackBox(g);
         updateAttackBox();
         updateHitbox();
 
@@ -107,7 +107,7 @@ public class  Player extends Entity {
                     100,
                     null);
 
-            drawHitbox(g);
+//            drawHitbox(g);
             g.setFont(new Font("arial", Font.BOLD, 20));
             g.setColor(Color.WHITE);
             g.drawString("Score: " + String.valueOf(playerScore), 100, 65);
@@ -251,14 +251,7 @@ public class  Player extends Entity {
     private void loadAnimations() {
 
         // Gets the player sprite sheet.
-        BufferedImage img;
-        if(store.equipedSkin1){
-            img = LoadImages.GetSprite(LoadImages.SKIN1_PLAYER_SPRITE);
-            System.out.println("Skin 1 equipped");
-        } else{
-            img = LoadImages.GetSprite(LoadImages.DEFAULT_PLAYER_SPRITE);
-            System.out.println("default skin equipped");
-        }
+        BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
 
         // sets the maximum number of frames (X which is 10) and the total number of animations (Y which is 3)
         animations = new BufferedImage[3][10];

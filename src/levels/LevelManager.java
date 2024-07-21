@@ -22,10 +22,14 @@ public class LevelManager {
     private Level1 level1;
     // Level 2 object
     private Level2 level2;
+    //Level 3 Object
+    private Level3 level3;
     // Boolean to track which level is currently active
     private boolean isLevel1;
     // Boolean to track which level is currently active
     private boolean isLevel2 = false;
+    //Boolean to track which level is currently active
+    private boolean isLevel3 = false;
     // SaveLoad object to handle saving and loading game data
     private SaveLoad saveLoad;
 
@@ -36,6 +40,7 @@ public class LevelManager {
         this.player = player;
         this.level1 = new Level1(playing, player);
         this.level2 = new Level2(playing, player);
+        this.level3 = new Level3(playing,player);
         this.isLevel1 = true;
         // Create SaveLoad object to handle saving and loading game data
         SaveLoad saveLoad = new SaveLoad(player);
@@ -44,12 +49,13 @@ public class LevelManager {
     public void resetLevel() {
             isLevel1 = true;
             isLevel2 = false;
+            isLevel3 = false;
     }
     // Update method for LevelManager
     public void update(Graphics g) {
         if (isLevel1) {
             level1.render(g);
-            if (player.playerScore >= 10) {
+            if (player.playerScore >= 25) {
                 Gamestate.state = Gamestate.NEXTLEVEL2;
                 isLevel1 = false;
                 isLevel2 = true;
@@ -63,9 +69,22 @@ public class LevelManager {
         if (isLevel2) {
             level2.render(g);
             // If player score reaches 50, move to Level 3
-            if (player.playerScore >= 20) {
-                isLevel2 = false;
+            if (player.playerScore >= 50) {
                 Gamestate.state = Gamestate.NEXTLEVEL2;
+                isLevel2 = false;
+                isLevel3 = true;
+                // Calculate and save coins earned in Level 2
+                calcuateCoins(player.playerScore);
+                saveLoad.saveCoins();
+                System.out.println("Total coins: " + player.playerTotalCoins);
+            }
+        }
+        if(isLevel3){
+            level3.render(g);
+            // If player score reaches 50, move to Level 3
+            if (player.playerScore >= 75) {
+                isLevel3 = false;
+                Gamestate.state = Gamestate.VICTORY;
                 // Calculate and save coins earned in Level 2
                 calcuateCoins(player.playerScore);
                 saveLoad.saveCoins();

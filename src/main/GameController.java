@@ -34,6 +34,7 @@ public class GameController implements Runnable {
     private Store store;
     private NextLevel2 nextLevel2;
     private Death death;
+    private Victory victory;
 
 
 
@@ -58,7 +59,8 @@ public class GameController implements Runnable {
         audioPlayer = new AudioPlayer();
         controls = new Controls(this);
         pause=new Pause(this,player);
-        store = new Store(this, player);
+        store = new Store(this,player);
+        victory = new Victory(this);
 
     }
 
@@ -131,6 +133,9 @@ public class GameController implements Runnable {
             case DEATH:
                 death.render(g);
                 break;
+            case VICTORY:
+                victory.render(g);
+                break;
             default:
                 break;
         }
@@ -150,6 +155,7 @@ public class GameController implements Runnable {
     public Store getStore(){return store;}
     public NextLevel2 getNextLevel2(){return nextLevel2;}
     public Death getDeath(){return death;}
+    public Victory getVictory(){return victory;}
 
     public void windowFocusLost() {
         playing.resetDirections();

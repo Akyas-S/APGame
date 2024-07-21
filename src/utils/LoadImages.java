@@ -7,8 +7,7 @@ import java.io.InputStream;
 
 public class LoadImages {
 
-    public static final String DEFAULT_PLAYER_SPRITE = "cat2/catsprite.png";
-    public static final String SKIN1_PLAYER_SPRITE = "cat2/catspritesskin test.png";
+    public static final String PLAYER_SPRITE = "cat2/catspriteUPDATED-run.png";
     public static final String LEVEL1_BG = "levels/beach level.png";
     public static final String LEVEL2_BG = "levels/map 2.png";
     public static final String PIRATE_GHOST = "cat2/rat ghost.png";
@@ -34,15 +33,25 @@ public class LoadImages {
     public static final String Pausebtnicon = "levels/pausebtn.png";
     public static final String Storebg = "StoreUI/Storebg.png";
     public static final String PLAYER_HUD = "HUD/PlayerHUD.png";
-    public static final String WON_BG = "IngameLevelMenus/bg_won.png";
+    public static final String WON_BG = "IngameLevelMenus/FinalVictoryScreen.png";
     public static final String LOST_BG = "IngameLevelMenus/DeathScreen_withBG.png";
     public static final String EXIT_BUTTON = "IngameLevelMenus/exit.png";
     public static final String MENU_BUTTON = "IngameLevelMenus/menu_button.png";
     public static final String REPLAY_BUTTON = "IngameLevelMenus/replay_button.png";
     public static final String NEXT_LVL = "IngameLevelMenus/nextlvl.png";
     public static final String NEXT_BG = "IngameLevelMenus/bg_won_withBg.png";
-
-
+    public static final String KEY_A = "ControlsUI/keya.png";
+    public static final String KEY_D = "ControlsUI/keyd.png";
+    public static final String KEY_S = "ControlsUI/keys.png";
+    public static final String KEY_W = "ControlsUI/keyw.png";
+    public static final String KEYDOWNARROW = "ControlsUI/keydownarrow.png";
+    public static final String KEYUPARROW = "ControlsUI/keyuparrow.png";
+    public static final String KEYLEFTARROW = "ControlsUI/keyleftarrow.png";
+    public static final String KEYRIGHTARROW = "ControlsUI/keyrightarrow.png";
+    public static final String PAUSEMUSICBTN = "PauseUI/music.png";
+    public static final String PAUSENOMUSICBTN = "PauseUI/nomusic.png";
+    public static final String PAUSESFXBTN = "PauseUI/sfx.png";
+    public static final String PAUSENOSFXBTN = "PauseUI/nosfx.png";
 
     // static method because it will called often
     public static BufferedImage GetSprite(String fileName) {
