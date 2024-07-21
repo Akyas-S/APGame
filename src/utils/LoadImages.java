@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class LoadImages {
 
-    public static final String PLAYER_SPRITE = "cat2/catsprite.png";
+    public static final String PLAYER_SPRITE = "cat2/catspriteUPDATED-run.png";
     public static final String LEVEL1_BG = "levels/beach level.png";
     public static final String LEVEL2_BG = "levels/map 2.png";
     public static final String PIRATE_GHOST = "cat2/rat ghost.png";
@@ -33,7 +33,7 @@ public class LoadImages {
     public static final String Pausebtnicon = "levels/pausebtn.png";
     public static final String Storebg = "StoreUI/Storebg.png";
     public static final String PLAYER_HUD = "HUD/PlayerHUD.png";
-    public static final String WON_BG = "IngameLevelMenus/bg_won.png";
+    public static final String WON_BG = "IngameLevelMenus/FinalVictoryScreen.png";
     public static final String LOST_BG = "IngameLevelMenus/DeathScreen_withBG.png";
     public static final String EXIT_BUTTON = "IngameLevelMenus/exit.png";
     public static final String MENU_BUTTON = "IngameLevelMenus/menu_button.png";

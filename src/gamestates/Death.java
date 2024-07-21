@@ -41,16 +41,18 @@ public class Death extends State implements Statemethods {
         replayButtonBounds= new Rectangle(488, 442, 113, 51);
         menuButtonBounds = new Rectangle(690, 442, 120, 51);
 
+
+
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, 1280, 720, null);
 
-        //Draws clickpoint(hitboxes)
-        g.setColor(Color.red);
-        g.drawRect(488, 442, 113, 51);
-        g.drawRect(690, 442, 120, 51);
+//        //Draws clickpoint(hitboxes)
+//        g.setColor(Color.red);
+//        g.drawRect(488, 442, 113, 51);
+//        g.drawRect(690, 442, 120, 51);
 
 
     }

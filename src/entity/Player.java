@@ -89,7 +89,7 @@ public class  Player extends Entity {
         updatePos();
         updateAnimationTick();
         setAnimation();
-        drawAttackBox(g);
+//        drawAttackBox(g);
         updateAttackBox();
         updateHitbox();
 
@@ -104,7 +104,7 @@ public class  Player extends Entity {
                     100,
                     null);
 
-            drawHitbox(g);
+//            drawHitbox(g);
             g.setFont(new Font("arial", Font.BOLD, 20));
             g.setColor(Color.WHITE);
             g.drawString("Score: " + String.valueOf(playerScore), 100, 65);
