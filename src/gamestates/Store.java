@@ -11,18 +11,29 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Store extends State implements Statemethods {
-
-    public static boolean equipedSkin1;
-    private Player player;
-    private SaveLoad saveLoad;
+    public static BufferedImage spriteskin;
     private BufferedImage store;
     private BufferedImage closestorebtn;
+    private BufferedImage buybtn;
+    private BufferedImage buybtn2;
+
+
+    private BufferedImage equipbtn;
+    private BufferedImage equipbtn2;
+
+
+    private BufferedImage pinkpaw;
+
 
     private Rectangle closestorebtnbounds;
-    private Rectangle buySkin1;
-    private Rectangle equipSkin1;
-    private Rectangle buySkin2;
-    private Rectangle equipSkin2;
+    private Rectangle buybtnbounds;
+    private Rectangle buybtnbounds2;
+
+    private Rectangle equipbtnbounds;
+    private Rectangle equipbtnbounds2;
+
+    private SaveLoad saveLoad;
+    private Player player;
 
     private boolean boughtSkin1;
     private boolean boughtSkin2;
@@ -30,25 +41,42 @@ public class Store extends State implements Statemethods {
     private int Skin1Cost = 50;
     private int Skin2Cost = 50;
 
-    public Store(GameController game,Player player) {
+    public Store(GameController game, Player player) {
         super(game);
         loadStoreBackground();
-        loadStoreButtons();
         this.player = player;
         SaveLoad saveLoad = new SaveLoad(player);
         this.saveLoad = saveLoad;
-
+        loadStoreButtons();
+        loadSpriteicon();
     }
+
+
+
+
+    private void loadSpriteicon() {
+        spriteskin=LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
+        pinkpaw = LoadImages.GetSprite(LoadImages.PINKPAWSKIN);
+    }
+
 
     private void loadStoreButtons() {
         closestorebtn = LoadImages.GetSprite(LoadImages.Closebtnimg);
+        buybtn = LoadImages.GetSprite(LoadImages.BUYBTN);
+        buybtn2 = LoadImages.GetSprite(LoadImages.BUYBTN);
+
+        equipbtn = LoadImages.GetSprite(LoadImages.EQUIPBTN);
+        equipbtn2 = LoadImages.GetSprite(LoadImages.EQUIPBTN);
+
+
         closestorebtnbounds = new Rectangle(20, 20, 140, 140);
+        buybtnbounds = new Rectangle(430,290,68, 30);
+        buybtnbounds2 = new Rectangle(600,290,68, 30);
 
 
-        buySkin1= new Rectangle(436, 292, 52, 26);
-        equipSkin1 = new Rectangle(500, 292, 52, 26);
-        buySkin2 = new Rectangle(607, 292, 52, 26);
-        equipSkin2 = new Rectangle(673, 292, 52, 26);
+        equipbtnbounds = new Rectangle(500, 290, 68, 30);
+        equipbtnbounds2 = new Rectangle(670, 290, 68, 30);
+
     }
 
     private void loadStoreBackground() {
@@ -65,20 +93,17 @@ public class Store extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(store, 0, 0,1280,720, null);
-        g.drawImage(closestorebtn, 20, 20, 140, 140, null);
-
-        g.setColor(Color.red);
-        g.drawRect(436, 292, 52, 26);
-        g.drawRect(500, 292, 52, 26);
-        g.drawRect(607, 292, 52, 26);
-        g.drawRect(673, 292, 52, 26);
-
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("BUY", 436, 315);
-        g.drawString("EQUIP", 500, 315);
-        g.drawString("BUY", 607, 315);
-        g.drawString("EQUIP", 673, 315);
         showCoins(g);
+        g.drawImage(pinkpaw, 460, 200, 69,91,null);
+
+        g.drawImage(closestorebtn, 20, 20, 140, 140, null);
+        g.drawImage(buybtn, 430, 290, 68, 30, null);
+        g.drawImage(buybtn2, 600, 290, 68, 30, null);
+
+
+        g.drawImage(equipbtn, 500,290, 68, 30, null);
+        g.drawImage(equipbtn2, 670, 290, 68, 30, null);
+
     }
 
     public void boughSkin(){
@@ -96,10 +121,7 @@ public class Store extends State implements Statemethods {
             System.out.println("Skin 2 Bought!");
         } else if (player.playerTotalCoins < Skin1Cost) {
             System.out.println("Don't have enough coins");
-        }
-
-    }
-
+        }}
 
     @Override
     public void mouseClicked(MouseEvent aud) {
@@ -108,27 +130,28 @@ public class Store extends State implements Statemethods {
             Gamestate.state = Gamestate.MENU;
             game.getAudioPlayer().playButtonSound();
         }
-
-        if (buySkin1.contains(clickPoint)) {
+        else if (buybtnbounds.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
             boughtSkin1 = true;
             boughSkin();
             System.out.println(String.valueOf(saveLoad.loadCoins()));
+            System.out.println("skin 1 bought");
         }
-        if (buySkin2.contains(clickPoint)) {
+        else if (buybtnbounds2.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
             boughtSkin2 = true;
             boughSkin();
             System.out.println(String.valueOf(saveLoad.loadCoins()));
+            System.out.println("skin 2 bought");
         }
-        if (equipSkin1.contains(clickPoint)) {
+        else if (equipbtnbounds.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
-            equipedSkin1 = true;
-            System.out.println("Equip 1 pressed");
+            System.out.println("skin 1 equipped");
+            spriteskin = LoadImages.GetSprite(LoadImages.PINKPAWSKIN);
         }
-        if (equipSkin2.contains(clickPoint)) {
+        else if (equipbtnbounds2.contains(clickPoint)) {
             game.getAudioPlayer().playButtonSound();
-            equipedSkin2 = true;
+            System.out.println("skin 2 equipped");
         }
     }
 
