@@ -16,10 +16,8 @@ public class Window extends JFrame{
         add(gamePanel);
         setLocationRelativeTo(null);
         setResizable(false);
-
         //pack() method sizes the frame based on the value set using setPanelSize()
         pack();
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 

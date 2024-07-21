@@ -30,7 +30,6 @@ public class Level2 {
 
     }
 
-
     public void render(Graphics g){
         renderBackground(g);
         enemyManager.draw(g);
