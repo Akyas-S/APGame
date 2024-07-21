@@ -1,5 +1,7 @@
 package gamestates;
 
+import data.SaveLoad;
+import entity.Player;
 import main.GameController;
 import utils.LoadImages;
 
@@ -9,6 +11,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Store extends State implements Statemethods {
+    private Player player;
+    private SaveLoad saveLoad;
     private BufferedImage store;
     private BufferedImage closestorebtn;
     private BufferedImage buybtn;
@@ -36,6 +40,7 @@ public class Store extends State implements Statemethods {
     private BufferedImage equipbtn10;
     private BufferedImage equipbtn11;
     private BufferedImage equipbtn12;
+
 
     private BufferedImage pinkpaw;
 
@@ -65,12 +70,19 @@ public class Store extends State implements Statemethods {
     private Rectangle equipbtnbounds11;
     private Rectangle equipbtnbounds12;
 
+    public int equippedSkin;
+    private int skin1price = 5;
 
-    public Store(GameController game) {
+
+    public Store(GameController game, Player player) {
         super(game);
+        this.player = player;
+        SaveLoad saveLoad = new SaveLoad(player);
+        this.saveLoad = saveLoad;
         loadStoreBackground();
         loadStoreButtons();
         loadSpriteicon();
+
     }
 
     private void loadSpriteicon() {
@@ -181,6 +193,10 @@ public class Store extends State implements Statemethods {
         }
         else if (buybtnbounds.contains(clickPoint)) {
             System.out.println("skin 1 bought");
+            player.playerTotalCoins = player.playerTotalCoins - skin1price;
+            saveLoad.saveCoins();
+            System.out.println(String.valueOf(saveLoad.loadCoins()));
+
         }
         else if (buybtnbounds2.contains(clickPoint)) {
             System.out.println("skin 2 bought");
@@ -193,15 +209,19 @@ public class Store extends State implements Statemethods {
         }
         else if (equipbtnbounds.contains(clickPoint)) {
             System.out.println("skin 1 equipped");
+            equippedSkin = 1;
         }
         else if (equipbtnbounds2.contains(clickPoint)) {
             System.out.println("skin 2 equipped");
+            equippedSkin = 2;
         }
         else if (equipbtnbounds3.contains(clickPoint)) {
             System.out.println("skin 3 equipped");
+            equippedSkin = 3;
         }
         else if (equipbtnbounds4.contains(clickPoint)) {
             System.out.println("skin 4 equipped");
+            equippedSkin = 4;
         }
     }
 

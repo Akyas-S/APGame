@@ -4,6 +4,8 @@ package entity;
 import data.SaveLoad;
 import gamestates.Gamestate;
 import gamestates.Playing;
+import gamestates.Store;
+import main.GameController;
 import utils.LoadImages;
 
 import java.awt.*;
@@ -14,6 +16,8 @@ import static java.awt.SystemColor.menu;
 import static utils.Constants.PlayerConstants.*;
 
 public class  Player extends Entity {
+
+    private Store store;
 
     private BufferedImage[][] animations;
     private EnemyManager enemyManager;
@@ -66,10 +70,12 @@ public class  Player extends Entity {
     //attack
     private Rectangle2D.Float attackBox;
 
-    public Player(float x, float y) {
+    public Player(float x, float y,GameController game) {
         super(x, y, 60, 77);
         initHitbox();
         initAttackBox();
+        Store store = new Store(game,this);
+        this.store = store;
         loadAnimations();
         enemyManager = new EnemyManager(playing, this, 5);
         // Create SaveLoad object to handle saving and loading game data
@@ -242,20 +248,35 @@ public class  Player extends Entity {
         aniTick = 0;
         aniIndex = 0;
     }
-
+    private BufferedImage getSkin(){
+        BufferedImage img;
+        switch(store.equippedSkin) {
+            case 1:
+                img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
+                break;
+            case 2:
+                img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE_2);
+                break;
+            default:
+                img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
+                break;
+        }
+        return img;
+    }
 
     // Selects the animation from the sprite sheet.
     private void loadAnimations() {
 
         // Gets the player sprite sheet.
-        BufferedImage img = LoadImages.GetSprite(LoadImages.PLAYER_SPRITE);
+        BufferedImage skin = getSkin();
+
 
         // sets the maximum number of frames (X which is 10) and the total number of animations (Y which is 3)
         animations = new BufferedImage[3][10];
 
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
-                animations[j][i] = img.getSubimage(i * 160, j * 100, 160, 100);
+                animations[j][i] = skin.getSubimage(i * 160, j * 100, 160, 100);
             }
         }
 
