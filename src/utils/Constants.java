@@ -27,7 +27,7 @@ public class Constants {
                     return 8;
 
                 case RUNNING:
-                    return 9;
+                    return 8;
 
                 case ATTACK:
                     return 5;
