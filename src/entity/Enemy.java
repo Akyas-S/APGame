@@ -7,13 +7,10 @@ import static utils.Constants.EnemyConstants.*;
 import static utils.Constants.PlayerConstants.GetSpriteAmt;
 
 public class Enemy extends Entity {
+
     // Private variables to store the animation index, enemy state, and enemy type
     private int aniIndex, enemyState, enemyType;
-
-    // Private variable to store the animation tick
     private int aniTick;
-
-    // Private variable to store the animation speed (set to 25)
     private int aniSpeed = 25;
 
     // Constructor for the Enemy class that takes in the x and y coordinates and the enemy type
@@ -37,8 +34,6 @@ public class Enemy extends Entity {
         if (aniTick >= aniSpeed) {
             // Reset the animation tick to 0
             aniTick = 0;
-
-            // Increment the animation index
             aniIndex++;
 
             // If the animation index is greater than or equal to the total number of sprites for the current enemy state

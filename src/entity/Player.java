@@ -18,12 +18,15 @@ public class  Player extends Entity {
     private BufferedImage[][] animations;
     private EnemyManager enemyManager;
     private Playing playing;
+    // Animation variables
     private int aniTick;
     private int aniIndex;
     private int aniSpeed = 5;
+    //  Default Player actions
     private int playerAction = IDLE;
     private boolean moving = false;
-    boolean attacking = false;
+    public boolean attacking = false; // called in enemy manager to check if player is attacking
+    // Directional variables and speed
     private boolean up, left, down, right, attack;
     float speed = 4.5f;
 
@@ -85,6 +88,7 @@ public class  Player extends Entity {
 
     // Renders the player
     public void render(Graphics g) {
+        drawUI(g);
         updateHealthBar();
         updatePos();
         updateAnimationTick();
@@ -93,7 +97,7 @@ public class  Player extends Entity {
         updateAttackBox();
         updateHitbox();
 
-        drawUI(g);
+
 
         if (!dead) {
             // Draws the sprite of the character
@@ -217,29 +221,33 @@ public class  Player extends Entity {
         }}
     }
 
+    // Sets the player animation
     private void setAnimation() {
 
         int startAni = playerAction;
-
+        // Sets the player animation when the player starts moving or stops moving.
         if (moving) {
             playerAction = RUNNING;
         } else {
             playerAction = IDLE;
         }
-
+        // Sets the player animation when the player is attacking.
         if (attacking) {
             playerAction = ATTACK;
-//            updateAttackHitbox();
             enemyManager.checkAttackHitbox(this);
         }
-
+        // Resets the animation tick when the animation changes.
         if (startAni != playerAction) {
             resetAniTick();
         }
     }
 
+
     private void resetAniTick() {
+       // Resets the animation tick to 0 to start the animation from the beginning.
         aniTick = 0;
+        // Resets the animation index to 0 when the animation changes to
+        // prevent the animation from starting in the middle of the sprite sheet.
         aniIndex = 0;
     }
 
@@ -330,7 +338,6 @@ public class  Player extends Entity {
     public float getY() {
         return y;
     }
-
 
     public void setX(float x) {
         this.x = x;

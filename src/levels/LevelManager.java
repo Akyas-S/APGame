@@ -12,24 +12,24 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class LevelManager {
-    // Reference to the game controller
+
+    // GameController, Playing, and Player objects
     private GameController game;
-    // Reference to the playing game state
     private Playing playing;
-    // Reference to the player object
     private static Player player;
-    // Level 1 object
+
+    // Level objects
     private Level1 level1;
-    // Level 2 object
     private Level2 level2;
+
     // Boolean to track which level is currently active
     private boolean isLevel1;
-    // Boolean to track which level is currently active
     private boolean isLevel2 = false;
+
     // SaveLoad object to handle saving and loading game data
     private SaveLoad saveLoad;
 
-
+    // Constructor for LevelManager
     public LevelManager(GameController game, Playing playing, Player player){
         this.game = game;
         this.playing = playing;
@@ -37,14 +37,18 @@ public class LevelManager {
         this.level1 = new Level1(playing, player);
         this.level2 = new Level2(playing, player);
         this.isLevel1 = true;
+
         // Create SaveLoad object to handle saving and loading game data
         SaveLoad saveLoad = new SaveLoad(player);
         this.saveLoad = saveLoad;
     }
+
+    // method to set the level to Level 1
     public void resetLevel() {
             isLevel1 = true;
             isLevel2 = false;
     }
+
     // Update method for LevelManager
     public void update(Graphics g) {
         if (isLevel1) {
@@ -53,6 +57,7 @@ public class LevelManager {
                 Gamestate.state = Gamestate.NEXTLEVEL2;
                 isLevel1 = false;
                 isLevel2 = true;
+
                 // Calculate and save coins earned in Level 1
                 calcuateCoins(player.playerScore);
                 saveLoad.saveCoins();

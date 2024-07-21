@@ -16,12 +16,14 @@ public class GamePanel extends JPanel {
     private BufferedImage[][] animations;
     private GameController game;
 
+    //Constructor for the GamePanel
     public GamePanel(GameController game){
 
         mouseInputs = new MouseInputs(this);
+        addKeyListener(new KeyboardInputs(this));
+
         this.game = game;
         setPanelSize();
-        addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
 
@@ -35,12 +37,13 @@ public class GamePanel extends JPanel {
 
 
     public void paintComponent(Graphics g) {
+        // Clears the panel before redrawing
         super.paintComponent(g);
+        // Draws the game from the GameController
         game.render(g);
-
-
     }
 
+    // Getter method for this instance of the game/ameController
     public GameController getGame(){
         return game;
     }

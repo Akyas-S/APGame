@@ -14,25 +14,19 @@ public class Pirate extends Enemy {
     // Constructor for the Pirate class
     public Pirate(float x, float y) {
         // Calls the superclass constructor with the x, y, and PIRATE constants
-        super(x, y, PIRATE);
+            super(x, y, PIRATE);
     }
 
-    // Getter for the pirate's x position
+// Getters and setters for the x and y coordinates of the pirate
     public float getX() {
         return x;
     }
-
-    // Getter for the pirate's y position
     public float getY() {
         return y;
     }
-
-    // Setter for the pirate's x position
     public void setX(float x) {
         this.x = x;
     }
-
-    // Setter for the pirate's y position
     public void setY(float y) {
         this.y = y;
     }

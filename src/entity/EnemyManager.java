@@ -123,7 +123,6 @@ public class EnemyManager{
             Pirate p = iterator.next();
             p.update();
             g.drawImage(pirateArray[p.getEnemyState()][p.getAniIndex()], (int) p.getX(), (int) p.getY(), 160, 100, null);
-//            p.drawHitbox(g);
             p.updateHitbox();
             if(player.attacking){
                 checkAttackHitbox(player);
