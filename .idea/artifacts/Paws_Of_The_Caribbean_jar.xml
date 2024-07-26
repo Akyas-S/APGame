@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Paws Of The Caribbean:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Paws_Of_The_Caribbean_jar</output-path>
+    <root id="archive" name="Paws Of The Caribbean.jar">
+      <element id="module-output" name="Paws Of The Caribbean" />
+    </root>
+  </artifact>
+</component>
