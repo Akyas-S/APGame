@@ -5,31 +5,29 @@ import Inputs.MouseInputs;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
     private KeyboardInputs keyboardInputs;
-    private BufferedImage[][] animations;
     private GameController game;
 
     //Constructor for the GamePanel
     public GamePanel(GameController game){
-
+        //Initializes the mouse and keyboard inputs
         mouseInputs = new MouseInputs(this);
         keyboardInputs = new KeyboardInputs(this);
         addKeyListener(new KeyboardInputs(this));
 
         this.game = game;
-        setPanelSize();
+        setPanelSize(); // Sets the size of the panel (this is used by the pack(); method in the Window class)
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
 
     }
 
-
+    // Method to set the size of the panel
     private void setPanelSize() {
         Dimension size = new Dimension(1280, 720);
         setPreferredSize(size);

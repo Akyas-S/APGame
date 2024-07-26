@@ -29,7 +29,8 @@ public class Level1 {
         this.player = player;
         this.enemyManager = new EnemyManager(playing, player, 5);
     }
-
+    // Render the background and the enemies for this level
+    // enmeies are drawn and updated using the EnemyManager object created in this class
     public void render(Graphics g){
         renderBackground(g);
         enemyManager.draw(g);

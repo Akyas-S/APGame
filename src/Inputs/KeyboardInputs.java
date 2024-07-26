@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
 public class  KeyboardInputs implements KeyListener {
 
     private GamePanel gamePanel;
-
+    // Constructor for KeyboardInputs
     public KeyboardInputs(GamePanel gamePanel){
         this.gamePanel=gamePanel;
     }
@@ -20,7 +20,7 @@ public class  KeyboardInputs implements KeyListener {
     public void keyTyped(KeyEvent e) {
 
     }
-
+// This method is used to handle key presses in the game
     @Override
     public void keyPressed(KeyEvent e) {
         switch (Gamestate.state){
@@ -59,7 +59,7 @@ public class  KeyboardInputs implements KeyListener {
                 break;
         }
     }
-
+// This method is used to handle key releases in the game
     public void keyReleased(KeyEvent e) {
         switch (Gamestate.state){
             case MENU:

@@ -17,7 +17,7 @@ public class Level3 {
     private Playing playing;
 
     private static BufferedImage background;
-
+    // Load the background image for this level
     static {background = LoadImages.GetSprite(LoadImages.LEVEL3_BG);}
 
     public Level3(Playing playing, Player player) {

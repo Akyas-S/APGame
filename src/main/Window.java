@@ -14,10 +14,10 @@ public class Window extends JFrame{
 
         setTitle("Paws of the Caribbean");
         add(gamePanel);
-        setLocationRelativeTo(null);
         setResizable(false);
         //pack() method sizes the frame based on the value set using setPanelSize()
         pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 

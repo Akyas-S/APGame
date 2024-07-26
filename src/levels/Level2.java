@@ -18,10 +18,8 @@ public class Level2 {
     private Timer timer;
 
     private static BufferedImage background;
-
-    static {
-        background = LoadImages.GetSprite(LoadImages.LEVEL2_BG);
-    }
+    // Load the background image for this level
+    static {background = LoadImages.GetSprite(LoadImages.LEVEL2_BG);}
 
     public Level2(Playing playing, Player player) {
         this.playing = playing;
@@ -29,13 +27,14 @@ public class Level2 {
         this.enemyManager = new EnemyManager(playing, player, 5);
 
     }
-
+    // Render the background and the enemies for this level
+    // enmeies are drawn and updated using the EnemyManager object created in this class
     public void render(Graphics g){
         renderBackground(g);
         enemyManager.draw(g);
         enemyManager.update();
     }
-
+    // method used to render the background image for this level
     public static void renderBackground(Graphics g) {
         if (background!= null) {
             g.drawImage(background, 0, 0,1280 ,720, null);

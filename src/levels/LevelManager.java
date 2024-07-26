@@ -33,7 +33,7 @@ public class LevelManager {
 
     public int score;
 
-
+    // Constructor for LevelManager
     public LevelManager(GameController game, Playing playing, Player player){
         this.game = game;
         this.playing = playing;
@@ -45,7 +45,7 @@ public class LevelManager {
         // Create SaveLoad object to handle saving and loading game data
         SaveLoad saveLoad = new SaveLoad(player);
         this.saveLoad = saveLoad;
-        score = player.playerScore;
+        score = player.playerScore; //
     }
     public void resetLevel() {
             isLevel1 = true;

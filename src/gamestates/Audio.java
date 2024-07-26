@@ -8,19 +8,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class Audio extends State implements Statemethods {
-    private BufferedImage audiobg;
+    public class Audio extends State implements Statemethods {
 
+    private BufferedImage audiobg;
     private BufferedImage Closeaudicon;
     private BufferedImage Musicicon;
     private BufferedImage SFXicon;
     private BufferedImage NoSFXicon;// new image for alternate state
     private BufferedImage NoMusicicon;
 
+    // new image for alternate state
     private boolean isSFXEnabled = true; // flag to track SFX button state
     private boolean isMusicEnabled = true;
-
-
     private Rectangle Closeaudbtnbounds;
     private Rectangle Musicbtnbounds;
     private Rectangle SFXbtnbounds;
@@ -37,8 +36,6 @@ public class Audio extends State implements Statemethods {
         SFXicon = LoadImages.GetSprite(LoadImages.Checkbtnimg);
         NoSFXicon = LoadImages.GetSprite(LoadImages.Crossbtnimg);
         NoMusicicon = LoadImages.GetSprite(LoadImages.Crossbtnimg);
-
-
         Closeaudbtnbounds = new Rectangle(140, 65, 140, 140);
         Musicbtnbounds = new Rectangle(830,240,110, 110);
         SFXbtnbounds = new Rectangle(830,370,110, 110);

@@ -68,7 +68,7 @@ public class  Player extends Entity {
     private int drawOffsetY = 11;
     private int playergap = 0;
 
-    //attack
+    //attack box
     private Rectangle2D.Float attackBox;
 
     public Player(float x, float y) {
@@ -121,6 +121,7 @@ public class  Player extends Entity {
         }
     }
 
+    // Updates the attack box position as the player moves
     private void updateAttackBox() {
         if (right)
             attackBox.x = hitbox.x + hitbox.width + 5;
@@ -129,33 +130,37 @@ public class  Player extends Entity {
 
         attackBox.y = hitbox.y + (-20);
     }
-
+    // Draws the attack box
     private void drawAttackBox(Graphics g) {
         g.setColor(Color.red);
         g.drawRect((int) attackBox.x, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
 
     }
-
+    // getter for attack box used to check if enemy is hit
     public Rectangle2D.Float getAttackBox() {
         return attackBox;
     }
 
+    // Updates the health bar width based on the current health
     private void updateHealthBar() {
         healthWidth = (int) (((float) currentHealth / maxHealth) * healthBarWidth);
     }
 
+    // Draws the player HUD
     private void drawUI(Graphics g) {
         g.drawImage(hudBarImg, hudBarX, hudBarY, hudBarWidth, hudBarHeight, null);
         g.setColor(Color.RED);
         g.fillRect(healthBarXStart, healthBarYStart, healthWidth, healthBarHeight);
     }
 
+    // Updates the player health when taking damage
     public void takeDamage(int damage) {
         currentHealth -= damage;
         if (currentHealth <= 0) {
             dead = true;
         }
     }
+
     // Checks high score
     public void checkHighScore(int playerScore) {
         if (playerScore >= playerHighScore) {
@@ -163,7 +168,7 @@ public class  Player extends Entity {
             saveLoad.saveHighScore();
         }
     }
-    // Player dead
+    // Player dead debug for save and load
     public void playerDead() {
         if (dead) {
             System.out.println("Score: " + String.valueOf(playerScore));
@@ -188,6 +193,7 @@ public class  Player extends Entity {
         }
     }
 
+    // Updates the player position based on the directional keys pressed
     private void updatePos() {
         moving = false;
 
@@ -275,9 +281,9 @@ public class  Player extends Entity {
 
     }
 
+    // Resets the player stats called to PLaying where it is called to where ever it is needed
     public void resetAllPlayer() {
         resetDirections();
-
         this.attacking = false;
         this.moving = false;
         this.playerAction = IDLE;
@@ -287,10 +293,12 @@ public class  Player extends Entity {
         this.dead = false;
         System.out.println("reset all");
     }
+    // Resets the player score
     public void resetScore(){
         this.playerScore = 0;
     }
 
+    // Resets the player directions
     public void resetDirections() {
         this.left = false;
         this.right = false;
@@ -298,60 +306,49 @@ public class  Player extends Entity {
         this.down = false;
     }
 
+    // Getters and setters for the player's x and y coordinates
     public int getScore(int score){
         this.playerScore = score;
         return score;
     }
 
-
+    // Getters and setters for the player's x and y coordinates
     public boolean isUp() {
         return up;
     }
-
     public void setUp(boolean up) {
         this.up = up;
     }
-
     public boolean isRight() {
         return right;
     }
-
     public void setRight(boolean right) {
         this.right = right;
     }
-
     public boolean isLeft() {
         return left;
     }
-
     public void setLeft(boolean left) {
         this.left = left;
     }
-
     public boolean isDown() {
         return down;
     }
-
     public void setDown(boolean down) {
         this.down = down;
     }
-
     public void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }
-
     public float getX() {
         return x;
     }
-
     public float getY() {
         return y;
     }
-
     public void setX(float x) {
         this.x = x;
     }
-
     public void setY(float y) {
         this.y = y;
     }

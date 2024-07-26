@@ -40,20 +40,14 @@ public class Victory extends State implements Statemethods {
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, 1280, 720, null);
-
-//        g.setColor(Color.red);
-//        g.drawRect(575, 508, 120, 51);
-//        g.drawRect(488, 442, 113, 51);
-//        g.drawRect(690, 442, 120, 51);
-
     }
 
+    // Define what happens when the mouse is clicked
     @Override
     public void mouseClicked(MouseEvent e) {
         Point clickPoint = e.getPoint();
         if (menuButtonBounds.contains(clickPoint)) {
             game.getAudioPlayer().playMenuButtonSound();
-
             game.getPlaying().resetAll();
             game.getPlaying().resetLevel();
             game.getPlaying().resetScore();

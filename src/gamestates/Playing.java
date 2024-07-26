@@ -18,9 +18,8 @@ public class Playing extends State implements Statemethods {
     private Player player;
     private EnemyManager enemyManager;
     private LevelManager levelManager;
-    private Random random = new Random();
     private BufferedImage pausebtn;
-    private AudioPlayer audio;
+
 
 
 
@@ -67,7 +66,7 @@ public class Playing extends State implements Statemethods {
         if(e.getButton()== MouseEvent.BUTTON1){
             player.setAttacking(true);
             game.getAudioPlayer().playAttackSFX();
-        }        Point clickPoint = e.getPoint();
+        }
     }
 
     @Override
@@ -114,9 +113,5 @@ public class Playing extends State implements Statemethods {
         if (temp == Controls.movedown){
             player.setDown(false);}
     }
-
-    // TESTING
-   // public LevelManager getLevelManager(){return levelManager;}
-
 
 }
